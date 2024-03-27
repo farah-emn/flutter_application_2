@@ -5,6 +5,7 @@ import 'package:traveling/core/services/connectivity_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:traveling/screens/bookingSummaryScreen.dart';
 
 import 'app/my_app.dart';
 late SharedPreferences prefs;
@@ -23,5 +24,5 @@ Future<void> main() async {
   // Get.put(ConnectivityService());
   // Get.put(Connectivity());
 
-  runApp( MyApp());
+  runApp(BookingSummaryScreen());
 }
