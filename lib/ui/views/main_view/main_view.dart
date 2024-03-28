@@ -9,6 +9,7 @@ import 'package:traveling/ui/views/main_view/home_view/home_view.dart';
 import 'package:traveling/ui/views/main_view/main_view_widget.dart/navigation_bar.dart';
 import 'package:traveling/ui/views/main_view/profile_view/profile_view.dart';
 import 'package:traveling/ui/views/main_view/search_view/search_oneway_view.dart';
+import 'package:traveling/ui/views/profile_view/profile_view.dart';
 
 // import 'package:lottie/lottie.dart';
 // import 'package:image_picker/image_picker.dart';
@@ -48,7 +49,7 @@ class _MainViewState extends State<MainView> {
           physics: NeverScrollableScrollPhysics(),
           controller: controller,
           children: [
-            HotelDetailsScreen(),
+            ProfileView(),
             SearchViewOneWay(),
             TravellerDetailsView1(),
           ]),
