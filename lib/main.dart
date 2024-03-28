@@ -6,25 +6,19 @@ import 'package:traveling/core/services/connectivity_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:traveling/screens/bookingSummaryScreen.dart';
-import 'package:traveling/screens/hotelDetailsScreen.dart';
-import 'package:traveling/screens/hotelInfoScreen.dart';
+import 'package:traveling/ui/views/hotel_views/booking_summary_view/bookingSummaryScreen.dart';
+import 'package:traveling/ui/views/hotel_views/hotel_details_view/hotelDetailsScreen.dart';
+import 'package:traveling/ui/views/hotel_views/hotel_Info_view/hotelInfoScreen.dart';
 
 import 'app/my_app.dart';
 
-void main() {
-  runApp(
-    BookingSummaryScreen(),
-    // HotelInfoScreen(),
-  );
-}
-// late SharedPreferences prefs;
-// Future<void> main() async {
-//    WidgetsFlutterBinding.ensureInitialized();
-  
-//   Get.lazyPut(() => SharedPrefrenceRepository());
-//   Get.lazyPut(() => PostRepository());
-//   Get.lazyPut(() => ProductRepository());
+late SharedPreferences prefs;
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  Get.lazyPut(() => SharedPrefrenceRepository());
+  Get.lazyPut(() => PostRepository());
+  Get.lazyPut(() => ProductRepository());
 
 //   await Get.putAsync(() async {
 //     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -34,5 +28,5 @@ void main() {
 //   // Get.put(ConnectivityService());
 //   // Get.put(Connectivity());
 
-//   runApp(BookingSummaryScreen());
-// }
+  runApp(MyApp());
+}
