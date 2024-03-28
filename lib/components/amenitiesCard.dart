@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import '../models/amenitiesModel.dart';
+import '../ui/views/hotel_views/models/amenitiesModel.dart';
 
 // ignore: must_be_immutable
 class AmenitiesCard extends StatelessWidget {

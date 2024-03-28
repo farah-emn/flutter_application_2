@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../constants.dart';
+import 'package:traveling/ui/shared/colors.dart';
 
-import '../models/hotelDetailsModel.dart';
+import '../ui/views/hotel_views/models/hotelDetailsModel.dart';
 import 'hotelDetailsCard.dart';
 
 class HotelDetailsBody extends StatelessWidget {
@@ -16,7 +16,7 @@ class HotelDetailsBody extends StatelessWidget {
       child: Stack(
         children: [
           Positioned(
-             child: Image.asset('assets/hotel.jpg'),
+            child: Image.asset('assets/image/png/hotel.jpg'),
           ),
           Padding(
             padding: const EdgeInsets.only(
@@ -25,7 +25,7 @@ class HotelDetailsBody extends StatelessWidget {
             child: Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/background1.png'),
+                    image: AssetImage('assets/image/png/background1.png'),
                     fit: BoxFit.fill),
               ),
             ),
@@ -51,14 +51,14 @@ class HotelDetailsBody extends StatelessWidget {
                     child: const Row(
                       children: [
                         ImageIcon(
-                          AssetImage('assets/favorite.png'),
+                          AssetImage('assets/image/png/favorite.png'),
                           color: Colors.white,
                         ),
                         SizedBox(
                           width: 5,
                         ),
                         ImageIcon(
-                          AssetImage('assets/share_icon.png'),
+                          AssetImage('assets/image/png/share_icon.png'),
                           color: Colors.white,
                         )
                       ],
@@ -127,7 +127,7 @@ class _CheckInCheckOutDetailsState extends State<CheckInCheckOutDetails> {
           margin: const EdgeInsets.only(left: 15),
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-                backgroundColor: backgroundgrayColor,
+                backgroundColor: AppColors.backgroundgrayColor,
                 foregroundColor: Colors.black),
             onPressed: () async {
               DateTime? newDate = await showDatePicker(
@@ -154,21 +154,21 @@ class _CheckInCheckOutDetailsState extends State<CheckInCheckOutDetails> {
                   style: const TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 15,
-                      color: primaryColor),
+                      color: AppColors.mainColorBlue),
                 ),
               ],
             ),
           ),
         ),
         const ImageIcon(
-          AssetImage('assets/arrow_icon.png'),
+          AssetImage('assets/image/png/arrow_icon.png'),
           color: Colors.black,
         ),
         Container(
           margin: const EdgeInsets.only(right: 15),
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-                backgroundColor: backgroundgrayColor,
+                backgroundColor: AppColors.backgroundgrayColor,
                 foregroundColor: Colors.black),
             onPressed: () async {
               DateTime? newDate = await showDatePicker(
@@ -195,7 +195,7 @@ class _CheckInCheckOutDetailsState extends State<CheckInCheckOutDetails> {
                   style: const TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 15,
-                      color: primaryColor),
+                      color: AppColors.mainColorBlue),
                 ),
               ],
             ),

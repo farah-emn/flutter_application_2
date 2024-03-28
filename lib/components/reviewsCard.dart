@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../constants.dart';
-import '../models/reviewsModel.dart';
+import 'package:traveling/ui/shared/colors.dart';
+import '../ui/views/hotel_views/models/reviewsModel.dart';
 
 class ReviewCard extends StatelessWidget {
   final ReviewsModel reviewList;
@@ -50,7 +50,8 @@ class ReviewCard extends StatelessWidget {
                   ),
                   Text(
                     reviewList.date,
-                    style: const TextStyle(color: TextgrayColor, fontSize: 12),
+                    style: const TextStyle(
+                        color: AppColors.TextgrayColor, fontSize: 12),
                   ),
                 ],
               ),

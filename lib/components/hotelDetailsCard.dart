@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../models/hotelDetailsModel.dart';
+import '../ui/views/hotel_views/models/hotelDetailsModel.dart';
 
 class HotelDetailsCard extends StatelessWidget {
-   const HotelDetailsCard({
+  const HotelDetailsCard({
     super.key,
     required this.size,
     required this.hotelDetails,
@@ -30,21 +30,39 @@ class HotelDetailsCard extends StatelessWidget {
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.2),
                     offset: const Offset(0, 2),
-                    blurRadius: 4,),]),),
+                    blurRadius: 4,
+                  ),
+                ]),
+          ),
           Row(
             children: [
-              Column(children: [ Container(
-                    height: 180, width: size.width / 2 - 52, decoration:  BoxDecoration(
-                      borderRadius: const BorderRadius.only(topLeft: Radius.circular(20),
-                        bottomLeft: Radius.circular(20),),
-                      image: DecorationImage( image: AssetImage(hotelDetails.image),
-                        fit: BoxFit.cover,),
-                    ),),],),
-              Container(margin: const EdgeInsets.only(
-                  left: 10,top: 10,),
+              Column(
+                children: [
+                  Container(
+                    height: 180,
+                    width: size.width / 2 - 52,
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        bottomLeft: Radius.circular(20),
+                      ),
+                      image: DecorationImage(
+                        image: AssetImage(hotelDetails.image),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                margin: const EdgeInsets.only(
+                  left: 10,
+                  top: 10,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [Row(
+                  children: [
+                    Row(
                       children: [
                         SizedBox(
                           width: size.width / 2 + 10,
@@ -107,14 +125,21 @@ class HotelDetailsCard extends StatelessWidget {
                       height: 1,
                       color: const Color.fromARGB(255, 227, 227, 227),
                     ),
-                    const SizedBox(height: 5,
+                    const SizedBox(
+                      height: 5,
                     ),
                     const Text(
                       'Starting from:',
-                      style: TextStyle(fontWeight: FontWeight.w500),),
-                     Row( crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [Row( crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [Text(hotelDetails.price,
+                      style: TextStyle(fontWeight: FontWeight.w500),
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              hotelDetails.price,
                               style: const TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w500,

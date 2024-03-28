@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:traveling/ui/shared/colors.dart';
 import '../components/amenitiesCard.dart';
 import '../components/reviewsCard.dart';
-import '../constants.dart';
-import '../models/amenitiesModel.dart';
-import '../models/reviewsModel.dart';
+import '../ui/views/hotel_views/models/amenitiesModel.dart';
+import '../ui/views/hotel_views/models/reviewsModel.dart';
 // import 'package:readmore/readmore.dart';
 
 class HotelInfoBody extends StatelessWidget {
@@ -18,7 +18,7 @@ class HotelInfoBody extends StatelessWidget {
             height: 300,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/hotel.jpg'),
+                image: AssetImage('assets/image/png/hotel.jpg'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -30,7 +30,7 @@ class HotelInfoBody extends StatelessWidget {
             child: Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/background1.png'),
+                    image: AssetImage('assets/image/png/background1.png'),
                     fit: BoxFit.fill),
               ),
             ),
@@ -46,7 +46,7 @@ class HotelInfoBody extends StatelessWidget {
                     Icon(Icons.arrow_back_ios,
                         color: Color.fromARGB(255, 255, 255, 255)),
                     ImageIcon(
-                      AssetImage('assets/favorite.png'),
+                      AssetImage('assets/image/png/favorite.png'),
                       color: Colors.white,
                     ),
                   ],
@@ -78,7 +78,8 @@ class HotelInfoBody extends StatelessWidget {
                                     bottomLeft: Radius.circular(7),
                                     topLeft: Radius.circular(7)),
                                 image: DecorationImage(
-                                    image: AssetImage('assets/room1.png'),
+                                    image: AssetImage(
+                                        'assets/image/png/room1.png'),
                                     fit: BoxFit.fill),
                               ),
                             ),
@@ -87,7 +88,8 @@ class HotelInfoBody extends StatelessWidget {
                               height: 50,
                               decoration: const BoxDecoration(
                                 image: DecorationImage(
-                                    image: AssetImage('assets/room2.png'),
+                                    image: AssetImage(
+                                        'assets/image/png/room2.png'),
                                     fit: BoxFit.fill),
                               ),
                             ),
@@ -96,7 +98,8 @@ class HotelInfoBody extends StatelessWidget {
                               height: 50,
                               decoration: const BoxDecoration(
                                 image: DecorationImage(
-                                    image: AssetImage('assets/room3.png'),
+                                    image: AssetImage(
+                                        'assets/image/png/room3.png'),
                                     fit: BoxFit.fill),
                               ),
                             ),
@@ -105,7 +108,8 @@ class HotelInfoBody extends StatelessWidget {
                               height: 50,
                               decoration: const BoxDecoration(
                                 image: DecorationImage(
-                                    image: AssetImage('assets/room4.png'),
+                                    image: AssetImage(
+                                        'assets/image/png/room4.png'),
                                     fit: BoxFit.fill),
                               ),
                             ),
@@ -117,7 +121,8 @@ class HotelInfoBody extends StatelessWidget {
                                     bottomRight: Radius.circular(7),
                                     topRight: Radius.circular(7)),
                                 image: DecorationImage(
-                                    image: AssetImage('assets/room1.png'),
+                                    image: AssetImage(
+                                        'assets/image/png/room1.png'),
                                     fit: BoxFit.fill),
                               ),
                             ),
@@ -143,13 +148,13 @@ class HotelInfoBody extends StatelessWidget {
                     Row(
                       children: [
                         ImageIcon(
-                          AssetImage('assets/location_icon.png'),
-                          color: primaryColor,
+                          AssetImage('assets/image/png/location_icon.png'),
+                          color: AppColors.mainColorBlue,
                         ),
                         Text(
                           '4 Star hotel - King fahd Rd',
                           style: TextStyle(
-                            color: TextgrayColor,
+                            color: AppColors.TextgrayColor,
                           ),
                         )
                       ],
@@ -163,7 +168,7 @@ class HotelInfoBody extends StatelessWidget {
                         Text(
                           '7.1',
                           style: TextStyle(
-                            color: TextgrayColor,
+                            color: AppColors.TextgrayColor,
                           ),
                         )
                       ],
@@ -236,7 +241,7 @@ class HotelInfoBody extends StatelessWidget {
                     ),
                   ),
                 ),
-                
+
                 Expanded(
                   child: Align(
                     alignment: Alignment.bottomCenter,
@@ -244,7 +249,7 @@ class HotelInfoBody extends StatelessWidget {
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size(double.maxFinite, 50),
-                        backgroundColor: primaryColor,
+                        backgroundColor: AppColors.mainColorBlue,
                         foregroundColor: Colors.white,
                         elevation: 0,
                         shape: RoundedRectangleBorder(
