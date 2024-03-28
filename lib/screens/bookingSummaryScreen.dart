@@ -5,10 +5,6 @@ class BookingSummaryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Stack(children: [Image.asset('assets/background1.png')],),
-      ),
-    );
+    return Text('data');
   }
 }
