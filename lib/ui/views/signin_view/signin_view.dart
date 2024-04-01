@@ -16,85 +16,105 @@ class SignInView extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return SafeArea(
-      child: Scaffold(
+        child: Scaffold(
       body: ListView(
-      // color: AppColors.backgroundgrayColor,      
+        // color: AppColors.backgroundgrayColor,
         children: [
-           Container(
-                width: size.width,
-                height: size.height/4,
-                decoration: BoxDecoration(image:
-                DecorationImage(image: AssetImage('assets/image/png/header.png'),
-                fit: BoxFit.cover
-                )
-                ),
-              ),
+          Container(
+            width: size.width,
+            height: size.height / 4,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/image/png/header.png'),
+                    fit: BoxFit.cover)),
+          ),
           Container(
             color: AppColors.backgroundgrayColor,
             child: Column(
               children: [
-               
                 Padding(
-                  padding:  EdgeInsetsDirectional.only(end: size.width/1.3,top:  size.width/5,bottom:  size.width/20),
-                  child: Text('Sign in ' , style:  TextStyle( fontWeight: FontWeight.w800, fontSize:  size.width/20),),
+                  padding: EdgeInsetsDirectional.only(
+                      end: size.width -120, top: size.width / 5),
+                  child: Text(
+                    'Sign in ',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: size.width / 20),
+                  ),
                 ),
-                CustomTextField( 
+                SizedBox(
+                  height: 15,
+                ),
+                CustomTextField(
                   prefIcon: Icons.call,
                   colorIcon: AppColors.pinkColor,
                   hintText: "Mobile Number",
-                )
-                ,SizedBox(height: screenWidth(30),),
-                 CustomTextField(
+                ),
+                SizedBox(
+                  height: screenWidth(30),
+                ),
+                CustomTextField(
                   prefIcon: Icons.lock,
                   colorIcon: AppColors.pinkColor,
                   hintText: "Password",
                 ),
-                SizedBox(height: screenWidth(15),),
-          
-                InkWell(
-                  onTap: () {
-                        Get.to(MainView());
-                      },
-                  child: CustomButton(text: 'Sign in',textColor: AppColors.backgroundgrayColor, heightPercent: 15, widthPercent: 1.1,)),
-                SizedBox(height: screenHeight(20),),
-                Center(
-                 child: CustomTextGray(mainText: 'or sign in with ',),
+                SizedBox(
+                  height: screenWidth(15),
                 ),
-                SizedBox(height: screenHeight(20),),
+                InkWell(
+                    onTap: () {
+                      Get.to(MainView());
+                    },
+                    child: CustomButton(
+                      text: 'Sign in',
+                      textColor: AppColors.backgroundgrayColor,
+                      heightPercent: 15,
+                      widthPercent: 1.1,
+                    )),
+                SizedBox(
+                  height: screenHeight(20),
+                ),
+                Center(
+                  child: CustomTextGray(
+                    mainText: 'or sign in with ',
+                  ),
+                ),
+                SizedBox(
+                  height: screenHeight(20),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                   CustomImage(imagename:'facebook_icon' ),
-                   CustomImage(imagename:'google_icon' ),
-                   CustomImage(imagename:'twitter_icon' ),
+                    CustomImage(imagename: 'facebook_icon'),
+                    CustomImage(imagename: 'google_icon'),
+                    CustomImage(imagename: 'twitter_icon'),
                   ],
                 ),
-              SizedBox(height: screenHeight(20),),
+                SizedBox(
+                  height: screenHeight(20),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CustomTextGray(mainText: 'You already have account? ')
-                   , InkWell(
-                    onTap: () {
-                      Get.offAll(SignUpView());
-                    },
-                     child: Text('Sign up',
-                     style: TextStyle(
-                      color: AppColors.mainColorBlue,
-                      fontWeight: FontWeight.bold,
-                     ),
-                     ),
-                   ) 
+                    CustomTextGray(mainText: 'You already have account? '),
+                    InkWell(
+                      onTap: () {
+                        Get.offAll(SignUpView());
+                      },
+                      child: Text(
+                        'Sign up',
+                        style: TextStyle(
+                          color: AppColors.mainColorBlue,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    )
                   ],
                 )
-          
               ],
-              
             ),
           ),
         ],
       ),
-    ))
-    ;
+    ));
   }
 }

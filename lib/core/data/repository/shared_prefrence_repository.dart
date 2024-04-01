@@ -11,6 +11,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SharedPrefrenceRepository {
   SharedPreferences pref = Get.find<SharedPreferences>();
 
+  // Future<SharedPreferences> pref = SharedPreferences.getInstance();
+
   //!--- Keys
   String PREF_FIRST_LUNCH = 'first_lunch';
   String PREF_IS_LOGGED = 'is_logged';

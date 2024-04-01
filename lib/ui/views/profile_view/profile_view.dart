@@ -8,35 +8,51 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-            body: ListView(
-      children: [
-        Container(
-          color: AppColors.LightBlueColor,
-          child: Column(
-            children: [
-              Padding(
-                padding: EdgeInsetsDirectional.only(
-                    top: screenWidth(18),
-                    start: screenWidth(20),
-                    end: screenWidth(3),
-                    bottom: screenWidth(30)),
-                child: Row(
+    Size size = MediaQuery.of(context).size;
+    return Scaffold(
+        backgroundColor: AppColors.StatusBarColor,
+        body: SafeArea(
+          child: Stack(children: [
+            Container(
+              margin: EdgeInsets.only(
+                top: 20,
+                left: 15,
+              ),
+              alignment: Alignment.centerRight,
+              width: 35,
+              height: 35,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                color: AppColors.backgroundgrayColor,
+              ),
+              child: const Icon(
+                Icons.arrow_back_ios,
+                color: AppColors.mainColorBlue,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 60,
+              ),
+              child: Container(
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/image/png/background1.png'),
+                      fit: BoxFit.fill),
+                ),
+              ),
+            ),
+            Column(
+              children: [
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      width: screenWidth(10),
-                      height: screenWidth(10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        color: AppColors.backgroundgrayColor,
-                      ),
-                      child: const Icon(
-                        Icons.arrow_back_ios,
-                        color: AppColors.mainColorBlue,
-                      ),
+                    SizedBox(
+                      width: 15,
                     ),
-                    SizedBox(width: screenWidth(3.8)),
                     Text(
                       'Profile',
                       style: TextStyle(
@@ -46,313 +62,320 @@ class ProfileView extends StatelessWidget {
                     )
                   ],
                 ),
-              ),
-              Container(
-                width: screenWidth(1),
-                // height: screenHeight(1.1),
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('assets/image/png/background1.png'),
-                      fit: BoxFit.fill),
+                const SizedBox(
+                  height: 50,
                 ),
-                child: Column(
+                Column(
                   children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.only(
-                          top: screenWidth(20),
-                          start: screenWidth(10),
-                          end: screenWidth(8)),
-                      child: Center(
+                    const CircleAvatar(
+                      radius: 48,
+                      backgroundImage:
+                          AssetImage('assets/image/png/girlUser1.png'),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Text(
+                      'User name',
+                      style:
+                          TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
+                    ),
+
+                    // Center(
+                    //   child: Column(
+                    //     children: [
+                    //       GestureDetector(
+                    //         onTap: () {
+                    //           Navigator.push(
+                    //             context,
+                    //             MaterialPageRoute(
+                    //               builder: (context) => UserProfileView2(),
+                    //             ), // Pass the desired tab index (0, 1, or 2)
+                    //           );
+                    //         },
+                    //         child: Container(
+                    //           child: Image(
+                    //             image: const AssetImage(
+                    //                 'assets/image/png/girlUser1.png'),
+                    //             width: screenWidth(5),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //       SizedBox(height: screenHeight(80)),
+                    //       Text(
+                    //         "User name",
+                    //         style: TextStyle(
+                    //             fontSize: screenWidth(24),
+                    //             fontWeight: FontWeight.w500),
+                    //       )
+                    //     ],
+                    //   ),
+                    // ),
+                    const SizedBox(height: 20),
+                    Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 7),
+                        margin: const EdgeInsets.symmetric(horizontal: 15),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10.0),
+                          // Border radius
+                        ),
                         child: Column(
                           children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => UserProfileView2(),
-                                  ), // Pass the desired tab index (0, 1, or 2)
-                                );
-                              },
-                              child: Image(
-                                image: const AssetImage(
-                                    'assets/image/png/user.png'),
-                                width: screenWidth(5),
-                              ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(
+                                  height: screenHeight(25),
+                                ),
+                                const Image(
+                                  image: AssetImage(
+                                      'assets/image/png/date_of_birth_icon.png'),
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Text(
+                                  'Bookings',
+                                  style: TextStyle(
+                                    fontSize: screenWidth(24),
+                                    color: AppColors.TextgrayColor,
+                                  ),
+                                ),
+                                const Spacer(),
+                                const Image(
+                                  image: AssetImage(
+                                      'assets/image/png/arrow icon.png'),
+                                )
+                              ],
                             ),
-                            SizedBox(height: screenHeight(80)),
-                            Text(
-                              "User name",
-                              style: TextStyle(
-                                  fontSize: screenWidth(24),
-                                  fontWeight: FontWeight.w500),
-                            )
+                            const Divider(
+                              // Add a horizontal line here
+                              color: Color.fromARGB(255, 229, 229, 229),
+                              thickness: 1,
+                              height: 15,
+                              indent: 10,
+                              endIndent: 10,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  height: screenHeight(30),
+                                ),
+                                const Image(
+                                  image: AssetImage(
+                                      'assets/image/png/favorite icon.png'),
+                                ),
+                                SizedBox(
+                                  width: 20
+                                ),
+                                Text(
+                                  'Favourites',
+                                  style: TextStyle(
+                                    fontSize: screenWidth(24),
+                                    color: AppColors.TextgrayColor,
+                                  ),
+                                ),
+                                const Spacer(),
+                                const Image(
+                                  image: AssetImage(
+                                      'assets/image/png/arrow icon.png'),
+                                )
+                              ],
+                            ),
+                            const Divider(
+                              // Add a horizontal line here
+                              color: Color.fromARGB(255, 229, 229, 229),
+                              thickness: 1,
+                              height: 15,
+                              indent: 10,
+                              endIndent: 10,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  height: screenHeight(30),
+                                ),
+                                const Image(
+                                  image: AssetImage(
+                                      'assets/image/png/profile.png'),
+                                ),
+                                SizedBox(
+                                  width: 20
+                                ),
+                                Text(
+                                  'Profile',
+                                  style: TextStyle(
+                                    fontSize: screenWidth(24),
+                                    color: AppColors.TextgrayColor,
+                                  ),
+                                ),
+                                const Spacer(),
+                                const Image(
+                                  image: AssetImage(
+                                      'assets/image/png/arrow icon.png'),
+                                )
+                              ],
+                            ),
+                            const Divider(
+                              // Add a horizontal line here
+                              color: Color.fromARGB(255, 229, 229, 229),
+                              thickness: 1,
+                              height: 15,
+                              indent: 10,
+                              endIndent: 10,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  height: screenHeight(30),
+                                ),
+                                const Image(
+                                  image: AssetImage(
+                                      'assets/image/png/travellers_icon.png'),
+                                ),
+                                SizedBox(
+                                  width: 17,
+                                ),
+                                Text(
+                                  'Travellers',
+                                  style: TextStyle(
+                                    fontSize: screenWidth(24),
+                                    color: AppColors.TextgrayColor,
+                                  ),
+                                ),
+                                const Spacer(),
+                                const Image(
+                                  image: AssetImage(
+                                      'assets/image/png/arrow icon.png'),
+                                )
+                              ],
+                            ),
+                            const Divider(
+                              // Add a horizontal line here
+                              color: Color.fromARGB(255, 229, 229, 229),
+                              thickness: 1,
+                              height: 15,
+                              indent: 10,
+                              endIndent: 10,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  height: screenHeight(30),
+                                ),
+                                const Image(
+                                  image: AssetImage(
+                                      'assets/image/png/settings_icon.png'),
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Text(
+                                  'Settings',
+                                  style: TextStyle(
+                                    fontSize: screenWidth(24),
+                                    color: AppColors.TextgrayColor,
+                                  ),
+                                ),
+                                const Spacer(),
+                                const Image(
+                                  image: AssetImage(
+                                      'assets/image/png/arrow icon.png'),
+                                ),
+                                SizedBox(
+                                  height: screenHeight(25),
+                                ),
+                              ],
+                            ),
                           ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: screenWidth(10),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.only(
-                        start: screenWidth(20),
-                        end: screenWidth(20),
-                      ),
-                      child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10.0),
-                            // Border radius
-                          ),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  SizedBox(
-                                    height: screenHeight(25),
-                                  ),
-                                  const Image(
-                                    image: AssetImage(
-                                        'assets/image/png/date_of_birth_icon.png'),
-                                  ),
-                                  SizedBox(
-                                    width: screenWidth(20),
-                                  ),
-                                  Text(
-                                    'Bookings',
-                                    style: TextStyle(
-                                      fontSize: screenWidth(24),
-                                      color: AppColors.TextgrayColor,
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  const Image(
-                                    image: AssetImage(
-                                        'assets/image/png/arrow icon.png'),
-                                  )
-                                ],
-                              ),
-                              const Divider(
-                                // Add a horizontal line here
-                                color: AppColors.LightGrayColor,
-                                thickness: 4,
-                              ),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    height: screenHeight(30),
-                                  ),
-                                  const Image(
-                                    image: AssetImage(
-                                        'assets/image/png/favorite icon.png'),
-                                  ),
-                                  SizedBox(
-                                    width: screenWidth(20),
-                                  ),
-                                  Text(
-                                    'Favourites',
-                                    style: TextStyle(
-                                      fontSize: screenWidth(24),
-                                      color: AppColors.TextgrayColor,
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  const Image(
-                                    image: AssetImage(
-                                        'assets/image/png/arrow icon.png'),
-                                  )
-                                ],
-                              ),
-                              const Divider(
-                                // Add a horizontal line here
-                                color: AppColors.LightGrayColor,
-                                thickness: 4,
-                              ),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    height: screenHeight(30),
-                                  ),
-                                  const Image(
-                                    image: AssetImage(
-                                        'assets/image/png/profile.png'),
-                                  ),
-                                  SizedBox(
-                                    width: screenWidth(20),
-                                  ),
-                                  Text(
-                                    'Profile',
-                                    style: TextStyle(
-                                      fontSize: screenWidth(24),
-                                      color: AppColors.TextgrayColor,
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  const Image(
-                                    image: AssetImage(
-                                        'assets/image/png/arrow icon.png'),
-                                  )
-                                ],
-                              ),
-                              const Divider(
-                                // Add a horizontal line here
-                                color: AppColors.LightGrayColor,
-                                thickness: 4,
-                              ),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    height: screenHeight(30),
-                                  ),
-                                  const Image(
-                                    image: AssetImage(
-                                        'assets/image/png/travellers_icon.png'),
-                                  ),
-                                  SizedBox(
-                                    width: screenWidth(20),
-                                  ),
-                                  Text(
-                                    'Travellers',
-                                    style: TextStyle(
-                                      fontSize: screenWidth(24),
-                                      color: AppColors.TextgrayColor,
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  const Image(
-                                    image: AssetImage(
-                                        'assets/image/png/arrow icon.png'),
-                                  )
-                                ],
-                              ),
-                              const Divider(
-                                // Add a horizontal line here
-                                color: AppColors.LightGrayColor,
-                                thickness: 4,
-                              ),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    height: screenHeight(30),
-                                  ),
-                                  const Image(
-                                    image: AssetImage(
-                                        'assets/image/png/settings_icon.png'),
-                                  ),
-                                  SizedBox(
-                                    width: screenWidth(20),
-                                  ),
-                                  Text(
-                                    'Settings',
-                                    style: TextStyle(
-                                      fontSize: screenWidth(24),
-                                      color: AppColors.TextgrayColor,
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  const Image(
-                                    image: AssetImage(
-                                        'assets/image/png/arrow icon.png'),
-                                  ),
-                                  SizedBox(
-                                    height: screenHeight(25),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          )),
-                    ),
+                        )),
                     SizedBox(
                       height: screenHeight(30),
                     ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.only(
-                        start: screenWidth(20),
-                        end: screenWidth(20),
-                      ),
-                      child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10.0),
-                            // Border radius
-                          ),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  SizedBox(
-                                    height: screenHeight(25),
+                    Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        margin: EdgeInsets.symmetric(horizontal: 15),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10.0),
+                          // Border radius
+                        ),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(
+                                  height: screenHeight(25),
+                                ),
+                                const Image(
+                                  image: AssetImage(
+                                      'assets/image/png/contact us.png'),
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Text(
+                                  'Contact us',
+                                  style: TextStyle(
+                                    fontSize: screenWidth(24),
+                                    color: AppColors.TextgrayColor,
                                   ),
-                                  const Image(
-                                    image: AssetImage(
-                                        'assets/image/png/contact us.png'),
+                                ),
+                                const Spacer(),
+                                const Image(
+                                  image: AssetImage(
+                                      'assets/image/png/arrow icon.png'),
+                                )
+                              ],
+                            ),
+                            const Divider(
+                              // Add a horizontal line here
+                              color: Color.fromARGB(255, 229, 229, 229),
+                              thickness: 1,
+                              height: 10,
+                              indent: 10,
+                              endIndent: 10,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  height: screenHeight(30),
+                                ),
+                                const Image(
+                                  image: AssetImage(
+                                      'assets/image/png/contact us.png'),
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Text(
+                                  'Help',
+                                  style: TextStyle(
+                                    fontSize: screenWidth(24),
+                                    color: AppColors.TextgrayColor,
                                   ),
-                                  SizedBox(
-                                    width: screenWidth(20),
-                                  ),
-                                  Text(
-                                    'Contact us',
-                                    style: TextStyle(
-                                      fontSize: screenWidth(24),
-                                      color: AppColors.TextgrayColor,
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  const Image(
-                                    image: AssetImage(
-                                        'assets/image/png/arrow icon.png'),
-                                  )
-                                ],
-                              ),
-                              const Divider(
-                                // Add a horizontal line here
-                                color: AppColors.LightGrayColor,
-                                thickness: 4,
-                              ),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    height: screenHeight(30),
-                                  ),
-                                  const Image(
-                                    image: AssetImage(
-                                        'assets/image/png/contact us.png'),
-                                  ),
-                                  SizedBox(
-                                    width: screenWidth(20),
-                                  ),
-                                  Text(
-                                    'Help',
-                                    style: TextStyle(
-                                      fontSize: screenWidth(24),
-                                      color: AppColors.TextgrayColor,
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  const Image(
-                                    image: AssetImage(
-                                        'assets/image/png/arrow icon.png'),
-                                  ),
-                                  SizedBox(
-                                    height: screenHeight(25),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          )),
-                    )
+                                ),
+                                const Spacer(),
+                                const Image(
+                                  image: AssetImage(
+                                      'assets/image/png/arrow icon.png'),
+                                ),
+                                SizedBox(
+                                  height: screenHeight(25),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ))
                   ],
                 ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    )));
+              ],
+            ),
+          ]),
+        ));
   }
 }

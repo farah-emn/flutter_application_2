@@ -16,9 +16,18 @@ bool isValidPassword(String password) {
   return RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
       .hasMatch(password);
 }
+
 Future<XFile?> chooseImage(ImageSource imageSource) async {
   return await ImagePicker().pickImage(source: imageSource);
 }
+
+double screenWidth2() {
+  return Get.size.width;
+}
+double screenHeight2() {
+  return Get.size.height;
+}
+
 double screenWidth(double percent) {
   BuildContext context = Get.context!;
   if (context.isPortrait)
@@ -34,6 +43,7 @@ double screenHeight(double percent) {
   else
     return Get.size.width / percent;
 }
+
 SharedPrefrenceRepository get storege => Get.find<SharedPrefrenceRepository>();
 PostRepository get post => Get.find<PostRepository>();
 // ConnectivityService get connectivityService => Get.find<ConnectivityService>();

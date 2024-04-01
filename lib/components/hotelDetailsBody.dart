@@ -16,7 +16,7 @@ class HotelDetailsBody extends StatelessWidget {
       child: Stack(
         children: [
           Positioned(
-            child: Image.asset('assets/hotel.jpg'),
+            child: Image.asset('assets/image/png/hotel.jpg'),
           ),
           Padding(
             padding: const EdgeInsets.only(

@@ -20,10 +20,10 @@ Future<void> main() async {
   Get.lazyPut(() => PostRepository());
   Get.lazyPut(() => ProductRepository());
 
-//   await Get.putAsync(() async {
-//     SharedPreferences prefs = await SharedPreferences.getInstance();
-//     return prefs;
-//   });
+  await Get.putAsync(() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs;
+  });
 
 //   // Get.put(ConnectivityService());
 //   // Get.put(Connectivity());
