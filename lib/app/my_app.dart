@@ -16,6 +16,7 @@ import 'package:traveling/ui/views/traveller_details_view/traveller_details_view
 import 'package:traveling/ui/views/traveller_details_view/traveller_details_view3.dart';
 
 import '../ui/views/hotel_views/booking_summary_view/bookingSummaryScreen.dart';
+import '../ui/views/hotel_views/hotel_payments_view.dart/hotel_payments_view.dart';
 import '../ui/views/hotel_views/hotel_room_view/hotel_room_view.dart';
 import '../ui/views/flights_view/flights_view.dart';
 
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HotelRoomView(),
+      home: HotelPaymentsView(),
     );
   }
 }
