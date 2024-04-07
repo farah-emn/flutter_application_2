@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:traveling/components/hotelInfoHomeScreenCard.dart';
 import 'package:traveling/ui/shared/colors.dart';
 import 'package:traveling/ui/shared/custom_widgets/custom_image.dart';
 import 'package:traveling/ui/shared/custom_widgets/custom_servicetext.dart';
 
 import 'package:traveling/ui/shared/utils.dart';
+import 'package:traveling/ui/views/profile_view/profile_view.dart';
 
+import '../../flights_view/flights_view.dart';
+import '../../hotel_views/hotel_payments_view.dart/hotel_payments_view.dart';
 import '../../hotel_views/models/hotelInfoModel.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
+  
 
   @override
   Widget build(BuildContext context) {
@@ -60,13 +66,18 @@ class HomeView extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Column(children: [
-                    CustomImage(imagename: 'Flight'),
-                    SizedBox(
-                      height: screenWidth(30),
-                    ),
-                    CustomServiceText(text: 'Flight')
-                  ]),
+                  InkWell(
+                    onTap: () {
+                      Get.to(FlightsView());
+                    },
+                    child: Column(children: [
+                      CustomImage(imagename: 'Flight'),
+                      SizedBox(
+                        height: screenWidth(30),
+                      ),
+                      CustomServiceText(text: 'Flight')
+                    ]),
+                  ),
                   Column(children: [
                     CustomImage(imagename: 'Hotel'),
                     SizedBox(
@@ -197,18 +208,26 @@ class HomeView extends StatelessWidget {
             //     ],
             //   ),
             // ),
-            Container(
-              height: 250,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemCount: hotelInfo.length,
-                itemBuilder: (context, index) => HotelInfoHomeScreenCard(
-                  itemIndex: index,
-                  hotelInfo: hotelInfo[index],
+            InkWell(
+              onTap: () {
+                Get.to(
+                  const ProfileView(),
+                );
+              },
+              child: Container(
+                height: 250,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemCount: hotelInfo.length,
+                  itemBuilder: (context, index) => HotelInfoHomeScreenCard(
+                    itemIndex: index,
+                    hotelInfo: hotelInfo[index],
+                  ),
                 ),
               ),
             ),
+
             SizedBox(
               height: 20,
             ),

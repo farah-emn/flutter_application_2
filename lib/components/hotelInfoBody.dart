@@ -154,6 +154,7 @@ class HotelInfoBody extends StatelessWidget {
                         Text(
                           '4 Star hotel - King fahd Rd',
                           style: TextStyle(
+                            fontSize: 13,
                             color: AppColors.TextgrayColor,
                           ),
                         )
@@ -168,6 +169,7 @@ class HotelInfoBody extends StatelessWidget {
                         Text(
                           '7.1',
                           style: TextStyle(
+                            fontSize: 13,
                             color: AppColors.TextgrayColor,
                           ),
                         )
