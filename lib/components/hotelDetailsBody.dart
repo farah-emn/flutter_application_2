@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:traveling/ui/shared/colors.dart';
 
-import '../ui/views/hotel_views/models/hotelDetailsModel.dart';
+import '../ui/views/hotel_views/models/hotelRoomDetailsModel.dart';
 import 'hotelDetailsCard.dart';
 
 class HotelDetailsBody extends StatelessWidget {

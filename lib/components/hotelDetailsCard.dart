@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../ui/views/hotel_views/models/hotelDetailsModel.dart';
+import '../ui/views/hotel_views/models/hotelRoomDetailsModel.dart';
 
 class HotelDetailsCard extends StatelessWidget {
   const HotelDetailsCard({
@@ -11,7 +11,7 @@ class HotelDetailsCard extends StatelessWidget {
   });
 
   final Size size;
-  final HotelDetailsModel hotelDetails;
+  final HotelRoomDetailsModel hotelDetails;
   final int itemIndex;
 
   @override

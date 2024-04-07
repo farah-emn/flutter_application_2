@@ -1,11 +1,12 @@
-class HotelDetailsModel {
+class HotelRoomDetailsModel {
   String title;
   String beds;
   String view;
   String image;
   String price;
 
-  HotelDetailsModel(
+
+  HotelRoomDetailsModel(
       {required this.title,
       required this.beds,
       required this.view,
@@ -14,26 +15,26 @@ class HotelDetailsModel {
   // HotelDetailsM(this.title, String beds,String view, String image, int price);
 }
 
-List<HotelDetailsModel> details = [
-  HotelDetailsModel(
+List<HotelRoomDetailsModel> details = [
+  HotelRoomDetailsModel(
       title: 'Deluxe Room - 2 Twin Beds - Atrium View',
       beds: '2 Twin Beds',
       view: 'Partial Sea View',
       image: 'assets/image/png/room3.png',
       price: '2200'),
-  HotelDetailsModel(
+  HotelRoomDetailsModel(
       title: 'Deluxe Room - 1 Twin Beds - Atrium View',
       beds: '1 Twin Beds',
       view: 'Partial Sea View',
       image: 'assets/image/png/room4.png',
       price: '3000'),
-  HotelDetailsModel(
+  HotelRoomDetailsModel(
       title: 'Deluxe Room - 1 Twin Beds - Atrium View',
       beds: '1 Twin Beds',
       view: 'Partial Sea View',
       image: 'assets/image/png/room1.png',
       price: '1200'),
-  HotelDetailsModel(
+  HotelRoomDetailsModel(
       title: 'Deluxe Room - 1 Twin Beds - Atrium View',
       beds: '1 Twin Beds',
       view: 'Partial Sea View',
