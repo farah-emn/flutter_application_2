@@ -1,6 +1,9 @@
 import 'package:bot_toast/bot_toast.dart';
+import 'package:traveling/ui/shared/colors.dart';
+import 'package:traveling/ui/views/main_view/home_view/home_screen.dart';
 import 'package:traveling/ui/views/main_view/home_view/home_view.dart';
 import 'package:traveling/ui/views/main_view/main_view.dart';
+import 'package:traveling/ui/views/profile_view/profile_view.dart';
 import 'package:traveling/ui/views/signin_view/signin_view.dart';
 import 'package:traveling/ui/views/signup_view/signup_view.dart';
 import 'package:flutter/material.dart';
@@ -16,10 +19,6 @@ import 'package:traveling/ui/views/traveller_details_view/traveller_details_view
 import 'package:traveling/ui/views/traveller_details_view/traveller_details_view3.dart';
 
 import '../ui/views/hotel_views/booking_summary_view/bookingSummaryScreen.dart';
-import '../ui/views/hotel_views/hotel_payments_view.dart/hotel_payments_view.dart';
-import '../ui/views/hotel_views/hotel_room_view/hotel_room_view.dart';
-import '../ui/views/flights_view/flights_view.dart';
-
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
@@ -38,7 +37,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeView(),
+      home: SignInView(),
     );
   }
 }

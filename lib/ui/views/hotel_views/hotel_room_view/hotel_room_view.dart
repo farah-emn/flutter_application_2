@@ -6,6 +6,7 @@ import 'package:traveling/ui/shared/colors.dart';
 import 'package:traveling/ui/shared/custom_widgets/custom_button.dart';
 import 'package:traveling/ui/shared/utils.dart';
 
+import '../booking_summary_view/bookingSummaryScreen.dart';
 import '../guest_details_view/guest_details_view.dart';
 
 class HotelRoomView extends StatelessWidget {
@@ -413,7 +414,7 @@ class HotelRoomView extends StatelessWidget {
               padding: EdgeInsetsDirectional.only(top: screenHeight(1.16)),
               child: InkWell(
                   onTap: () {
-                    Get.to(GuestDetailsView());
+                    Get.to(BookingSummaryScreen());
                   },
                   child: CustomButton(
                       text: 'save',

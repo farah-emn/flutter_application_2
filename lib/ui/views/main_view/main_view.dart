@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:traveling/core/enums/bottom_nav.dart';
+import 'package:traveling/ui/shared/colors.dart';
 import 'package:traveling/ui/views/hotel_views/hotel_details_view/hotelDetailsScreen.dart';
 import 'package:traveling/ui/views/hotel_views/hotel_Info_view/hotelInfoScreen.dart';
 import 'package:traveling/ui/views/main_view/home_view/home_view.dart';
@@ -16,6 +17,7 @@ import 'package:traveling/ui/views/profile_view/profile_view.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
+  
 
   @override
   State<MainView> createState() => _MainViewState();
@@ -23,6 +25,8 @@ class MainView extends StatefulWidget {
 
 class _MainViewState extends State<MainView> {
   PageController controller = PageController();
+  
+  
 
   BottomNavigationEnum selectedView = BottomNavigationEnum.HOME;
 
@@ -31,6 +35,7 @@ class _MainViewState extends State<MainView> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+   
       key: scaffoldKey,
       bottomNavigationBar: NavBar(
         selected: selectedView,
@@ -52,7 +57,9 @@ class _MainViewState extends State<MainView> {
             ProfileView(),
             SearchViewOneWay(),
             TravellerDetailsView1(),
+            MainView(),
           ]),
+          
     ));
   }
 }

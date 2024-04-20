@@ -1,17 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:traveling/ui/shared/colors.dart';
 import '../components/amenitiesCard.dart';
 import '../components/reviewsCard.dart';
+import '../ui/views/hotel_views/hotel_details_view/hotelDetailsScreen.dart';
 import '../ui/views/hotel_views/models/amenitiesModel.dart';
 import '../ui/views/hotel_views/models/reviewsModel.dart';
+// import 'package:traveling/ui/views/hotel_views/hotel_details_view/hotelDetailsScreen.dart;
 // import 'package:readmore/readmore.dart';
 
 class HotelInfoBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
+    return Material(
+     child :SafeArea(
       child: Stack(
         children: [
           Container(
@@ -180,22 +184,6 @@ class HotelInfoBody extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                // const Text(
-                //   "Shangri-La Bosporus, Istanbil is set in the hear of Istanbul near to Taksim Square and Maiden's Tower and all this icon sites of the city. A stay at this property is worthy of remebering...",
-                //   style: TextStyle(color: TextgrayColor),
-                // ),
-                // const ReadMoreText(
-                //   "Shangri-La Bosporus, Istanbil is set in the hear of Istanbul near to Taksim Square and Maiden's Tower and all this icon sites of the city. A stay at this property is worthy of remebering",
-                //   trimLines: 2,
-                //   colorClickableText: Colors.pink,
-                //   trimMode: TrimMode.Line,
-                //   trimCollapsedText: 'Show more',
-                //   trimExpandedText: '..Show less',
-                //   style: TextStyle(color: TextgrayColor),
-                //   moreStyle:
-                //       TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: StatusBarColor),
-                //       lessStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: StatusBarColor),
-                // ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -248,7 +236,7 @@ class HotelInfoBody extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {Get.to(HotelDetailsScreen());},
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size(double.maxFinite, 50),
                         backgroundColor: AppColors.mainColorBlue,
@@ -267,6 +255,6 @@ class HotelInfoBody extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
+    )
+  );}
 }

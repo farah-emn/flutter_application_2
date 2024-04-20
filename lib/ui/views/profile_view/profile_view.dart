@@ -44,7 +44,7 @@ class ProfileView extends StatelessWidget {
             ),
             Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Row(
@@ -167,9 +167,7 @@ class ProfileView extends StatelessWidget {
                                   image: AssetImage(
                                       'assets/image/png/favorite icon.png'),
                                 ),
-                                SizedBox(
-                                  width: 20
-                                ),
+                                SizedBox(width: 20),
                                 Text(
                                   'Favourites',
                                   style: TextStyle(
@@ -201,9 +199,7 @@ class ProfileView extends StatelessWidget {
                                   image: AssetImage(
                                       'assets/image/png/profile.png'),
                                 ),
-                                SizedBox(
-                                  width: 20
-                                ),
+                                SizedBox(width: 20),
                                 Text(
                                   'Profile',
                                   style: TextStyle(

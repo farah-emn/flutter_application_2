@@ -23,93 +23,97 @@ class FlightsView extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-            backgroundColor: AppColors.LightBlueColor,
-            body: Stack(
-              children: <Widget>[
+    return Scaffold(
+        backgroundColor: AppColors.LightBlueColor,
+        body: Stack(
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.only(
-                      top: screenHeight(30), start: screenWidth(2.15)),
+                  padding: EdgeInsets.only(
+                    top: 50,
+                  ),
                   child: Image.asset('assets/image/png/plane_white.png'),
                 ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.only(
-                    start: screenWidth(3.2),
-                    top: screenHeight(
-                      15,
-                    ),
+                  padding: EdgeInsets.only(
+                    top: 80,
                   ),
                   child: Image.asset('assets/image/png/universe_icon.png'),
                 ),
-                Padding(
-                    padding: EdgeInsetsDirectional.only(
-                        top: screenHeight(10), start: screenWidth(12)),
-                    child: Column(
-                      children: [
-                        Text(
-                          'CAI',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          '26 DEC',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                          ),
-                        )
-                      ],
-                    )),
-                Padding(
-                    padding: EdgeInsetsDirectional.only(
-                        top: screenHeight(10), start: screenWidth(1.3)),
-                    child: Column(
-                      children: [
-                        Text(
-                          'RUH',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          '26 DEC',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                          ),
-                        )
-                      ],
-                    )),
-                Padding(
-                    padding: EdgeInsetsDirectional.only(top: screenHeight(5.8)),
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image:
-                                AssetImage('assets/image/png/background1.png'),
-                            fit: BoxFit.fill),
-                      ),
-                    )),
-                SizedBox(
-                  height: screenHeight(40),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.only(
-                    top: screenHeight(5),
-                  ),
-                  child: SizedBox(
-                      child: ListView.builder(
-                    itemBuilder: _buildListItem,
-                    scrollDirection: Axis.vertical,
-                    itemCount: flightList.length,
-                  )),
-                )
               ],
-            )));
+            ),
+            Padding(
+                padding: EdgeInsetsDirectional.only(
+                    top: screenHeight(10), start: screenWidth(12)),
+                child: Column(
+                  children: [
+                    Text(
+                      'CAI',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      '26 DEC',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
+                    )
+                  ],
+                )),
+            Padding(
+                padding: EdgeInsetsDirectional.only(
+                    top: screenHeight(10), start: screenWidth(1.3)),
+                child: Column(
+                  children: [
+                    Text(
+                      'RUH',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      '26 DEC',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
+                    )
+                  ],
+                )),
+            Padding(
+                padding: EdgeInsetsDirectional.only(top: screenHeight(5.8)),
+                child: Container(
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/image/png/background1.png'),
+                        fit: BoxFit.fill),
+                  ),
+                )),
+            SizedBox(
+              height: 150,
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.only(top: 150),
+              child: SizedBox(
+                  child: ListView.builder(
+                itemBuilder: _buildListItem,
+                scrollDirection: Axis.vertical,
+                itemCount: flightList.length,
+              )),
+            )
+          ],
+        ));
   }
 
   Widget _buildListItem(BuildContext context, int index) {
@@ -146,7 +150,7 @@ class FlightsView extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: screenHeight(60),
+                      height: 0,
                     ),
                     Row(
                       children: [

@@ -258,7 +258,7 @@ class HotelPaymentsView extends StatelessWidget {
                                             MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            'Your flight has been\n booked successfully.',
+                                            'Your flight has been\n\ booked successfully.',
                                             style: TextStyle(
                                                 fontSize: screenWidth(24),
                                                 color: Color.fromARGB(
