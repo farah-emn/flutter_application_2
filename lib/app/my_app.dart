@@ -18,6 +18,7 @@ import 'package:traveling/ui/views/traveller_details_view/traveller_details_view
 import 'package:traveling/ui/views/traveller_details_view/traveller_details_view2.dart';
 import 'package:traveling/ui/views/traveller_details_view/traveller_details_view3.dart';
 
+import '../ui/views/flight_details_view/flight_details.dart';
 import '../ui/views/hotel_views/booking_summary_view/bookingSummaryScreen.dart';
 
 class MyApp extends StatelessWidget {
@@ -37,7 +38,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SignInView(),
+      home:
+       FlightDetails(),
     );
   }
 }

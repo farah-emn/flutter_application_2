@@ -92,7 +92,7 @@ class FlightsView extends StatelessWidget {
                   ],
                 )),
             Padding(
-                padding: EdgeInsetsDirectional.only(top: screenHeight(5.8)),
+                padding: EdgeInsetsDirectional.only(top: 180),
                 child: Container(
                   decoration: const BoxDecoration(
                     image: DecorationImage(
@@ -130,114 +130,115 @@ class FlightsView extends StatelessWidget {
         ),
         elevation: 0.0,
         child: InkWell(
-            onTap: () {
-              Get.to(HotelPaymentsView());
-            },
-            child: Padding(
-                padding: EdgeInsetsDirectional.all(screenHeight(80)),
-                child: Column(
+          onTap: () {
+            Get.to(HotelPaymentsView());
+          },
+          child: Padding(
+            padding: EdgeInsetsDirectional.all(screenHeight(80)),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Image.asset(flight.imagePath),
+                    SizedBox(width: screenWidth(80)),
+                    Text(
+                      flight.name,
+                      style: TextStyle(
+                          fontSize: screenWidth(24),
+                          fontWeight: FontWeight.w500),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 0,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      flight.lift,
+                      style: TextStyle(
+                          fontSize: screenWidth(22),
+                          fontWeight: FontWeight.w500),
+                    ),
+                    SizedBox(
+                      width: 4,
+                    ),
+                    const Text('AM',
+                        style: TextStyle(color: AppColors.TextgrayColor)),
+                    const Spacer(),
+                    Image.asset('assets/image/png/Line_.png'),
+                    Image.asset('assets/image/png/blue plane.png'),
+                    Image.asset('assets/image/png/arrow blue.png'),
+                    const Spacer(),
+                    Text(
+                      flight.arrive,
+                      style: TextStyle(
+                          fontSize: screenWidth(22),
+                          fontWeight: FontWeight.w500),
+                    ),
+                    SizedBox(
+                      width: 4,
+                    ),
+                    const Text('PM',
+                        style: TextStyle(color: AppColors.TextgrayColor)),
+                  ],
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Row(
                   children: [
                     Row(
                       children: [
-                        Image.asset(flight.imagePath),
-                        SizedBox(width: screenWidth(80)),
-                        Text(
-                          flight.name,
-                          style: TextStyle(
-                              fontSize: screenWidth(24),
-                              fontWeight: FontWeight.w500),
-                        )
+                        Image.asset('assets/image/png/Direct_icon.png'),
+                        SizedBox(
+                          width: screenWidth(90),
+                        ),
+                        const Text(
+                          'Direct',
+                          style: TextStyle(color: AppColors.TextgrayColor),
+                        ),
                       ],
                     ),
-                    SizedBox(
-                      height: 0,
+                    const Spacer(),
+                    Row(
+                      children: [
+                        Image.asset('assets/image/png/clock_icon.png'),
+                        SizedBox(
+                          width: screenWidth(80),
+                        ),
+                        Text(
+                          flight.time,
+                          style:
+                              const TextStyle(color: AppColors.TextgrayColor),
+                        ),
+                      ],
                     ),
+                    const Spacer(),
                     Row(
                       children: [
                         Text(
-                          flight.lift,
+                          flight.cost,
                           style: TextStyle(
-                              fontSize: screenWidth(22),
-                              fontWeight: FontWeight.w500),
+                              color: const Color.fromARGB(255, 255, 181, 215),
+                              fontSize: screenWidth(18),
+                              fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(
-                          width: 4,
-                        ),
-                        const Text('AM',
-                            style: TextStyle(color: AppColors.TextgrayColor)),
-                        const Spacer(),
-                        Image.asset('assets/image/png/Line_.png'),
-                        Image.asset('assets/image/png/blue plane.png'),
-                        Image.asset('assets/image/png/arrow blue.png'),
-                        const Spacer(),
-                        Text(
-                          flight.arrive,
+                        const Text(
+                          'SAR',
                           style: TextStyle(
-                              fontSize: screenWidth(22),
-                              fontWeight: FontWeight.w500),
+                              color: AppColors.TextgrayColor,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12),
                         ),
-                        SizedBox(
-                          width: 4,
-                        ),
-                        const Text('PM',
-                            style: TextStyle(color: AppColors.TextgrayColor)),
                       ],
                     ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Row(
-                      children: [
-                        Row(
-                          children: [
-                            Image.asset('assets/image/png/Direct_icon.png'),
-                            SizedBox(
-                              width: screenWidth(90),
-                            ),
-                            const Text(
-                              'Direct',
-                              style: TextStyle(color: AppColors.TextgrayColor),
-                            ),
-                          ],
-                        ),
-                        const Spacer(),
-                        Row(
-                          children: [
-                            Image.asset('assets/image/png/clock_icon.png'),
-                            SizedBox(
-                              width: screenWidth(80),
-                            ),
-                            Text(
-                              flight.time,
-                              style: const TextStyle(
-                                  color: AppColors.TextgrayColor),
-                            ),
-                          ],
-                        ),
-                        const Spacer(),
-                        Row(
-                          children: [
-                            Text(
-                              flight.cost,
-                              style: TextStyle(
-                                  color:
-                                      const Color.fromARGB(255, 255, 181, 215),
-                                  fontSize: screenWidth(18),
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            const Text(
-                              'SAR',
-                              style: TextStyle(
-                                  color: AppColors.TextgrayColor,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 12),
-                            ),
-                          ],
-                        ),
-                      ],
-                    )
                   ],
-                ))),
+                )
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
