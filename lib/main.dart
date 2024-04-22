@@ -1,3 +1,6 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:firebase_core/firebase_core.dart';
 import 'package:traveling/components/hotelDetailsBody.dart';
 import 'package:traveling/core/data/repository/post_repository.dart';
 import 'package:traveling/core/data/repository/prodcut_repository.dart';
@@ -13,9 +16,17 @@ import 'package:traveling/ui/views/hotel_views/hotel_Info_view/hotelInfoScreen.d
 import 'app/my_app.dart';
 
 late SharedPreferences prefs;
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  Firebase.initializeApp(
+    options: FirebaseOptions(
+      apiKey: "AIzaSyCNAmw7EMRSuR2_fG40x08QbvWl8yH_6kg",
+      appId: "1:969124608869:android:33cc44f88cb8edb3c9bf8c",
+      messagingSenderId: '969124608869',
+      projectId: "travelling-1255c",
+      storageBucket: 'travelling-1255c.appspot.com',
+    ),
+  );
   Get.lazyPut(() => SharedPrefrenceRepository());
   Get.lazyPut(() => PostRepository());
   Get.lazyPut(() => ProductRepository());
