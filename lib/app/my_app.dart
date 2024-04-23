@@ -1,25 +1,23 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:traveling/ui/shared/colors.dart';
-import 'package:traveling/ui/views/main_view/home_view/home_screen.dart';
-import 'package:traveling/ui/views/main_view/home_view/home_view.dart';
-import 'package:traveling/ui/views/main_view/main_view.dart';
-import 'package:traveling/ui/views/profile_view/profile_view.dart';
-import 'package:traveling/ui/views/signin_view/signin_view.dart';
-import 'package:traveling/ui/views/signup_view/signup_view.dart';
+import 'package:traveling/ui/views/traveller_side_views/home_screen.dart';
+import 'package:traveling/ui/views/traveller_side_views/profile_view.dart';
+import 'package:traveling/ui/views/traveller_side_views/signin_view.dart';
+import 'package:traveling/ui/views/traveller_side_views/signup_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:traveling/app/my_app_controller.dart';
 import 'package:traveling/core/data/repository/shared_prefrence_repository.dart';
 import 'package:traveling/core/services/connectivity_service.dart';
 import 'package:traveling/core/translation/app_translation.dart';
 import 'package:traveling/ui/shared/utils.dart';
-import 'package:traveling/ui/views/traveller_details_view/traveller_details_view.dart';
-import 'package:traveling/ui/views/traveller_details_view/traveller_details_view2.dart';
-import 'package:traveling/ui/views/traveller_details_view/traveller_details_view3.dart';
+import 'package:traveling/ui/views/traveller_side_views/traveller_details_view2.dart';
+import 'package:traveling/ui/views/traveller_side_views/traveller_details_view3.dart';
 
-import '../ui/views/flight_details_view/flight_details.dart';
-import '../ui/views/hotel_views/booking_summary_view/bookingSummaryScreen.dart';
+import '../controllers/my_app_controller.dart';
+import '../ui/views/traveller_side_views/booking_summary_view.dart';
+import '../ui/views/traveller_side_views/traveller_details_view1.dart';
+import '../ui/views/traveller_side_views/edit_profile_view.dart';
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
@@ -38,7 +36,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SignInView(),
+      home: TravellerDetailsView3(),
     );
   }
 }
