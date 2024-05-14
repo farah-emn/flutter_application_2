@@ -39,4 +39,5 @@ void main() async {
 //   // Get.put(Connectivity());
 
   runApp(MyApp());
+  
 }

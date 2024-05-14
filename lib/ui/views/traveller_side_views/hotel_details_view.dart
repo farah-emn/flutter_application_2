@@ -82,7 +82,6 @@ class HotelDetailsView extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              // const CheckInCheckOutDetails(),
               const SizedBox(
                 height: 15,
               ),

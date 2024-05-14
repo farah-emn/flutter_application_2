@@ -18,7 +18,7 @@ class SearchViewOneWay extends StatelessWidget {
       body: SafeArea(
         child: Stack(children: [
           Container(
-            margin: EdgeInsets.only(
+            margin: const EdgeInsets.only(
               top: 20,
               left: 15,
             ),
@@ -56,7 +56,7 @@ class SearchViewOneWay extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 15,
                       ),
                       Text(
@@ -87,11 +87,11 @@ class SearchViewOneWay extends StatelessWidget {
                                     )),
                                 child: InkWell(
                                     onTap: () {
-                                      Get.off(SearchViewRoundTrip());
+                                      Get.off(const SearchViewRoundTrip());
                                     },
                                     child: Row(
                                       children: [
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 180,
                                         ),
                                         Text(
@@ -180,7 +180,7 @@ class SearchViewOneWay extends StatelessWidget {
                       end: screenWidth(15),
                       top: screenWidth(18),
                     ),
-                    child: Row(
+                    child: const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CustomSearchContainer(

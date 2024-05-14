@@ -30,7 +30,7 @@ class _FlightDetailsViewState extends State<FlightDetailsView> {
       return <Step>[
         Step(
           title: Text('Flight\nSummery'),
-          content: FlightSummery(),
+          content: FlightSummeryView(),
           state: _activeStepIndex > 0 ? StepState.complete : StepState.disabled,
           isActive: _activeStepIndex >= 0,
         ),

@@ -48,9 +48,13 @@ dependencies:
   provider: 
   cached_network_image: 
   flutter_rating_bar: 
-  firebase_core:
   easy_stepper: ^0.8.3
-  firebase_database: 
+  firebase_database: ^10.4.0 
+  firebase_auth: ^4.16.0
+  firebase_core: ^2.24.2
+  animated_splash_screen:
+  sizer:
+  animated_custom_dropdown:
 
 dev_dependencies:
   flutter_test:
