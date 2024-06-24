@@ -3,12 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:traveling/ui/shared/colors.dart';
-import 'package:traveling/ui/shared/custom_widgets/custom_button.dart';
 import 'package:traveling/ui/shared/custom_widgets/custom_textfiled.dart';
+import 'package:traveling/ui/shared/custom_widgets/custom_button.dart';
 import 'package:traveling/ui/shared/custom_widgets/custom_textgray.dart';
 import 'package:traveling/ui/shared/utils.dart';
 
-import 'flights_view.dart';
+import 'flights_view/flights_view_oneway.dart';
 
 class HotelPaymentsView extends StatelessWidget {
   const HotelPaymentsView({super.key});
@@ -271,7 +271,7 @@ class HotelPaymentsView extends StatelessWidget {
                                       ),
                                       InkWell(
                                         onTap: () {
-                                          Get.to(FlightsView());
+                                          // Get.to(FlightsView());
                                         },
                                         child: Padding(
                                           padding: EdgeInsets.only(

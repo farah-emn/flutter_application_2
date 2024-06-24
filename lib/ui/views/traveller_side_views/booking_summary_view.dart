@@ -2,17 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:traveling/ui/shared/colors.dart';
+import 'package:traveling/ui/shared/custom_widgets/custom_textfiled.dart';
 import 'package:traveling/ui/shared/utils.dart';
 import 'package:traveling/ui/views/traveller_side_views/home_screen.dart';
-
 import '../../shared/custom_widgets/custom_button.dart';
-import 'package:easy_stepper/easy_stepper.dart';
-import 'package:traveling/ui/shared/custom_widgets/custom_textgray.dart';
-
-import '../../shared/custom_widgets/custom_textfiled.dart';
-import 'flights_view.dart';
-import 'home_view.dart';
-import 'hotel_payments_view.dart';
 
 bool is3 = false;
 

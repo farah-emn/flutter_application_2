@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:traveling/ui/shared/colors.dart';
-import 'package:traveling/ui/shared/custom_widgets/custom_button.dart';
 import 'package:traveling/ui/shared/custom_widgets/custom_textfiled.dart';
+import 'package:traveling/ui/shared/custom_widgets/custom_button.dart';
 import 'package:traveling/ui/shared/utils.dart';
 
 import 'hotel_room_view.dart';

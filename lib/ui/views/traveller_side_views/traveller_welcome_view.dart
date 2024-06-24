@@ -6,8 +6,8 @@ import 'package:traveling/ui/views/traveller_side_views/signup_view.dart';
 
 import '../../shared/colors.dart';
 
-class WelcomeView extends StatelessWidget {
-  const WelcomeView({super.key});
+class TravellerWelcomeView extends StatelessWidget {
+  const TravellerWelcomeView({super.key});
 
   @override
   Widget build(BuildContext context) {

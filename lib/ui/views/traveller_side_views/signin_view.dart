@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:traveling/ui/shared/colors.dart';
 import 'package:traveling/ui/shared/custom_widgets/custom_button.dart';
 import 'package:traveling/ui/shared/custom_widgets/custom_image.dart';
-import 'package:traveling/ui/shared/custom_widgets/custom_textfiled.dart';
 import 'package:traveling/ui/shared/custom_widgets/custom_textgray.dart';
 import 'package:traveling/ui/shared/utils.dart';
 import 'package:traveling/ui/views/traveller_side_views/home_screen.dart';
@@ -211,21 +210,19 @@ class _SignInViewState extends State<SignInView> {
                               if (e is FirebaseAuthException) {
                                 if (e.code == 'user-not-found') {
                                   setState(() {
-                                    errorText= 'No user found for that email.';
+                                    errorText = 'No user found for that email.';
                                   });
-                                  
                                 } else if (e.code == 'wrong-password') {
                                   setState(() {
-                                    errorText=
-                                      'Wrong password provided for that user.';
+                                    errorText =
+                                        'Wrong password provided for that user.';
                                   });
-                                  
                                 } else {
                                   setState(() {
-                                    errorText='Failed with error code: ${e.code}';
-                                  errorText= e.message!;
+                                    errorText =
+                                        'Failed with error code: ${e.code}';
+                                    errorText = e.message!;
                                   });
-                                  
                                 }
                               }
                               print(e);

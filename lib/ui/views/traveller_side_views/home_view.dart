@@ -10,9 +10,9 @@ import 'package:traveling/ui/shared/custom_widgets/custom_servicetext.dart';
 
 import 'package:traveling/ui/shared/utils.dart';
 import 'package:traveling/ui/views/traveller_side_views/menu_view.dart';
-import 'package:traveling/ui/views/traveller_side_views/welcome_view.dart';
+import 'package:traveling/ui/views/traveller_side_views/traveller_welcome_view.dart';
 
-import 'flights_view.dart';
+import '../first_view.dart';
 import 'hotel_payments_view.dart';
 import '../../../classes/hotel_info_class.dart';
 
@@ -27,6 +27,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   final _auth = FirebaseAuth.instance;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   void initState() {
     super.initState();
@@ -41,7 +42,7 @@ class _HomeViewState extends State<HomeView> {
         loggedinUser = user;
       }
       if (_auth.currentUser == null) {
-        Get.offAll(const WelcomeView());
+        Get.offAll(const FirstView());
       }
     } catch (e) {
       print(e);
@@ -52,6 +53,117 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: Drawer(
+        backgroundColor: AppColors.backgroundgrayColor,
+        child: Column(
+          children: [
+            const UserAccountsDrawerHeader(
+                decoration: BoxDecoration(color: AppColors.Blue),
+                currentAccountPicture: CircleAvatar(
+                  backgroundImage: AssetImage('assets/image/png/girlUser1.png'),
+                ),
+                accountName: Text('data'),
+                accountEmail: Text('data@gmail.com')),
+            ListTile(
+              leading: const Icon(
+                Icons.date_range_rounded,
+                color: AppColors.Blue,
+              ),
+              title: const Text(
+                'Bookings',
+                style: TextStyle(
+                  color: AppColors.BlueText,
+                ),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.people,
+                color: AppColors.Blue,
+              ),
+              title: const Text(
+                'Travellers',
+                style: TextStyle(
+                  color: AppColors.BlueText,
+                ),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.settings,
+                color: AppColors.Blue,
+              ),
+              title: const Text(
+                'Settings',
+                style: TextStyle(
+                  color: AppColors.BlueText,
+                ),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 15),
+              height: 0.2,
+              color: AppColors.TextgrayColor,
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.headphones,
+                color: AppColors.Blue,
+              ),
+              title: const Text(
+                'Contact us',
+                style: TextStyle(
+                  color: AppColors.BlueText,
+                ),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.help,
+                color: AppColors.Blue,
+              ),
+              title: const Text(
+                'Help',
+                style: TextStyle(
+                  color: AppColors.BlueText,
+                ),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            Spacer(),
+            ListTile(
+              leading: const Icon(
+                Icons.logout,
+                color: AppColors.Blue,
+              ),
+              title: const Text(
+                'Logout',
+                style: TextStyle(
+                  color: AppColors.BlueText,
+                ),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -149,7 +261,7 @@ class _HomeViewState extends State<HomeView> {
                   children: [
                     InkWell(
                       onTap: () {
-                        Get.to(FlightsView());
+                        // Get.to(d);
                       },
                       child: Column(
                         children: [
@@ -224,8 +336,8 @@ class _HomeViewState extends State<HomeView> {
             ),
             leadingWidth: MediaQuery.of(context).size.width,
             toolbarHeight: 180,
-            leading: const Padding(
-              padding: EdgeInsets.only(
+            leading: Padding(
+              padding: const EdgeInsets.only(
                 left: 15,
                 right: 15,
                 top: 15,
@@ -235,7 +347,7 @@ class _HomeViewState extends State<HomeView> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
+                      const Row(
                         children: [
                           SizedBox(
                             width: 50,
@@ -268,10 +380,15 @@ class _HomeViewState extends State<HomeView> {
                           ),
                         ],
                       ),
-                      Icon(
-                        Icons.notifications,
-                        color: AppColors.backgroundgrayColor,
-                        size: 30,
+                      IconButton(
+                        onPressed: () {
+                          _scaffoldKey.currentState?.openDrawer();
+                        },
+                        icon: Icon(
+                          Icons.menu,
+                          color: AppColors.backgroundgrayColor,
+                          size: 30,
+                        ),
                       ),
                     ],
                   ),

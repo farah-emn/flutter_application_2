@@ -30,8 +30,6 @@ class ProfileController {
       'dateOfBirth': dateOfBirth,
       'nationality': nationality,
     });
-    // Get.
-    // ref.update(value);
   }
 
   Future<String> getUserName() async {

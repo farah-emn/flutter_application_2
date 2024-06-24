@@ -1,30 +1,31 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, must_be_immutable
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, must_be_immutable, unused_label, use_key_in_widget_constructors, no_leading_underscores_for_local_identifiers, non_constant_identifier_names, unnecessary_string_interpolations, unnecessary_brace_in_string_interps, unused_local_variable
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:traveling/classes/flight_info_class.dart';
+import 'package:traveling/controllers/currency_controller.dart';
+import 'package:traveling/controllers/search_roundtrip_controller.dart';
+import 'package:traveling/controllers/traveller_details_view1_controller.dart';
 import 'package:traveling/ui/shared/colors.dart';
 import 'package:traveling/ui/shared/utils.dart';
-
-import 'flight_details._view.dart';
-import 'flight_summery_view.dart';
-import 'hotel_payments_view.dart';
-import '../../../classes/flight_info_class.dart';
+import 'package:traveling/ui/views/traveller_side_views/flight_details._view.dart';
 
 class FlightsView extends StatelessWidget {
-  FlightsView({super.key});
-  List<FlightInfoClass> flightList = [
-    FlightInfoClass('assets/image/png/flynas.png', 'Flynas', '522', '02h 25m',
-        '09:30', '01:05'),
-    FlightInfoClass('assets/image/png/flynas.png', 'Flynas', '522', '02h 25m',
-        '09:30', '01:05'),
-    FlightInfoClass('assets/image/png/flynas.png', 'Flynas', '522', '02h 25m',
-        '09:30', '01:05'),
-    FlightInfoClass('assets/image/png/flynas.png', 'Flynas', '522', '02h 25m',
-        '09:30', '01:05'),
-    FlightInfoClass('assets/image/png/flynas.png', 'Flynas', '522', '02h 25m',
-        '09:30', '01:05'),
-  ];
+  Map<dynamic, dynamic> flightData;
+
+  FlightsView({required this.flightData});
+  final TravellerDetailsView1_Controller =
+      Get.put(TravellerDetailsView1Controller());
+  final SearchViewRoundTrip_Controller =
+      Get.put(SearchViewRoundTripController());
   @override
   Widget build(BuildContext context) {
+    List<FlightInfoClass> flightsList = flightData.entries.map((entry) {
+      var stringKeyedMap = Map<dynamic, dynamic>.from(entry.value);
+      return FlightInfoClass.fromMap(stringKeyedMap);
+    }).toList();
+    var firstKey = flightData.keys.first;
+
     return Scaffold(
         backgroundColor: AppColors.LightBlueColor,
         body: Stack(
@@ -57,14 +58,14 @@ class FlightsView extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      'CAI',
+                      flightData[firstKey]['deparure_from'] ?? '',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      '26 DEC',
+                      flightData[firstKey]['DeparureTime'] ?? '',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
@@ -78,14 +79,14 @@ class FlightsView extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      'RUH',
+                      flightData[firstKey]['arrival_to'] ?? '',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      '26 DEC',
+                      flightData[firstKey]['ArrivalTime'] ?? '',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
@@ -106,21 +107,56 @@ class FlightsView extends StatelessWidget {
               height: 150,
             ),
             Padding(
-              padding: EdgeInsetsDirectional.only(top: 150),
-              child: SizedBox(
+                padding: EdgeInsets.only(top: 190, right: 15, left: 15),
+                child: SizedBox(
                   child: ListView.builder(
-                itemBuilder: _buildListItem,
-                scrollDirection: Axis.vertical,
-                itemCount: flightList.length,
-              )),
-            )
+                    itemBuilder: (context, index) =>
+                        _buildListItem(context, flightsList[index]),
+                    scrollDirection: Axis.vertical,
+                    itemCount: flightsList.length,
+                  ),
+                ))
           ],
         ));
   }
 
-  Widget _buildListItem(BuildContext context, int index) {
-    FlightInfoClass flight = flightList[index];
+  Widget _buildListItem(BuildContext context, FlightInfoClass flight) {
+    final CurrencyController controller = Get.put(CurrencyController());
+    String _getFormattedCity(String City) {
+      final List<String> parts = City.split(',');
+      if (parts.length >= 2) {
+        final String City = parts[0];
+
+        return '$City';
+      } else {
+        return '';
+      }
+    }
+
+    String _getFormattedDate(String date) {
+      String day = '';
+      final DateFormat inputFormat = DateFormat('d. M, yyyy');
+      final DateFormat outputFormat = DateFormat('MMMM');
+      final List<String> parts = date.split('.');
+      if (parts.length >= 2) {
+        day = parts[0];
+      }
+
+      DateTime dateTime;
+      try {
+        dateTime = inputFormat.parse(date);
+      } catch (e) {
+        return '';
+      }
+
+      String monthName = outputFormat.format(dateTime);
+      return '${day}. ${monthName}';
+    }
+
+    _getFormattedDate(flight.DeparureDate);
+
     return SizedBox(
+      height: 170,
       child: Card(
         margin: EdgeInsetsDirectional.only(
             bottom: screenHeight(80),
@@ -133,7 +169,9 @@ class FlightsView extends StatelessWidget {
         elevation: 0.0,
         child: InkWell(
           onTap: () {
-            Get.to(FlightDetailsView());
+            GlobalKey<FormState> globalFormKey1 = GlobalKey<FormState>();
+
+            Get.to(FlightDetailsView(type: 'oneway', flightdata: flight));
           },
           child: Padding(
             padding: EdgeInsetsDirectional.all(screenHeight(80)),
@@ -141,8 +179,8 @@ class FlightsView extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Image.asset(flight.imagePath),
-                    SizedBox(width: screenWidth(80)),
+                    Image.asset('assets/image/png/flynas.png'),
+                    SizedBox(width: screenWidth(60)),
                     Text(
                       flight.name,
                       style: TextStyle(
@@ -157,7 +195,7 @@ class FlightsView extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      flight.lift,
+                      flight.DeparureTime,
                       style: TextStyle(
                           fontSize: screenWidth(22),
                           fontWeight: FontWeight.w500),
@@ -173,7 +211,7 @@ class FlightsView extends StatelessWidget {
                     Image.asset('assets/image/png/arrow blue.png'),
                     const Spacer(),
                     Text(
-                      flight.arrive,
+                      flight.ArrivalTime,
                       style: TextStyle(
                           fontSize: screenWidth(22),
                           fontWeight: FontWeight.w500),
@@ -184,6 +222,34 @@ class FlightsView extends StatelessWidget {
                     const Text('PM',
                         style: TextStyle(color: AppColors.TextgrayColor)),
                   ],
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.only(start: 1, end: 22),
+                  child: Row(
+                    children: [
+                      Row(
+                        children: [
+                          Text(_getFormattedCity(flight.DeparureCity)),
+                          SizedBox(width: 2),
+                          Text(
+                            _getFormattedDate(flight.DeparureDate),
+                            style: TextStyle(color: AppColors.TextgrayColor),
+                          ),
+                          // SizedBox(width: 110),
+                        ],
+                      ),
+                      Spacer(),
+                      Row(
+                        children: [
+                          Text(_getFormattedCity(flight.ArrivalCity)),
+                          Text(
+                            _getFormattedDate(flight.ArrivalDate),
+                            style: TextStyle(color: AppColors.TextgrayColor),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   height: 30,
@@ -210,7 +276,7 @@ class FlightsView extends StatelessWidget {
                           width: screenWidth(80),
                         ),
                         Text(
-                          flight.time,
+                          flight.Flight_Duration,
                           style:
                               const TextStyle(color: AppColors.TextgrayColor),
                         ),
@@ -220,14 +286,14 @@ class FlightsView extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          flight.cost,
+                          flight.Flight_price.toString(),
                           style: TextStyle(
                               color: const Color.fromARGB(255, 255, 181, 215),
-                              fontSize: screenWidth(18),
+                              fontSize: screenWidth(22),
                               fontWeight: FontWeight.bold),
                         ),
-                        const Text(
-                          'SAR',
+                        Text(
+                          controller.selectedCurrency.value,
                           style: TextStyle(
                               color: AppColors.TextgrayColor,
                               fontWeight: FontWeight.w500,

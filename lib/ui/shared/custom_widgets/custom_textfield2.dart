@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import '../colors.dart';
 
 const textFielDecoratiom = InputDecoration(
-  floatingLabelBehavior: FloatingLabelBehavior.always,
-  hintStyle: TextStyle(fontSize: 15, color: AppColors.TextgrayColor),
+  // hintStyle: TextStyle(fontSize: 15, color: AppColors.TextgrayColor),
   errorBorder: UnderlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(20)),
+    borderRadius: BorderRadius.all(Radius.circular(15)),
     borderSide: BorderSide(color: Colors.red, width: 1.5),
   ),
   prefixIconColor: AppColors.mainColorBlue,
@@ -19,21 +18,21 @@ const textFielDecoratiom = InputDecoration(
     ),
   ),
   enabledBorder: UnderlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(20)),
+    borderRadius: BorderRadius.all(Radius.circular(15)),
     borderSide: BorderSide(
       color: AppColors.TextgrayColor,
     ),
   ),
   focusedBorder: UnderlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(20)),
+    borderRadius: BorderRadius.all(Radius.circular(15)),
     borderSide: BorderSide(color: AppColors.mainColorBlue, width: 1.5),
   ),
   disabledBorder: UnderlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(20)),
+    borderRadius: BorderRadius.all(Radius.circular(15)),
     borderSide: BorderSide(color: AppColors.grayText),
   ),
   focusedErrorBorder: UnderlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(20)),
+    borderRadius: BorderRadius.all(Radius.circular(15)),
     borderSide: BorderSide(color: Colors.red, width: 1.5),
   ),
 );

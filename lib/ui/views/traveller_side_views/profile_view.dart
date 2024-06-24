@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../../shared/colors.dart';
-import '../../shared/custom_widgets/custom_button.dart';
 import '../../shared/custom_widgets/custom_textfield2.dart';
 
 class ProfileView extends StatefulWidget {
@@ -22,7 +21,6 @@ class _ProfileViewState extends State<ProfileView> {
   late final TextEditingController _lastNameController =
       TextEditingController();
   late final TextEditingController _emailController = TextEditingController();
-
   late final TextEditingController _nationalityController =
       TextEditingController();
   late final TextEditingController _monthController = TextEditingController();
@@ -650,7 +648,7 @@ class _ProfileViewState extends State<ProfileView> {
                             ],
                           ),
                           SizedBox(
-                            height: 45,
+                            height: 30,
                             child: TextField(
                               controller: _nationalityController,
                               decoration: textFielDecoratiom.copyWith(
@@ -729,26 +727,15 @@ class _ProfileViewState extends State<ProfileView> {
   Widget selectionField(
       BuildContext context, String type, TextEditingController controller) {
     return Container(
-      height: 200,
-      width: type == 'month' ? context.width / 3 - 10 : context.width / 3 - 25,
-      decoration: BoxDecoration(
-        color: AppColors.backgroundgrayColor,
-        borderRadius: const BorderRadius.only(
-          bottomLeft: Radius.circular(5),
-          bottomRight: Radius.circular(5),
-        ),
+      height: 200, width: type == 'month' ? context.width / 3 - 10 : context.width / 3 - 25,
+      decoration: BoxDecoration(color: AppColors.backgroundgrayColor,
+        borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(5),
+          bottomRight: Radius.circular(5),),
         border: Border.all(color: AppColors.LightGrayColor),
-      ),
-      child: ListView.builder(
-        itemCount: type == 'day'
-            ? daysList.length
-            : type == 'month'
-                ? monthsList.length
-                : yearsList.length,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-              setState(() {
+      ), child: ListView.builder( itemCount: type == 'day' ? daysList.length
+            : type == 'month' ? monthsList.length: yearsList.length,
+        itemBuilder: (context, index) {return GestureDetector(
+            onTap: () {setState(() {
                 switch (type) {
                   case 'day':
                     controller.text = (index + 1).toString();

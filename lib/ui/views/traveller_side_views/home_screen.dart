@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:traveling/ui/shared/colors.dart';
 import 'package:traveling/ui/views/traveller_side_views/home_view.dart';
 import 'package:traveling/ui/views/traveller_side_views/menu_view.dart';
-
-import 'search_oneway_view.dart';
+import 'package:traveling/ui/views/traveller_side_views/notifications_view.dart';
+import 'package:traveling/ui/views/traveller_side_views/profile_view.dart';
+import 'package:traveling/ui/views/traveller_side_views/search_oneway_view/search_oneway_view.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -14,12 +15,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   int index = 0;
   final Screens = [
     const HomeView(),
-    const SearchViewOneWay(),
-    const MenuView()
+    SearchViewOneWay(),
+    const NotificationsView(),
+    const ProfileView()
   ];
   @override
   Widget build(BuildContext context) {
@@ -28,11 +29,11 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: NavigationBarTheme(
         data: const NavigationBarThemeData(
             indicatorColor: AppColors.darkBlue,
+            indicatorShape: CircleBorder(),
             backgroundColor: Colors.white),
         child: NavigationBar(
-          
             elevation: 1,
-            height: 70,
+            height: 60,
             selectedIndex: index,
             labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
             animationDuration: const Duration(seconds: 2),
@@ -41,7 +42,10 @@ class _HomeState extends State<Home> {
                 }),
             destinations: const [
               NavigationDestination(
-                icon: Icon(Icons.home_outlined),
+                icon: Icon(
+                  Icons.home_outlined,
+                  color: AppColors.BlueText,
+                ),
                 selectedIcon: Icon(
                   Icons.home_filled,
                   color: AppColors.backgroundgrayColor,
@@ -49,7 +53,10 @@ class _HomeState extends State<Home> {
                 label: 'Home',
               ),
               NavigationDestination(
-                icon: Icon(Icons.search_outlined),
+                icon: Icon(
+                  Icons.search_outlined,
+                  color: AppColors.BlueText,
+                ),
                 selectedIcon: Icon(
                   Icons.search_outlined,
                   color: AppColors.backgroundgrayColor,
@@ -57,12 +64,26 @@ class _HomeState extends State<Home> {
                 label: 'Search',
               ),
               NavigationDestination(
-                icon: Icon(Icons.menu),
+                icon: Icon(
+                  Icons.notifications_none_outlined,
+                  color: AppColors.BlueText,
+                ),
                 selectedIcon: Icon(
-                  Icons.menu,
+                  Icons.notifications,
                   color: AppColors.backgroundgrayColor,
                 ),
-                label: 'Menu',
+                label: 'notifications',
+              ),
+              NavigationDestination(
+                icon: Icon(
+                  Icons.person_2_outlined,
+                  color: AppColors.BlueText,
+                ),
+                selectedIcon: Icon(
+                  Icons.person_2_rounded,
+                  color: AppColors.backgroundgrayColor,
+                ),
+                label: 'Profile',
               ),
             ]),
       ),
