@@ -230,6 +230,7 @@ class _FlightDetailsViewState extends State<FlightDetailsView> {
                           _activeStepIndex += 1;
                         });
                       } else if (_activeStepIndex == 1) {
+                        print('ggggg');
                         if (detailsView1Controller.AdultList.isNotEmpty) {
                           if (widget.type == 'oneway') {
                             if (FormController_OneWay.validateForm()) {
@@ -393,6 +394,7 @@ class _FlightDetailsViewState extends State<FlightDetailsView> {
         Get.find<FlightInfoController>();
     final SearchViewOneWayController SearchViewOneWay_controller =
         Get.find<SearchViewOneWayController>();
+    final Step3controller = Get.find<Step3Controller>();
     double totalPriceTicketFlight =
         controller_flight.flightInfo.value.Flight_price;
 
@@ -420,18 +422,41 @@ class _FlightDetailsViewState extends State<FlightDetailsView> {
         DatabaseReference ref1 = FirebaseDatabase.instance.reference();
 
         ref1.child('passenger').push().set({
-          "First name": dataController.AdultList[index].givenName,
-          "Last name": dataController.AdultList[index].surname,
+          "Firstname": dataController.AdultList[index].givenName,
+          "Lastname": dataController.AdultList[index].surname,
           "Nationality": dataController.AdultList[index].nationality,
           "birthDate": dataController.AdultList[index].birthDate,
-          "Flight Id": event.snapshot.key
+          "PassportNumber": dataController.AdultList[index].passportNumber,
+          "Gender": dataController.AdultList[index].gender,
+          "issuingCountryPassport":
+              dataController.AdultList[index].issuingCountry,
+          "ExpirationDatePassport": dataController.AdultList[index].expiration,
+          "FlightId": event.snapshot.key
         });
         passengerIds
             .add('p${index + 1}-${dataController.AdultList[index].givenName}');
         int bookingid = 1;
 
-        ref.child('booking').push().set(
-            {'passengerIds': passengerIds, 'flightid': event.snapshot.key});
+        var bookingRef = ref.child('booking').push();
+        bookingRef.set({
+          'passengerIds': passengerIds,
+          'flightId': event.snapshot.key,
+          'TotalTicketPrice': Step3controller.totalPriceTicketFlight
+        });
+
+        var bookingId = bookingRef.key;
+        FirebaseDatabase.instance
+            .reference()
+            .child('ContactPassenger')
+            .push()
+            .set({
+          'Email': TravellerDetailsView1_Controller.EmailContactDetails,
+          'MobileNumber':
+              TravellerDetailsView1_Controller.MobileNumberContactDetails,
+          'FirstName': TravellerDetailsView1_Controller.FirstNameContactDetails,
+          'LastName': TravellerDetailsView1_Controller.LastNameContactDetails,
+          'bookingId': bookingId
+        });
         final SearchViewRoundTripController SearchViewround_Controller =
             Get.find<SearchViewRoundTripController>();
 

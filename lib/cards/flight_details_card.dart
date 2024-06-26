@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:traveling/classes/flight_info_class.dart';
 import 'package:traveling/ui/views/traveller_side_views/flight_details._view.dart';
 
 import '../classes/flight_details_class.dart';
@@ -8,9 +9,11 @@ import '../ui/shared/colors.dart';
 import '../ui/views/flight_side_views/flight_flight_details_view.dart';
 
 class FlightDetailsCard extends StatefulWidget {
+  FlightInfoClass flightsList;
+
   FlightDetailsCard(
-      {super.key, required this.flightModel, required this.itemIndex});
-  FlightDetailsClass flightModel;
+      {super.key, required this.flightsList, required this.itemIndex});
+
   int itemIndex;
 
   @override
@@ -20,10 +23,19 @@ class FlightDetailsCard extends StatefulWidget {
 class _FlightDetailsCardState extends State<FlightDetailsCard> {
   @override
   Widget build(BuildContext context) {
+    // List<FlightInfoClass> flightsList = [];
+    // flightsList = widget.filteredFlightsData.entries.map((entry) {
+    //   var stringKeyedMap = Map<dynamic, dynamic>.from(entry.value);
+    //   return FlightInfoClass.fromMap(stringKeyedMap);
+    // }).toList();
+
+    @override
     Size size = MediaQuery.of(context).size;
     return InkWell(
       onTap: () {
-        Get.to(const FlightFlightDetailsView());
+        Get.to(FlightFlightDetailsView(
+          flightDetails: widget.flightsList,
+        ));
       },
       child: Container(
         margin: const EdgeInsets.only(top: 15),
@@ -45,7 +57,7 @@ class _FlightDetailsCardState extends State<FlightDetailsCard> {
                           Row(
                             children: [
                               Text(
-                                widget.flightModel.deparureTime,
+                                widget.flightsList.DeparureTime,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.w500, fontSize: 16),
                               ),
@@ -68,8 +80,8 @@ class _FlightDetailsCardState extends State<FlightDetailsCard> {
                               fontSize: 12,
                             ),
                           ),
-                          const Text(
-                            '02h 25m',
+                          Text(
+                            widget.flightsList.DeparureTime,
                             style: TextStyle(
                               color: AppColors.TextgrayColor,
                               fontSize: 12,
@@ -81,7 +93,7 @@ class _FlightDetailsCardState extends State<FlightDetailsCard> {
                           Row(
                             children: [
                               Text(
-                                widget.flightModel.arrivalTime,
+                                widget.flightsList.ArrivalTime,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.w500, fontSize: 16),
                               ),
@@ -108,13 +120,13 @@ class _FlightDetailsCardState extends State<FlightDetailsCard> {
                           SizedBox(
                             width: size.width / 2 + 30,
                             child: Text(
-                              widget.flightModel.fromAirport,
+                              widget.flightsList.airport_from,
                               style: const TextStyle(
                                   fontWeight: FontWeight.w400, fontSize: 15),
                             ),
                           ),
                           Text(
-                            widget.flightModel.fromCity,
+                            widget.flightsList.DeparureCity,
                             style: const TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 13,
@@ -126,13 +138,13 @@ class _FlightDetailsCardState extends State<FlightDetailsCard> {
                           SizedBox(
                             width: size.width / 2 + 30,
                             child: Text(
-                              widget.flightModel.toAirport,
+                              widget.flightsList.airport_to,
                               style: const TextStyle(
                                   fontWeight: FontWeight.w400, fontSize: 15),
                             ),
                           ),
                           Text(
-                            widget.flightModel.toCity,
+                            widget.flightsList.ArrivalCity,
                             style: const TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 13,
@@ -160,7 +172,7 @@ class _FlightDetailsCardState extends State<FlightDetailsCard> {
                             width: 5,
                           ),
                           Text(
-                            widget.flightModel.depatureDate,
+                            widget.flightsList.DeparureDate,
                             style:
                                 const TextStyle(color: AppColors.TextgrayColor),
                           ),

@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_new
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -10,6 +12,7 @@ import 'package:traveling/ui/shared/custom_widgets/custom_image.dart';
 import 'package:traveling/ui/shared/custom_widgets/custom_textgray.dart';
 import 'package:traveling/ui/shared/utils.dart';
 import 'package:traveling/ui/views/flight_side_views/flight_home_view.dart';
+import 'package:traveling/ui/views/traveller_side_views/home_view.dart';
 import 'package:traveling/ui/views/traveller_side_views/signin_view.dart';
 import '../../shared/custom_widgets/custom_textfield2.dart';
 import '../traveller_side_views/home_screen.dart';
@@ -26,16 +29,29 @@ class _FlightSignUpViewState extends State<FlightSignUpView> {
   late String email;
   late String password;
   late String confermPassword;
-  late String errorText = '';
-  final _formKey = GlobalKey<FormState>();
+  late String AirelineCode;
+  late String CompanyName;
 
+  late String errorText = '';
+  late String errorTextEmail = '';
+  late String errorTextAirlineCode = '';
+  late String errorTextPassword = '';
+  late String errorTextCompanyName = '';
+  late String errorTextConfirmPassword = '';
+  final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
+  final _AirelineCodeController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+  final _CompanyNameController = TextEditingController();
+
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _AirelineCodeController.dispose();
+    _CompanyNameController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -43,7 +59,8 @@ class _FlightSignUpViewState extends State<FlightSignUpView> {
   Widget build(BuildContext context) {
     final _auth = FirebaseAuth.instance;
     final size = MediaQuery.of(context).size;
-    final DatabaseReference ref = FirebaseDatabase.instance.ref("user");
+    final DatabaseReference ref =
+        FirebaseDatabase.instance.ref("Airline Company");
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -103,7 +120,7 @@ class _FlightSignUpViewState extends State<FlightSignUpView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(
-                      height: 280,
+                      height: 230,
                     ),
                     Text(
                       'Sign up ',
@@ -139,9 +156,102 @@ class _FlightSignUpViewState extends State<FlightSignUpView> {
                         },
                       ),
                     ),
+                    (errorTextEmail.isNotEmpty)
+                        ? Padding(
+                            padding:
+                                EdgeInsetsDirectional.only(start: 6, top: 10),
+                            child: Text(
+                              errorTextEmail!,
+                              style: TextStyle(fontSize: 11, color: Colors.red),
+                            ),
+                          )
+                        : SizedBox(
+                            height: 20,
+                          ),
                     const SizedBox(
                       height: 30,
                     ),
+                    const Row(
+                      children: [
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'Company name',
+                          style: TextStyle(
+                              fontSize: 13,
+                              color: AppColors.grayText,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 30,
+                      child: TextFormField(
+                        keyboardType: TextInputType.text,
+                        controller: _CompanyNameController,
+                        decoration: textFielDecoratiom.copyWith(),
+                        onChanged: (value) {
+                          email = value;
+                        },
+                      ),
+                    ),
+                    (errorTextCompanyName.isNotEmpty)
+                        ? Padding(
+                            padding:
+                                EdgeInsetsDirectional.only(start: 6, top: 10),
+                            child: Text(
+                              errorTextEmail!,
+                              style: TextStyle(fontSize: 11, color: Colors.red),
+                            ),
+                          )
+                        : SizedBox(
+                            height: 20,
+                          ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    const Row(
+                      children: [
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'Airline Code',
+                          style: TextStyle(
+                              fontSize: 13,
+                              color: AppColors.grayText,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 30,
+                      child: TextFormField(
+                        keyboardType: TextInputType.text,
+                        controller: _AirelineCodeController,
+                        decoration: textFielDecoratiom.copyWith(),
+                        onChanged: (value) {
+                          AirelineCode = value;
+                        },
+                      ),
+                    ),
+                    (errorTextAirlineCode != null)
+                        ? Padding(
+                            padding:
+                                EdgeInsetsDirectional.only(start: 6, top: 10),
+                            child: Text(
+                              errorTextAirlineCode!,
+                              style: TextStyle(fontSize: 11, color: Colors.red),
+                            ),
+                          )
+                        : SizedBox(
+                            height: 30,
+                          ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+
                     const Row(
                       children: [
                         SizedBox(
@@ -156,6 +266,7 @@ class _FlightSignUpViewState extends State<FlightSignUpView> {
                         ),
                       ],
                     ),
+
                     SizedBox(
                       height: 30,
                       child: TextFormField(
@@ -167,8 +278,23 @@ class _FlightSignUpViewState extends State<FlightSignUpView> {
                         },
                       ),
                     ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    (errorTextPassword != null)
+                        ? Padding(
+                            padding:
+                                EdgeInsetsDirectional.only(start: 6, top: 10),
+                            child: Text(
+                              errorTextPassword!,
+                              style: TextStyle(fontSize: 11, color: Colors.red),
+                            ),
+                          )
+                        : SizedBox(
+                            height: 20,
+                          ),
                     const SizedBox(
-                      height: 35,
+                      height: 20,
                     ),
                     const Row(
                       children: [
@@ -194,6 +320,18 @@ class _FlightSignUpViewState extends State<FlightSignUpView> {
                         },
                       ),
                     ),
+                    (errorTextConfirmPassword != null)
+                        ? Padding(
+                            padding:
+                                EdgeInsetsDirectional.only(start: 6, top: 10),
+                            child: Text(
+                              errorTextConfirmPassword!,
+                              style: TextStyle(fontSize: 11, color: Colors.red),
+                            ),
+                          )
+                        : SizedBox(
+                            height: 20,
+                          ),
                     const SizedBox(
                       height: 15,
                     ),
@@ -205,77 +343,138 @@ class _FlightSignUpViewState extends State<FlightSignUpView> {
                       height: 15,
                     ),
                     InkWell(
-                        onTap: () {
-                          Get.to(
-                            () => const FlightHome(),
-                          );
-                        },
-                        //  () async {
-                        //   try {
-                        //     if (_emailController.value.text.isEmpty ||
-                        //         _passwordController.value.text.isEmpty) {
-                        //       setState(() {
-                        //         errorText = "Please enter all fields";
-                        //       });
-                        //     } else if (!_emailController.value.text.isEmail) {
-                        //       setState(() {
-                        //         errorText = "Please enter valid email";
-                        //       });
-                        //     } else if (password.length < 7) {
-                        //       setState(() {
-                        //         errorText =
-                        //             "Password can't be less than 6 charecters";
-                        //       });
-                        //     } else if (password != confermPassword) {
-                        //       setState(() {
-                        //         errorText =
-                        //             "Password and verification do not match";
-                        //       });
-                        //     } else {
-                        //       try {
-                        //         final newUser =
-                        //             await _auth.createUserWithEmailAndPassword(
-                        //                 email: email, password: password);
-                        //         User? user = _auth.currentUser;
-                        //         if (newUser != null) {
-                        //           Get.offAll(const Home());
-                        //           ref.child(user!.uid.toString()).set({
-                        //             'email': email,
-                        //             'password': password,
-                        //             'first_name': '',
-                        //             'last_name': '',
-                        //             'nationality': '',
-                        //             'gender': '',
-                        //             'mobile_number': '',
-                        //             'day': '',
-                        //             'month': '',
-                        //             'year': '',
-                        //           });
-                        //         }
-                        //       } catch (e) {
-                        //         if (e is FirebaseAuthException) {
-                        //           switch (e.code) {
-                        //             case 'weak-password':
-                        //               setState(() {
-                        //                 errorText = 'Password is too weak.';
-                        //               });
-                        //               break;
-                        //             case 'email-already-in-use':
-                        //               setState(() {
-                        //                 errorText =
-                        //                     'Email is already registered.';
-                        //               });
+                        onTap:
+                            //() {
+                            //   Get.to(
+                            //     () => const FlightHome(),
+                            //   );
+                            // },
+                            () async {
+                          try {
+                            // if (_emailController.value.text.isEmpty &&
+                            //     _passwordController.value.text.isEmpty &&
+                            //     _AirelineCodeController.value.text.isEmpty) {
+                            //   setState(() {
+                            //     errorText = "Please enter all fields";
+                            //   });
+                            // }
+                            if (_emailController.value.text.isEmpty ||
+                                !_emailController.value.text.isEmail) {
+                              setState(() {
+                                errorTextEmail = "Please enter valid email";
+                              });
+                            } else {
+                              setState(() {
+                                errorTextEmail = '';
+                              });
+                            }
 
-                        //               break;
-                        //             // Add more cases as needed
-                        //             default:
-                        //             // Use the default error message
-                        //           }
-                        //         }
-                        //       }
-                        //     }
-                        //   } catch (e) {}
-                        // },
+                            if (_AirelineCodeController.value.text.isEmpty) {
+                              setState(() {
+                                errorTextAirlineCode =
+                                    "Aireline Code can't be empty";
+                              });
+                            } else if (_AirelineCodeController
+                                    .value.text.length >
+                                2) {
+                              setState(() {
+                                errorTextAirlineCode =
+                                    "Aireline Code can't be more than two characters";
+                              });
+                            } else if (_AirelineCodeController
+                                    .value.text.isNum ||
+                                _AirelineCodeController.value.text.contains(
+                                    new RegExp(r'[!@#\$%^&*(),.?":{}|<>]'))) {
+                              setState(() {
+                                errorTextAirlineCode =
+                                    "Please enter valid Aireline Code";
+                              });
+                            } else {
+                              setState(() {
+                                errorTextAirlineCode = '';
+                              });
+                            }
+
+                            if (_passwordController.value.text.isEmpty) {
+                              setState(() {
+                                errorTextPassword =
+                                    "Please enter a valid password";
+                              });
+                            } else if (_passwordController.value.text.length <
+                                    7 &&
+                                _passwordController.value.text.isNotEmpty) {
+                              setState(() {
+                                errorTextPassword =
+                                    "Password can't be less than 6 charecters";
+                              });
+                            } else {
+                              setState(() {
+                                errorTextPassword = '';
+                              });
+                            }
+
+                            if (_passwordController.value.text !=
+                                _confirmPasswordController.value.text) {
+                              setState(() {
+                                errorTextConfirmPassword =
+                                    "Password and verification do not match";
+                              });
+                            } else {
+                              errorTextConfirmPassword = '';
+                            }
+                            if (_CompanyNameController.value.text.isEmpty) {
+                              setState(() {
+                                errorTextCompanyName =
+                                    "Please enter a valid Company name";
+                              });
+                            } else {
+                              errorTextCompanyName = '';
+                            }
+                            if (errorTextAirlineCode.isEmpty &&
+                                errorTextEmail.isEmpty &&
+                                errorTextPassword.isEmpty &&
+                                errorTextConfirmPassword.isEmpty) {
+                              try {
+                                final newAirelineCompany =
+                                    await _auth.createUserWithEmailAndPassword(
+                                        email: email, password: password);
+                                User? AirelineCompany = _auth.currentUser;
+                                if (AirelineCompany != null) {
+                                  Get.offAll(FlightHome());
+                                  ref
+                                      .child(AirelineCompany!.uid.toString())
+                                      .set({
+                                    'email': email,
+                                    'password': password,
+                                    'AirlineCode': AirelineCode,
+                                    'mobile_number': '',
+                                    'AirlineCompanyName': 'flynas'
+                                  });
+                                }
+                              } catch (e) {
+                                if (e is FirebaseAuthException) {
+                                  switch (e.code) {
+                                    case 'weak-password':
+                                      setState(() {
+                                        errorText = 'Password is too weak.';
+                                      });
+                                      break;
+                                    case 'email-already-in-use':
+                                      setState(() {
+                                        errorText =
+                                            'Email is already registered.';
+                                      });
+
+                                      break;
+                                    // Add more cases as needed
+                                    default:
+                                    // Use the default error message
+                                  }
+                                }
+                              }
+                            }
+                          } catch (e) {}
+                        },
                         child: CustomButton(
                           text: 'Sign up',
                           textColor: AppColors.backgroundgrayColor,

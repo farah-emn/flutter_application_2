@@ -76,11 +76,6 @@ class SearchViewOneWayController extends GetxController {
   }
 
   Future<void> searchForFlights() async {
-    print(Adultcounter);
-    print(_DepartureCity);
-    print(DepartureCity);
-    print(getFormattedDepartureDate());
-
     String formattedDepartureDate = getFormattedDepartureDate();
     DatabaseReference ref = FirebaseDatabase.instance.reference();
     ref.child('flights').once().then((DatabaseEvent event) {

@@ -9,6 +9,7 @@ import 'package:traveling/ui/shared/custom_widgets/custom_image.dart';
 import 'package:traveling/ui/shared/custom_widgets/custom_servicetext.dart';
 
 import 'package:traveling/ui/shared/utils.dart';
+import 'package:traveling/ui/views/traveller_side_views/home_screen.dart';
 import 'package:traveling/ui/views/traveller_side_views/menu_view.dart';
 import 'package:traveling/ui/views/traveller_side_views/traveller_welcome_view.dart';
 
@@ -158,7 +159,8 @@ class _HomeViewState extends State<HomeView> {
                 ),
               ),
               onTap: () {
-                Navigator.pop(context);
+                _auth.signOut();
+                Get.offAll(() => const Home());
               },
             ),
           ],

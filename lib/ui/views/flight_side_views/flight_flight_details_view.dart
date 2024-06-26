@@ -1,4 +1,13 @@
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, unnecessary_null_comparison
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:traveling/cards/contact_details_passenger_card.dart';
+import 'package:traveling/cards/passenger_adult_card.dart';
+import 'package:traveling/classes/contact_details_passenger_class.dart';
+import 'package:traveling/classes/flight_info_class.dart';
+import 'package:traveling/classes/passenger_adult_details_class.dart';
 import 'package:traveling/ui/shared/custom_widgets/tab_item.dart';
 
 import '../../../cards/bookings_card.dart';
@@ -7,7 +16,9 @@ import '../../shared/colors.dart';
 import '../../shared/custom_widgets/custom_textfield2.dart';
 
 class FlightFlightDetailsView extends StatefulWidget {
-  const FlightFlightDetailsView({super.key});
+  FlightInfoClass flightDetails;
+
+  FlightFlightDetailsView({super.key, required this.flightDetails});
 
   @override
   State<FlightFlightDetailsView> createState() =>
@@ -15,8 +26,154 @@ class FlightFlightDetailsView extends StatefulWidget {
 }
 
 class _FlightFlightDetailsViewState extends State<FlightFlightDetailsView> {
+  bool? isChecked = false;
+  String? sorteBy;
+  User? AirelineCompany;
+  final _auth = FirebaseAuth.instance;
+  var AirelineCompanyId = '';
+  var AirelineCompanyName = '';
+  var uid;
+  var currentUser;
+  Map<dynamic, dynamic> PassengerAdultData = {};
+  List<FlightInfoClass> flightsList = [];
+  List<FlightInfoClass> filteredFlights = [];
+  List<ContactDetailsPassengerDetailsClass> ContactPassengerDetails = [];
+
+  void initState() {
+    super.initState();
+
+    currentUser = _auth.currentUser;
+    uid = currentUser?.uid;
+    setState(() {
+      getData();
+      AirelineCompany = _auth.currentUser;
+      AirelineCompanyId = AirelineCompany?.uid.toString() ?? '';
+    });
+    print(';;;');
+    print(AirelineCompanyName);
+  }
+
+  void getData() async {
+    final event =
+        await FirebaseDatabase.instance.ref('Airline Company').child(uid).get();
+    final AirelineCompanyData = Map<dynamic, dynamic>.from(event.value as Map);
+    AirelineCompanyName = AirelineCompanyData['AirlineCompanyName'];
+    fetchFlights().then((fetchedFlights) {
+      setState(() {
+        PassengerAdultData = fetchedFlights;
+        flightsList = fetchedFlights.entries.map((entry) {
+          var stringKeyedMap = Map<dynamic, dynamic>.from(entry.value);
+          return FlightInfoClass.fromMap(stringKeyedMap);
+        }).toList();
+      });
+    });
+    print('ccccccccccccccc');
+    print(PassengerAdultData.length);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  Future<Map> fetchFlights() async {
+    PassengerAdultData.clear(); // Clear the map
+
+    await FirebaseDatabase.instance
+        .reference()
+        .child('contact_details_passenger')
+        .once()
+        .then((DatabaseEvent event) {
+      if (event.snapshot.exists) {
+        print('lll');
+        var flightsDataa =
+            Map<dynamic, dynamic>.from(event.snapshot.value as Map);
+
+        flightsDataa.forEach((keyy, value) {
+          var FlightData = Map<dynamic, dynamic>.from(value);
+          FirebaseDatabase.instance
+              .reference()
+              .child('booking')
+              .once()
+              .then((DatabaseEvent eventt) {
+            if (eventt.snapshot.exists) {
+              var flightsData =
+                  Map<dynamic, dynamic>.from(eventt.snapshot.value as Map);
+              flightsData.forEach((key, value) {
+                if (flightsDataa[keyy]['bookingId'] == key) {
+                  FirebaseDatabase.instance
+                      .reference()
+                      .child('flights')
+                      .once()
+                      .then((DatabaseEvent eventt) {
+                    if (eventt.snapshot.exists) {
+                      var flightsDataFlight = Map<dynamic, dynamic>.from(
+                          eventt.snapshot.value as Map);
+                      flightsDataFlight.forEach((Flightkey, value) {
+                        print('ll9l');
+                        print(Flightkey);
+                        print(flightsData[key]['flightId']);
+                        if (Flightkey == flightsData[key]['flightId']) {
+                          print('bggg');
+                          if (flightsDataFlight[Flightkey]['name'] ==
+                              AirelineCompanyName) {
+                            print(AirelineCompanyName);
+                            setState(() {
+                              PassengerAdultData[keyy] = flightsDataa;
+                            });
+                            // print(flightsDataa);
+
+                            print('nnnnnnnnnnnnnnnnnnnnnnnn');
+
+                            Map<dynamic, dynamic> flattenedMap = {};
+                            PassengerAdultData.forEach((key, value) {
+                              if (value is Map) {
+                                value.forEach((key, value) {
+                                  flattenedMap[key] = value;
+                                });
+                              } else {
+                                flattenedMap[key] = value;
+                              }
+                            });
+                            print(flattenedMap);
+                            print('bbb');
+
+                            ContactPassengerDetails =
+                                flattenedMap.entries.map((entry) {
+                              return ContactDetailsPassengerDetailsClass
+                                  .fromMap({
+                                'firstname':
+                                    entry.value['firstname'], // corrected here
+                                'Email': entry.value['Email'],
+
+                                'mobilenumber':
+                                    entry.value['mobilenumber'].toString(),
+                                'bookingId':
+                                    entry.value['bookingId'].toString(),
+                                'lastname': entry.value['lastname'],
+                                'flightId': flightsData[key]['flightId']
+                              });
+                            }).toList();
+                          }
+                        }
+                      });
+                    }
+                  });
+                }
+              });
+            }
+          });
+        });
+      }
+    });
+    return PassengerAdultData;
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (ContactPassengerDetails != null) {
+      print('llaaalllaaa');
+    }
     Size size = MediaQuery.of(context).size;
     return DefaultTabController(
         length: 2,
@@ -84,17 +241,19 @@ class _FlightFlightDetailsViewState extends State<FlightFlightDetailsView> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 170),
-                  child: Expanded(
-                    child: TabBarView(
-                      children: [
-                        flightDetails(context),
-                        bookings(context),
-                      ],
-                    ),
-                  ),
-                ),
+                (PassengerAdultData != null)
+                    ? Padding(
+                        padding: const EdgeInsets.only(top: 170),
+                        child: Expanded(
+                          child: TabBarView(
+                            children: [
+                              flightDetails(context, widget.flightDetails),
+                              bookingsContact(context, ContactPassengerDetails),
+                            ],
+                          ),
+                        ),
+                      )
+                    : CircularProgressIndicator()
               ],
             ),
           ),
@@ -102,7 +261,7 @@ class _FlightFlightDetailsViewState extends State<FlightFlightDetailsView> {
   }
 }
 
-Widget flightDetails(BuildContext context) {
+Widget flightDetails(BuildContext context, FlightInfoClass flightDetails) {
   Size size = MediaQuery.of(context).size;
   return Padding(
     padding: const EdgeInsets.only(top: 20, left: 15, right: 15),
@@ -225,6 +384,9 @@ Widget flightDetails(BuildContext context) {
                 height: 45,
                 width: size.width - 50,
                 child: TextField(
+                  readOnly: true, // This makes the TextField read-only
+                  controller:
+                      TextEditingController(text: flightDetails.airport_from),
                   keyboardType: TextInputType.phone,
                   decoration: textFielDecoratiom.copyWith(
                       fillColor: Colors.white,
@@ -253,7 +415,9 @@ Widget flightDetails(BuildContext context) {
                 height: 45,
                 width: size.width - 50,
                 child: TextField(
-                  keyboardType: TextInputType.phone,
+                  readOnly: true,
+                  controller:
+                      TextEditingController(text: flightDetails.airport_to),
                   decoration: textFielDecoratiom.copyWith(
                       fillColor: Colors.white,
                       prefixIcon: const Icon(Icons.flight_land)),
@@ -286,7 +450,9 @@ Widget flightDetails(BuildContext context) {
                         height: 45,
                         width: size.width / 2 - 15,
                         child: TextField(
-                          keyboardType: TextInputType.phone,
+                          readOnly: true,
+                          controller: TextEditingController(
+                              text: flightDetails.DeparureTime),
                           decoration: textFielDecoratiom.copyWith(
                               fillColor: Colors.white,
                               prefixIcon: const Icon(Icons.access_time)),
@@ -304,7 +470,7 @@ Widget flightDetails(BuildContext context) {
                             width: 10,
                           ),
                           Text(
-                            'Return Time',
+                            'Arrival Time',
                             style: TextStyle(
                                 fontSize: 13,
                                 color: AppColors.grayText,
@@ -316,7 +482,9 @@ Widget flightDetails(BuildContext context) {
                         height: 45,
                         width: size.width / 2 - 15,
                         child: TextField(
-                          keyboardType: TextInputType.phone,
+                          readOnly: true,
+                          controller: TextEditingController(
+                              text: flightDetails.ArrivalTime),
                           decoration: textFielDecoratiom.copyWith(
                               fillColor: Colors.white,
                               prefixIcon:
@@ -354,7 +522,9 @@ Widget flightDetails(BuildContext context) {
                         height: 45,
                         width: size.width / 2 - 15,
                         child: TextField(
-                          keyboardType: TextInputType.phone,
+                          readOnly: true,
+                          controller: TextEditingController(
+                              text: flightDetails.DeparureDate),
                           decoration: textFielDecoratiom.copyWith(
                               fillColor: Colors.white,
                               prefixIcon: const Icon(Icons.date_range_rounded)),
@@ -384,7 +554,9 @@ Widget flightDetails(BuildContext context) {
                         height: 45,
                         width: size.width / 2 - 15,
                         child: TextField(
-                          keyboardType: TextInputType.phone,
+                          readOnly: true,
+                          controller: TextEditingController(
+                              text: flightDetails.ArrivalDate),
                           decoration: textFielDecoratiom.copyWith(
                               fillColor: Colors.white,
                               prefixIcon: const Icon(Icons.date_range_rounded)),
@@ -474,7 +646,9 @@ Widget flightDetails(BuildContext context) {
                         height: 45,
                         width: size.width / 2 - 15,
                         child: TextField(
-                          keyboardType: TextInputType.phone,
+                          readOnly: true,
+                          controller: TextEditingController(
+                              text: flightDetails.Flight_price.toString()),
                           decoration: textFielDecoratiom.copyWith(
                               fillColor: Colors.white,
                               prefixIcon:
@@ -636,16 +810,21 @@ Widget flightDetails(BuildContext context) {
   );
 }
 
-Widget bookings(BuildContext context) {
-  return Expanded(
-    child: ListView.builder(
-      scrollDirection: Axis.vertical,
-      shrinkWrap: true,
-      itemCount: bookingsDetails.length,
-      itemBuilder: (context, index) => BookingsCard(
-        itemIndex: index,
-        bookingsModel: bookingsDetails[index],
-      ),
-    ),
-  );
+Widget bookingsContact(BuildContext context,
+    List<ContactDetailsPassengerDetailsClass> ContactPassengerDetails) {
+  return (ContactPassengerDetails != null)
+      ? Expanded(
+          child: ListView.builder(
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            itemCount: ContactPassengerDetails.length,
+            itemBuilder: (context, index) {
+              return ContactDetailsPassengerCard(
+                itemIndex: index,
+                ContactDetailsPassengerData: ContactPassengerDetails[index],
+              );
+            },
+          ),
+        )
+      : CircularProgressIndicator();
 }

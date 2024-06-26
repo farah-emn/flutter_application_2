@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, sized_box_for_whitespace, prefer_const_constructors, avoid_unnecessary_containers, avoid_print, unnecessary_null_comparison, prefer_const_constructors_in_immutables, library_private_types_in_public_api, invalid_use_of_protected_member, non_constant_identifier_names, prefer_collection_literals, prefer_is_empty, unused_local_variable, unnecessary_brace_in_string_interps, prefer_final_fields, must_be_immutable
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ocr_sdk/mrz_result.dart';
 import 'package:get/get.dart';
@@ -10,6 +12,7 @@ import 'package:traveling/controllers/search_oneway_controller.dart';
 import 'package:traveling/controllers/search_roundtrip_controller.dart';
 import 'package:traveling/controllers/traveller_details_view2_controller.dart';
 import 'package:traveling/ui/shared/colors.dart';
+import 'package:traveling/ui/shared/custom_widgets/custom_textfield2.dart';
 import 'package:traveling/ui/shared/custom_widgets/custom_textfiled.dart';
 import 'package:traveling/ui/shared/utils.dart';
 import 'package:traveling/ui/views/traveller_side_views/traveller_details_view/scan_traveller_id/global.dart';
@@ -35,6 +38,13 @@ class TravellerDetailsView1 extends StatefulWidget {
 }
 
 class _TravellerDetailsView1State extends State<TravellerDetailsView1> {
+  late final TextEditingController _mobileNumberController =
+      TextEditingController();
+  late final TextEditingController _firstNameController =
+      TextEditingController();
+  late final TextEditingController _lastNameController =
+      TextEditingController();
+  late final TextEditingController _emailController = TextEditingController();
   final TravellerDetails_Controller =
       Get.find<TravellerDetailsView1Controller>();
   final controller_oneway = Get.put(SearchViewOneWayController());
@@ -46,9 +56,22 @@ class _TravellerDetailsView1State extends State<TravellerDetailsView1> {
   FormControllerOneWay FormControlleroneway = Get.find<FormControllerOneWay>();
   FormControllerRoundTrip FormControllerroundTrip =
       Get.find<FormControllerRoundTrip>();
+  final _auth = FirebaseAuth.instance;
+  late final User? user;
+  String? email;
+  String? MobileNumber;
+  String? FirstName;
+  String? LastName;
 
+  late DatabaseReference ref;
   @override
   void initState() {
+    super.initState();
+    ref = FirebaseDatabase.instance.ref('user');
+    user = _auth.currentUser;
+
+    getData();
+
     super.initState();
     FormControlleroneway.formKey = GlobalKey<FormState>();
     FormControllerroundTrip.formKey = GlobalKey<FormState>();
@@ -59,6 +82,21 @@ class _TravellerDetailsView1State extends State<TravellerDetailsView1> {
     TravellerDetails_Controller.ChildList.clear();
     final controller_TravellerDetailsView2 =
         Get.put(TravellerDetailsView2Controller());
+    print(_emailController.text);
+
+    print(';;;;;;;;');
+  }
+
+  void getData() async {
+    final userId = user!.uid.toString();
+    final event = await ref.child(userId).get();
+    print(event);
+    final userData = Map<dynamic, dynamic>.from(event.value as Map);
+
+    _emailController.text = userData['email'];
+    _mobileNumberController.text = userData['mobile_number'];
+    _firstNameController.text = userData['first_name'];
+    _lastNameController.text = userData['last_name'];
   }
 
   late MRZResult receivedData;
@@ -835,44 +873,132 @@ class _TravellerDetailsView1State extends State<TravellerDetailsView1> {
                           ),
                         )),
                   ),
-                  CustomTextField(
-                    prefIcon: Icons.person_2,
-                    colorIcon: AppColors.pinkColor2,
-                    hintText: 'First name',
-                    validator: (value) {
-                      if (value!.length < 10) {
-                        return 'Please enter valid mobile number';
-                      }
-                      return null;
-                    },
-                  ),
                   SizedBox(
                     height: 20,
                   ),
-                  CustomTextField(
-                    prefIcon: Icons.person_2,
-                    colorIcon: AppColors.pinkColor2,
-                    hintText: 'Last name',
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
-                      }
-                      return null;
-                    },
+                  const Row(
+                    children: [
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Email',
+                        style: TextStyle(
+                            fontSize: 13,
+                            color: AppColors.grayText,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 30,
+                    child: TextFormField(
+                      keyboardType: TextInputType.emailAddress,
+                      controller: _emailController,
+                      decoration: textFielDecoratiom.copyWith(),
+                      onChanged: (value) {
+                        email = value;
+                        TravellerDetails_Controller.SetEmailContactDetails(
+                            value ?? _emailController.text);
+                      },
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  const Row(
+                    children: [
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Mobile Number',
+                        style: TextStyle(
+                            fontSize: 13,
+                            color: AppColors.grayText,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 30,
+                    child: TextFormField(
+                      keyboardType: TextInputType.phone,
+                      decoration: textFielDecoratiom.copyWith(),
+                      controller: _mobileNumberController,
+                      onChanged: (value) {
+                        MobileNumber = value;
+
+                        TravellerDetails_Controller
+                            .SetMobileNumberContactDetails(
+                                value ?? _mobileNumberController.text);
+                      },
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 35,
+                  ),
+                  const Row(
+                    children: [
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'First Name',
+                        style: TextStyle(
+                            fontSize: 13,
+                            color: AppColors.grayText,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 30,
+                    child: TextFormField(
+                      keyboardType: TextInputType.text,
+                      controller: _firstNameController,
+                      decoration: textFielDecoratiom.copyWith(),
+                      onChanged: (value) {
+                        FirstName = value;
+
+                        TravellerDetails_Controller.SetFirstNameContactDetails(
+                            FirstName ?? _firstNameController.text);
+                      },
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 35,
+                  ),
+                  const Row(
+                    children: [
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Last Name',
+                        style: TextStyle(
+                            fontSize: 13,
+                            color: AppColors.grayText,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 30,
+                    child: TextFormField(
+                      keyboardType: TextInputType.text,
+                      controller: _lastNameController,
+                      decoration: textFielDecoratiom.copyWith(),
+                      onChanged: (value) {
+                        LastName = value;
+
+                        TravellerDetails_Controller.SetLastNameContactDetails(
+                            value ?? _lastNameController.text);
+                      },
+                    ),
                   ),
                   SizedBox(
                     height: 20,
-                  ),
-                  CustomTextField(
-                    prefIcon: Icons.email,
-                    colorIcon: Color.fromARGB(255, 200, 186, 248),
-                    hintText: 'Email',
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
-                      }
-                      return null;
-                    },
                   ),
                   SizedBox(
                     height: screenWidth(7),

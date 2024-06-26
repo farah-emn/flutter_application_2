@@ -22,13 +22,30 @@ class FlightSignInView extends StatefulWidget {
 class _FlightSignInViewState extends State<FlightSignInView> {
   late String email;
   late String password;
+  late String confermPassword;
+  late String AirelineCode;
+  late String CompanyName;
+
   late String errorText = '';
+  late String errorTextEmail = '';
+  late String errorTextAirlineCode = '';
+  late String errorTextPassword = '';
+  late String errorTextCompanyName = '';
+  late String errorTextConfirmPassword = '';
+  final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
+  final _AirelineCodeController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+  final _CompanyNameController = TextEditingController();
+
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _AirelineCodeController.dispose();
+    _CompanyNameController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 

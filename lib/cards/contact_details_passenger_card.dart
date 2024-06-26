@@ -1,25 +1,38 @@
-// ignore_for_file: must_be_immutable, prefer_const_constructors
+// ignore_for_file: deprecated_member_use
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:traveling/classes/contact_details_passenger_class.dart';
 import 'package:traveling/classes/flight_info_class.dart';
 import 'package:traveling/classes/passenger_adult_details_class.dart';
 import 'package:traveling/ui/views/flight_side_views/flight_booking_view.dart';
-import '../classes/Bookings_class.dart';
-import '../ui/shared/colors.dart';
+import 'package:traveling/ui/views/flight_side_views/flight_contact_passenger_details_view.dart';
+import 'package:traveling/ui/views/traveller_side_views/flight_details._view.dart';
+import 'package:traveling/ui/views/traveller_side_views/signup_view.dart';
 
-class BookingsCard extends StatefulWidget {
-  BookingsCard(
-      {super.key, required this.bookingsModel, required this.itemIndex});
-  BookingsClass bookingsModel;
+import '../classes/Bookings_class.dart';
+import '../classes/flight_details_class.dart';
+import '../ui/shared/colors.dart';
+import '../ui/views/flight_side_views/flight_flight_details_view.dart';
+
+class ContactDetailsPassengerCard extends StatefulWidget {
+  ContactDetailsPassengerCard(
+      {super.key,
+      required this.ContactDetailsPassengerData,
+      required this.itemIndex});
+  ContactDetailsPassengerDetailsClass ContactDetailsPassengerData;
   int itemIndex;
 
   @override
-  State<BookingsCard> createState() => _BookingsCardState();
+  State<ContactDetailsPassengerCard> createState() =>
+      _ContactDetailsPassengerCardState();
 }
 
-class _BookingsCardState extends State<BookingsCard> {
+class _ContactDetailsPassengerCardState
+    extends State<ContactDetailsPassengerCard> {
   bool? isChecked = false;
   String? sorteBy;
   User? AirelineCompany;
@@ -31,6 +44,9 @@ class _BookingsCardState extends State<BookingsCard> {
   Map<dynamic, dynamic> PassengerAdultData = {};
   List<FlightInfoClass> flightsList = [];
   List<FlightInfoClass> filteredFlights = [];
+  List<ContactDetailsPassengerDetailsClass> ContactPassengerDetails = [];
+  int Adult = 1;
+  int Child = 0;
 
   void initState() {
     super.initState();
@@ -52,14 +68,10 @@ class _BookingsCardState extends State<BookingsCard> {
     final AirelineCompanyData = Map<dynamic, dynamic>.from(event.value as Map);
     AirelineCompanyName = AirelineCompanyData['AirlineCompanyName'];
     fetchFlights().then((fetchedFlights) {
-      setState(() {
-        PassengerAdultData = fetchedFlights;
-        flightsList = fetchedFlights.entries.map((entry) {
-          var stringKeyedMap = Map<dynamic, dynamic>.from(entry.value);
-          return FlightInfoClass.fromMap(stringKeyedMap);
-        }).toList();
-      });
+      setState(() {});
     });
+    print('ccccccccccccccc');
+    print(PassengerAdultData.length);
   }
 
   @override
@@ -67,96 +79,50 @@ class _BookingsCardState extends State<BookingsCard> {
     super.dispose();
   }
 
-  Future<Map> fetchFlights() async {
-    PassengerAdultData.clear(); // Clear the map
-
+  Future<void> fetchFlights() async {
     await FirebaseDatabase.instance
         .reference()
-        .child('contact_details_passenger')
+        .child('booking')
         .once()
         .then((DatabaseEvent event) {
       if (event.snapshot.exists) {
-        print('lll');
-        var flightsDataa =
+        var bookingData =
             Map<dynamic, dynamic>.from(event.snapshot.value as Map);
-
-        flightsDataa.forEach((keyy, value) {
-          var FlightData = Map<dynamic, dynamic>.from(value);
-          FirebaseDatabase.instance
-              .reference()
-              .child('booking')
-              .once()
-              .then((DatabaseEvent eventt) {
-            if (eventt.snapshot.exists) {
-              var flightsData =
-                  Map<dynamic, dynamic>.from(eventt.snapshot.value as Map);
-              flightsData.forEach((key, value) {
-                print(key);
-                if (flightsDataa[keyy]['bookingId'] == key) {
-                  print(flightsDataa[keyy]['bookingId']);
-                  FirebaseDatabase.instance
-                      .reference()
-                      .child('flights')
-                      .once()
-                      .then((DatabaseEvent eventt) {
-                    if (eventt.snapshot.exists) {
-                      var flightsDataFlight = Map<dynamic, dynamic>.from(
-                          eventt.snapshot.value as Map);
-                      flightsDataFlight.forEach((Flightkey, value) {
-                        print('ll9l');
-                        print(Flightkey);
-                        print(flightsData[key]['flightId']);
-
-                        if (Flightkey == flightsData[key]['flightId']) {
-                          print('bggg');
-                          if (flightsDataFlight[Flightkey]['name'] ==
-                              AirelineCompanyName) {
-                            print(AirelineCompanyName);
-                            PassengerAdultData[keyy] =
-                                PassengerAdultDetailsClass.fromMap(
-                                    flightsDataa);
-                          }
-
-                          // if (flightsData[key]['bookingId'] ==
-                          //     AirelineCompanyName) {
-                          //   setState(() {
-                          //     PassengerAdultData[keyy] =
-                          //         PassengerAdultDetailsClass.fromMap(
-                          //             FlightData); // Convert the Map to a PassengerAdultDetailsClass
-                          //   });
-                          //   print(FlightData);
-                          // }
-                        }
-                      });
-                    }
+        bookingData.forEach((key, value) {
+          if (key == widget.ContactDetailsPassengerData.bookingId) {
+            Adult = bookingData[key]['passengerIds'].length;
+            for (var adult in bookingData[key]['passengerIds']) {
+              FirebaseDatabase.instance
+                  .reference()
+                  .child('passenger')
+                  .child(adult)
+                  .once()
+                  .then((DatabaseEvent event) {
+                if (event.snapshot.exists) {
+                  var passengerData =
+                      Map<dynamic, dynamic>.from(event.snapshot.value as Map);
+                  passengerData.forEach((key, value) {
+                    setState(() {
+                      PassengerAdultData[key] = passengerData;
+                    });
                   });
-
-                  // if (flightsData[key]['bookingId'] == AirelineCompanyName) {
-                  //   setState(() {
-                  //     PassengerAdultData[keyy] = PassengerAdultDetailsClass.fromMap(
-                  //         FlightData); // Convert the Map to a PassengerAdultDetailsClass
-                  //   });
-                  //   print(FlightData);
-                  // }
-                  //    }
                 }
               });
             }
-          });
+          }
         });
       }
     });
-
-    return PassengerAdultData;
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
     return InkWell(
       onTap: () {
         Get.to(FlightBookingDetailsView(
-          bookingId: ' ',
+          bookingId: '',
         ));
       },
       child: Container(
@@ -169,6 +135,20 @@ class _BookingsCardState extends State<BookingsCard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            InkWell(
+                onTap: () {
+                  Get.to(FlightContactPassengerDetailsView(
+                    ContactPassengerDetails: widget.ContactDetailsPassengerData,
+                  ));
+                },
+                child: Container(
+                  padding: EdgeInsetsDirectional.only(
+                      start: size.width / 2 + 150, end: 4),
+                  child: const Icon(
+                    Icons.more_horiz,
+                    color: AppColors.Blue,
+                  ),
+                )),
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: Column(
@@ -194,9 +174,12 @@ class _BookingsCardState extends State<BookingsCard> {
                                 width: 10,
                               ),
                               Text(
-                                widget.bookingsModel.userName,
+                                '${widget.ContactDetailsPassengerData.firstname}${' '}${widget.ContactDetailsPassengerData.lastname}',
                                 style: const TextStyle(
                                     fontWeight: FontWeight.w500, fontSize: 16),
+                              ),
+                              SizedBox(
+                                width: size.width / 4,
                               ),
                             ],
                           ),
@@ -209,11 +192,11 @@ class _BookingsCardState extends State<BookingsCard> {
                               Row(
                                 children: [
                                   const Icon(
-                                    Icons.man,
+                                    Icons.boy,
                                     color: AppColors.darkBlue,
                                   ),
                                   const Text(
-                                    'Adults:',
+                                    'Adult:',
                                     style: TextStyle(
                                         color: AppColors.TextBlackColor,
                                         fontSize: 12,
@@ -223,7 +206,7 @@ class _BookingsCardState extends State<BookingsCard> {
                                     width: 5,
                                   ),
                                   Text(
-                                    widget.bookingsModel.audultNumber,
+                                    Adult.toString() ?? "",
                                     style: const TextStyle(
                                       color: AppColors.TextBlackColor,
                                       fontSize: 12,
@@ -248,7 +231,7 @@ class _BookingsCardState extends State<BookingsCard> {
                                     width: 5,
                                   ),
                                   Text(
-                                    widget.bookingsModel.childrenNumber,
+                                    Child.toString(),
                                     style: const TextStyle(
                                       color: AppColors.TextBlackColor,
                                       fontSize: 12,
@@ -283,7 +266,7 @@ class _BookingsCardState extends State<BookingsCard> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    'More Details',
+                    'more details',
                     style: TextStyle(
                       color: Colors.white,
                     ),

@@ -61,7 +61,7 @@ dependencies:
   flutter_exif_rotation: ^0.5.1
   mrz_parser: ^2.0.0
   mrzscanner_flutter: ^1.0.14
-  camera_platform_interface: ^2.7.4
+  camera_platform_interface:
   camera: 
   url_launcher: ^6.2.4
   flutter_mrz_scanner: 

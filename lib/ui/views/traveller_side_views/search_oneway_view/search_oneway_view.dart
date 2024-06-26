@@ -40,13 +40,10 @@ class SearchViewOneWayState extends State<SearchViewOneWay> {
   @override
   void initState() {
     super.initState();
-    // Set initial values if any
   }
 
   @override
   void dispose() {
-    // Clear your data here
-
     super.dispose();
   }
 

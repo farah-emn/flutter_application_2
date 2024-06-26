@@ -13,6 +13,12 @@ import 'package:traveling/ui/shared/utils.dart';
 import 'package:traveling/ui/views/traveller_side_views/search_oneway_view/search_oneway_view.dart';
 import 'package:traveling/ui/views/traveller_side_views/traveller_details_view/scan_traveller_id/global.dart';
 import 'package:traveling/ui/views/traveller_side_views/traveller_details_view/scan_traveller_id/scan_traveller_id.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class TravellerDetailsView2 extends StatefulWidget {
   MrzResult? change_data;
@@ -105,8 +111,6 @@ class _TravellerDetailsView2State extends State<TravellerDetailsView2> {
 
   @override
   void initState() {
-    super.initState();
-
     controller_TravellerDetailsview2.formKey = GlobalKey<FormState>();
     daysListBirthDate = List<int>.generate(31, (i) => i + 1);
     monthListBirthDate = List<int>.generate(12, (i) => i + 1);

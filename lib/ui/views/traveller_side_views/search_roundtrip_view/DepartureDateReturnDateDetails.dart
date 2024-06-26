@@ -117,8 +117,7 @@ class _CheckInCheckOutDetailsState
               DateTime? newReturnDate = await showDatePicker(
                   context: context,
                   initialDate: widget.Return_date.value,
-                  firstDate: widget.Departure_date
-                      .value, // Set the minimum date to one day after check-in date
+                  firstDate: widget.Departure_date.value,
                   lastDate: DateTime(2026));
               if (newReturnDate != null) {
                 setState(() {

@@ -52,6 +52,7 @@ class Step3Controller extends GetxController {
   }
 
   Future<bool> validateCreditCard() async {
+    print(',nnnnmn');
     final String formattedExpiryDate =
         _getFormattedExpiryDate(expiryDateController.text);
     var collection = FirebaseFirestore.instance.collection('CreditCard');

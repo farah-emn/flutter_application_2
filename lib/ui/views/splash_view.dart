@@ -2,7 +2,12 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:traveling/ui/shared/colors.dart';
+import 'package:traveling/ui/views/first_view.dart';
+import 'package:traveling/ui/views/flight_side_views/flight_home_screen.dart';
+import 'package:traveling/ui/views/flight_side_views/flight_welcome_view.dart';
 import 'package:traveling/ui/views/traveller_side_views/home_screen.dart';
 import 'package:traveling/ui/views/traveller_side_views/menu_view.dart';
 import 'package:traveling/ui/views/traveller_side_views/traveller_welcome_view.dart';
@@ -15,6 +20,30 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
+  final _auth = FirebaseAuth.instance;
+  late User loggedinUser;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   getCurrentUser();
+  //   // test();
+  // }
+
+  // void getCurrentUser() async {
+  //   try {
+  //     final user = await _auth.currentUser;
+  //     if (user != null) {
+  //       loggedinUser = user;
+  //     }
+  //     if (_auth.currentUser == null) {
+  //       Get.offAll(FirstView());
+  //     }
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -58,7 +87,7 @@ class _SplashViewState extends State<SplashView> {
             // ),
           ],
         ),
-        nextScreen: Home(),
+        nextScreen: FirstView(),
       ),
     );
   }

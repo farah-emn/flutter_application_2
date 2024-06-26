@@ -4,19 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:traveling/cards/hotel_info_home_view_card.dart';
+import 'package:traveling/controllers/flight_currency_controller.dart';
 import 'package:traveling/ui/shared/colors.dart';
 import 'package:traveling/ui/shared/custom_widgets/custom_image.dart';
 import 'package:traveling/ui/shared/custom_widgets/custom_servicetext.dart';
 
 import 'package:traveling/ui/shared/utils.dart';
+import 'package:traveling/ui/views/flight_side_views/flight_welcome_view.dart';
 import 'package:traveling/ui/views/traveller_side_views/menu_view.dart';
 import 'package:traveling/ui/views/traveller_side_views/traveller_welcome_view.dart';
 
 import '../first_view.dart';
 import '../../../classes/hotel_info_class.dart';
 import 'flight_search_view.dart';
-
-late User loggedinUser;
 
 class FlightHomeView extends StatefulWidget {
   const FlightHomeView({super.key});
@@ -26,8 +26,31 @@ class FlightHomeView extends StatefulWidget {
 }
 
 class _FlightHomeViewState extends State<FlightHomeView> {
+  late User loggedinUser;
+  final FlightCurrencyController FlightCurrency_Controller =
+      Get.put(FlightCurrencyController());
   final _auth = FirebaseAuth.instance;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  @override
+  void initState() {
+    super.initState();
+    getCurrentUser();
+    // test();
+  }
+
+  void getCurrentUser() async {
+    try {
+      final user = await _auth.currentUser;
+      if (user != null) {
+        loggedinUser = user;
+      }
+      if (_auth.currentUser == null) {
+        Get.offAll(const FlightWelcomeView());
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   @override
@@ -88,7 +111,7 @@ class _FlightHomeViewState extends State<FlightHomeView> {
                 ),
               ),
               onTap: () {
-                Navigator.pop(context);
+                Get.to(MenuView());
               },
             ),
             Container(
@@ -139,7 +162,8 @@ class _FlightHomeViewState extends State<FlightHomeView> {
                 ),
               ),
               onTap: () {
-                Navigator.pop(context);
+                _auth.signOut();
+                Get.offAll(() => const FlightWelcomeView());
               },
             ),
           ],

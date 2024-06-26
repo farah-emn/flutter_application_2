@@ -2,9 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:traveling/cards/flight_details_card.dart';
+import 'package:traveling/classes/flight_info_class.dart';
 import '../../../classes/flight_details_class.dart';
 import '../../shared/colors.dart';
 import '../../shared/custom_widgets/custom_button.dart';
@@ -20,11 +22,105 @@ class FlightSearchView extends StatefulWidget {
 class _FlightSearchViewState extends State<FlightSearchView> {
   bool? isChecked = false;
   String? sorteBy;
+  User? AirelineCompany;
+  final _auth = FirebaseAuth.instance;
+  var AirelineCompanyId = '';
+  var AirelineCompanyName = '';
+  var uid;
+  var currentUser;
+  Map<dynamic, dynamic> filteredFlightsData = {};
+  List<FlightInfoClass> flightsList = [];
+
+  void initState() {
+    super.initState();
+
+    currentUser = _auth.currentUser;
+    uid = currentUser?.uid;
+    getData();
+    setState(() {
+      AirelineCompany = _auth.currentUser;
+      AirelineCompanyId = AirelineCompany?.uid.toString() ?? '';
+    });
+    print(flightsList);
+  }
+
+  void getData() async {
+    final event =
+        await FirebaseDatabase.instance.ref('Airline Company').child(uid).get();
+    final AirelineCompanyData = Map<dynamic, dynamic>.from(event.value as Map);
+    AirelineCompanyName = AirelineCompanyData['AirlineCompanyName'];
+    print(AirelineCompanyName);
+    fetchFlights().then((fetchedFlights) {
+      setState(() {
+        filteredFlightsData = fetchedFlights;
+        flightsList = fetchedFlights.entries.map((entry) {
+          var stringKeyedMap = Map<dynamic, dynamic>.from(entry.value);
+          return FlightInfoClass.fromMap(stringKeyedMap);
+        }).toList();
+      });
+    });
+  }
+
+  Future<Map> fetchFlights() async {
+    FirebaseDatabase.instance
+        .reference()
+        .child('flights')
+        .once()
+        .then((DatabaseEvent event) {
+      if (event.snapshot.exists) {
+        var flightsData =
+            Map<dynamic, dynamic>.from(event.snapshot.value as Map);
+
+        flightsData.forEach((key, value) {
+          print('fff');
+          var FlightData = Map<dynamic, dynamic>.from(value);
+          if (FlightData['name'] == AirelineCompanyName) {
+            filteredFlightsData[key] = FlightData;
+            print('ff');
+          }
+        });
+        if (filteredFlightsData.isNotEmpty) {
+          if (mounted) {
+            setState(() {
+              flightsList = filteredFlightsData.entries.map((entry) {
+                var stringKeyedMap = Map<dynamic, dynamic>.from(entry.value);
+                return FlightInfoClass.fromMap(stringKeyedMap);
+              }).toList();
+            });
+          }
+          print(';;lkjjj');
+          print(filteredFlightsData);
+          print(flightsList);
+          return filteredFlightsData;
+        } else {
+          Fluttertoast.showToast(
+              msg: "No flights found",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Colors.grey,
+              textColor: Colors.white,
+              fontSize: 16.0);
+        }
+      }
+    });
+
+    return filteredFlightsData;
+  }
+
+  // List<FlightInfoClass> flightsList = fetchFlights();
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
+    print(filteredFlightsData);
+    if (filteredFlightsData != null) {
+      print(filteredFlightsData);
+      print('lll');
+      print(flightsList.length);
+    } else {
+      print('Data is still loading...');
+    }
     void _showBottomShest() {
       showModalBottomSheet(
         shape: const RoundedRectangleBorder(
@@ -491,17 +587,21 @@ class _FlightSearchViewState extends State<FlightSearchView> {
                       const SizedBox(
                         height: 15,
                       ),
-                      Expanded(
-                        child: ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          shrinkWrap: true,
-                          itemCount: flightsDetails.length,
-                          itemBuilder: (context, index) => FlightDetailsCard(
-                            itemIndex: index,
-                            flightModel: flightsDetails[index],
-                          ),
-                        ),
-                      ),
+                      (flightsList.length != 0 &&
+                              filteredFlightsData.length != 0)
+                          ? Expanded(
+                              child: ListView.builder(
+                                scrollDirection: Axis.vertical,
+                                shrinkWrap: true,
+                                itemCount: flightsList.length,
+                                itemBuilder: (context, index) =>
+                                    FlightDetailsCard(
+                                  itemIndex: index,
+                                  flightsList: flightsList[index],
+                                ),
+                              ),
+                            )
+                          : CircularProgressIndicator()
                     ],
                   ),
                 ),

@@ -15,7 +15,7 @@ import '../../app/my_app.dart';
 late SharedPreferences prefs;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp(
+  await Firebase.initializeApp(
     options: FirebaseOptions(
       apiKey: "AIzaSyCNAmw7EMRSuR2_fG40x08QbvWl8yH_6kg",
       appId: "1:969124608869:android:33cc44f88cb8edb3c9bf8c",
