@@ -11,18 +11,18 @@ import '../../../classes/flight_info_class.dart';
 
 class FlightsView extends StatelessWidget {
   FlightsView({super.key});
-  List<FlightInfoClass> flightList = [
-    FlightInfoClass('assets/image/png/flynas.png', 'Flynas', '522', '02h 25m',
-        '09:30', '01:05'),
-    FlightInfoClass('assets/image/png/flynas.png', 'Flynas', '522', '02h 25m',
-        '09:30', '01:05'),
-    FlightInfoClass('assets/image/png/flynas.png', 'Flynas', '522', '02h 25m',
-        '09:30', '01:05'),
-    FlightInfoClass('assets/image/png/flynas.png', 'Flynas', '522', '02h 25m',
-        '09:30', '01:05'),
-    FlightInfoClass('assets/image/png/flynas.png', 'Flynas', '522', '02h 25m',
-        '09:30', '01:05'),
-  ];
+  // List<FlightInfoClass> flightList = [
+  //   FlightInfoClass('assets/image/png/flynas.png', 'Flynas', '522', '02h 25m',
+  //       '09:30', '01:05'),
+  //   FlightInfoClass('assets/image/png/flynas.png', 'Flynas', '522', '02h 25m',
+  //       '09:30', '01:05'),
+  //   FlightInfoClass('assets/image/png/flynas.png', 'Flynas', '522', '02h 25m',
+  //       '09:30', '01:05'),
+  //   FlightInfoClass('assets/image/png/flynas.png', 'Flynas', '522', '02h 25m',
+  //       '09:30', '01:05'),
+  //   FlightInfoClass('assets/image/png/flynas.png', 'Flynas', '522', '02h 25m',
+  //       '09:30', '01:05'),
+  // ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,21 +105,21 @@ class FlightsView extends StatelessWidget {
             SizedBox(
               height: 150,
             ),
-            Padding(
-              padding: EdgeInsetsDirectional.only(top: 150),
-              child: SizedBox(
-                  child: ListView.builder(
-                itemBuilder: _buildListItem,
-                scrollDirection: Axis.vertical,
-                itemCount: flightList.length,
-              )),
-            )
+            // Padding(
+            //   padding: EdgeInsetsDirectional.only(top: 150),
+            //   child: SizedBox(
+            //       child: ListView.builder(
+            //     itemBuilder: _buildListItem,
+            //     scrollDirection: Axis.vertical,
+            //     itemCount: flightList.length,
+            //   )),
+            // )
           ],
         ));
   }
 
   Widget _buildListItem(BuildContext context, int index) {
-    FlightInfoClass flight = flightList[index];
+    // FlightInfoClass flight = flightList[index];
     return SizedBox(
       child: Card(
         margin: EdgeInsetsDirectional.only(
@@ -141,14 +141,14 @@ class FlightsView extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Image.asset(flight.imagePath),
+                    // Image.asset(flight.imagePath),
                     SizedBox(width: screenWidth(80)),
-                    Text(
-                      flight.name,
-                      style: TextStyle(
-                          fontSize: screenWidth(24),
-                          fontWeight: FontWeight.w500),
-                    )
+                    // Text(
+                    //   // flight.name,
+                    //   style: TextStyle(
+                    //       fontSize: screenWidth(24),
+                    //       fontWeight: FontWeight.w500),
+                    // )
                   ],
                 ),
                 SizedBox(
@@ -156,12 +156,12 @@ class FlightsView extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Text(
-                      flight.lift,
-                      style: TextStyle(
-                          fontSize: screenWidth(22),
-                          fontWeight: FontWeight.w500),
-                    ),
+                    // Text(
+                    //   flight.lift,
+                    //   style: TextStyle(
+                    //       fontSize: screenWidth(22),
+                    //       fontWeight: FontWeight.w500),
+                    // ),
                     SizedBox(
                       width: 4,
                     ),
@@ -172,12 +172,12 @@ class FlightsView extends StatelessWidget {
                     Image.asset('assets/image/png/blue plane.png'),
                     Image.asset('assets/image/png/arrow blue.png'),
                     const Spacer(),
-                    Text(
-                      flight.arrive,
-                      style: TextStyle(
-                          fontSize: screenWidth(22),
-                          fontWeight: FontWeight.w500),
-                    ),
+                    // Text(
+                    //   flight.arrive,
+                    //   style: TextStyle(
+                    //       fontSize: screenWidth(22),
+                    //       fontWeight: FontWeight.w500),
+                    // ),
                     SizedBox(
                       width: 4,
                     ),
@@ -209,23 +209,23 @@ class FlightsView extends StatelessWidget {
                         SizedBox(
                           width: screenWidth(80),
                         ),
-                        Text(
-                          flight.time,
-                          style:
-                              const TextStyle(color: AppColors.TextgrayColor),
-                        ),
+                        // Text(
+                        //   flight.time,
+                        //   style:
+                        //       const TextStyle(color: AppColors.TextgrayColor),
+                        // ),
                       ],
                     ),
                     const Spacer(),
                     Row(
                       children: [
-                        Text(
-                          flight.cost,
-                          style: TextStyle(
-                              color: const Color.fromARGB(255, 255, 181, 215),
-                              fontSize: screenWidth(18),
-                              fontWeight: FontWeight.bold),
-                        ),
+                        // Text(
+                        //   flight.cost,
+                        //   style: TextStyle(
+                        //       color: const Color.fromARGB(255, 255, 181, 215),
+                        //       fontSize: screenWidth(18),
+                        //       fontWeight: FontWeight.bold),
+                        // ),
                         const Text(
                           'SAR',
                           style: TextStyle(
