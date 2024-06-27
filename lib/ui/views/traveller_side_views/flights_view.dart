@@ -5,8 +5,6 @@ import 'package:traveling/ui/shared/colors.dart';
 import 'package:traveling/ui/shared/utils.dart';
 
 import 'flight_details._view.dart';
-import 'flight_summery_view.dart';
-import 'hotel_payments_view.dart';
 import '../../../classes/flight_info_class.dart';
 
 class FlightsView extends StatelessWidget {
