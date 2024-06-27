@@ -1,17 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:firebase_core/firebase_core.dart';
+
 import 'package:traveling/core/data/repository/post_repository.dart';
 import 'package:traveling/core/data/repository/prodcut_repository.dart';
 import 'package:traveling/core/data/repository/shared_prefrence_repository.dart';
-import 'package:traveling/core/services/connectivity_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:traveling/ui/views/traveller_side_views/booking_summary_view.dart';
-import 'package:traveling/ui/views/traveller_side_views/hotel_details_view.dart';
-import 'package:traveling/ui/views/traveller_side_views/hotel_info_view.dart';
-
 import '../../app/my_app.dart';
 
 late SharedPreferences prefs;
@@ -39,5 +35,4 @@ void main() async {
 //   // Get.put(Connectivity());
 
   runApp(MyApp());
-  
 }
