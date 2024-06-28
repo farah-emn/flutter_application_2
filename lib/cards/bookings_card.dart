@@ -156,7 +156,7 @@ class _BookingsCardState extends State<BookingsCard> {
                     width: 5,
                   ),
                   Icon(
-                    Icons.arrow_forward,,
+                    Icons.arrow_forward,
                     color: Colors.white,
                   ),
                 ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:traveling/ui/shared/colors.dart';
+import 'package:traveling/ui/views/hotel_side_views/hotel_home_screen.dart';
 
 import 'flight_side_views/flight_welcome_view.dart';
 
@@ -43,22 +44,27 @@ class CompaniesTypeView extends StatelessWidget {
             const SizedBox(
               height: 15,
             ),
-            Container(
-              height: 200,
-              decoration: const BoxDecoration(
-                color: AppColors.Blue,
-              ),
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Hotel',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ],
+            InkWell(
+              onTap: () {
+                Get.to(() => const HoteltHome());
+              },
+              child: Container(
+                height: 200,
+                decoration: const BoxDecoration(
+                  color: AppColors.Blue,
+                ),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Hotel',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
               ),
             ),
             const SizedBox(
@@ -91,5 +97,3 @@ class CompaniesTypeView extends StatelessWidget {
     );
   }
 }
-
-
