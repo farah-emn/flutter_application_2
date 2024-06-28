@@ -9,6 +9,7 @@ import 'package:traveling/ui/shared/custom_widgets/custom_image.dart';
 import 'package:traveling/ui/shared/custom_widgets/custom_servicetext.dart';
 
 import 'package:traveling/ui/shared/utils.dart';
+import 'package:traveling/ui/views/first_view.dart';
 import 'package:traveling/ui/views/traveller_side_views/menu_view.dart';
 import 'package:traveling/ui/views/traveller_side_views/welcome_view.dart';
 
@@ -41,7 +42,7 @@ class _HomeViewState extends State<HomeView> {
         loggedinUser = user;
       }
       if (_auth.currentUser == null) {
-        Get.offAll(const WelcomeView());
+        Get.offAll(const FirstView());
       }
     } catch (e) {
       print(e);

@@ -26,9 +26,10 @@ class _SplashViewState extends State<SplashView> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              child: const Image(
-                image: AssetImage('assets/image/png/Logo.png'),
-              ),
+              // child: const Image(
+              //   image: AssetImage('assets/image/png/Logo.png'),
+              // ),
+              child: Text('Travelling'),
             ),
             // Row(
             //   mainAxisAlignment: MainAxisAlignment.center,

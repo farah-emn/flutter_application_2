@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:traveling/ui/views/flight_side_views/flight_booking_details_view.dart';
 import 'package:traveling/ui/views/traveller_side_views/flight_details._view.dart';
 
 import '../classes/Bookings_class.dart';
@@ -24,7 +25,7 @@ class _BookingsCardState extends State<BookingsCard> {
     Size size = MediaQuery.of(context).size;
     return InkWell(
       onTap: () {
-        Get.to(const FlightFlightDetailsView());
+        Get.to(const FlightBookingDetails());
       },
       child: Container(
         margin: const EdgeInsets.only(top: 15, right: 15, left: 15),
@@ -146,7 +147,7 @@ class _BookingsCardState extends State<BookingsCard> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    'More Details',
+                    'Less Details',
                     style: TextStyle(
                       color: Colors.white,
                     ),
@@ -155,7 +156,7 @@ class _BookingsCardState extends State<BookingsCard> {
                     width: 5,
                   ),
                   Icon(
-                    Icons.arrow_forward,
+                    Icons.arrow_forward,,
                     color: Colors.white,
                   ),
                 ],
