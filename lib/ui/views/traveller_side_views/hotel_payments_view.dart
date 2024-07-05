@@ -280,6 +280,8 @@ class HotelPaymentsView extends StatelessWidget {
                                             bottom: 15,
                                           ),
                                           child: CustomButton(
+                          backgroundColor: AppColors.darkBlue,
+
                                               text: 'Confirm',
                                               textColor:
                                                   AppColors.backgroundgrayColor,
@@ -300,6 +302,8 @@ class HotelPaymentsView extends StatelessWidget {
                           bottom: 15,
                         ),
                         child: CustomButton(
+                          backgroundColor: AppColors.darkBlue,
+
                             text: 'Confirm',
                             textColor: AppColors.backgroundgrayColor,
                             widthPercent: 1.1,

@@ -4,8 +4,8 @@ import '../colors.dart';
 
 const textFielDecoratiom = InputDecoration(
   // hintStyle: TextStyle(fontSize: 15, color: AppColors.TextgrayColor),
-  errorBorder: UnderlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(15)),
+  errorBorder: OutlineInputBorder(
+    borderRadius: BorderRadius.all(Radius.circular(18)),
     borderSide: BorderSide(color: Colors.red, width: 1.5),
   ),
   prefixIconColor: AppColors.mainColorBlue,
@@ -17,22 +17,22 @@ const textFielDecoratiom = InputDecoration(
       Radius.circular(20),
     ),
   ),
-  enabledBorder: UnderlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(15)),
+  enabledBorder: OutlineInputBorder(
+    borderRadius: BorderRadius.all(Radius.circular(18)),
     borderSide: BorderSide(
       color: AppColors.TextgrayColor,
     ),
   ),
-  focusedBorder: UnderlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(15)),
+  focusedBorder: OutlineInputBorder(
+    borderRadius: BorderRadius.all(Radius.circular(18)),
     borderSide: BorderSide(color: AppColors.mainColorBlue, width: 1.5),
   ),
-  disabledBorder: UnderlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(15)),
+  disabledBorder: OutlineInputBorder(
+    borderRadius: BorderRadius.all(Radius.circular(18)),
     borderSide: BorderSide(color: AppColors.grayText),
   ),
-  focusedErrorBorder: UnderlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(15)),
+  focusedErrorBorder: OutlineInputBorder(
+    borderRadius: BorderRadius.all(Radius.circular(18)),
     borderSide: BorderSide(color: Colors.red, width: 1.5),
   ),
 );

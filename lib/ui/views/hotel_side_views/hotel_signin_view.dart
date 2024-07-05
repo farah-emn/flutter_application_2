@@ -224,6 +224,7 @@ class _HotelSignInViewState extends State<HotelSignInView> {
                         } catch (e) {}
                       },
                       child: CustomButton(
+                        backgroundColor: AppColors.darkBlue,
                         text: 'Sign in',
                         textColor: AppColors.backgroundgrayColor,
                         heightPercent: 15,

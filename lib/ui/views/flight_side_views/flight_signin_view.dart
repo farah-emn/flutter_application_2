@@ -224,6 +224,8 @@ class _FlightSignInViewState extends State<FlightSignInView> {
                         } catch (e) {}
                       },
                       child: CustomButton(
+                          backgroundColor: AppColors.darkBlue,
+                        
                         text: 'Sign in',
                         textColor: AppColors.backgroundgrayColor,
                         heightPercent: 15,

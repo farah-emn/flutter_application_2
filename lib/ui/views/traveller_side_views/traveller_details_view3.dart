@@ -10,70 +10,92 @@ import 'package:traveling/ui/shared/utils.dart';
 import 'package:traveling/ui/views/traveller_side_views/search_oneway_view.dart';
 
 class TravellerDetailsView3 extends StatelessWidget {
-  const TravellerDetailsView3 ({super.key});
+  const TravellerDetailsView3({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(
-      body: ListView(
-        children: [
-          Container(
-            color:AppColors.LightBlueColor ,
-            child: Column(
-              children: [
-                Padding(
-                  padding:  EdgeInsetsDirectional.only(top:screenWidth(15),start: screenWidth(20),end: screenWidth(3),bottom: screenWidth(30)  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                   children: [
+    return SafeArea(
+        child: Scaffold(
+            body: ListView(
+      children: [
+        Container(
+          color: AppColors.LightBlueColor,
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.only(
+                    top: screenWidth(15),
+                    start: screenWidth(20),
+                    end: screenWidth(3),
+                    bottom: screenWidth(30)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
                     Container(
                       width: screenWidth(10),
                       height: screenWidth(10),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        color: AppColors.backgroundgrayColor
+                          borderRadius: BorderRadius.circular(50),
+                          color: AppColors.backgroundgrayColor),
+                      child: Icon(
+                        Icons.arrow_back_ios,
+                        color: AppColors.mainColorBlue,
                       ),
-                      child: Icon(Icons.arrow_back_ios,color: AppColors.mainColorBlue,),
                     ),
-                    Text('Traveller details' ,style: TextStyle(
-                      fontSize: screenWidth(18),
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.backgroundgrayColor
-                    ),)
-                   ],
-                  ),
+                    Text(
+                      'Traveller details',
+                      style: TextStyle(
+                          fontSize: screenWidth(18),
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.backgroundgrayColor),
+                    )
+                  ],
                 ),
+              ),
               Container(
                 width: screenWidth(1),
                 // height: screenHeight(1.1),
                 decoration: BoxDecoration(
-                    color: AppColors.backgroundgrayColor,
-                    borderRadius: BorderRadius.only(topLeft: Radius.circular(40),topRight: Radius.circular(40)),
+                  color: AppColors.backgroundgrayColor,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(40),
+                      topRight: Radius.circular(40)),
                 ),
                 child: Column(
                   children: [
-              SizedBox(height: screenWidth(2),),
-              Text('Your regular travellers',
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: screenWidth(22),
-              ),
-              ),
-            SizedBox(height: screenWidth(20),),
-             CustomTextGray(mainText: 'Save your regular travellers details to\n     make bookings quick and easy.'),
-             SizedBox(height: screenWidth(15),),
+                    SizedBox(
+                      height: screenWidth(2),
+                    ),
+                    Text(
+                      'Your regular travellers',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: screenWidth(22),
+                      ),
+                    ),
+                    SizedBox(
+                      height: screenWidth(20),
+                    ),
+                    CustomTextGray(
+                        mainText:
+                            'Save your regular travellers details to\n     make bookings quick and easy.'),
+                    SizedBox(
+                      height: screenWidth(15),
+                    ),
+                    CustomButton(
+                          backgroundColor: AppColors.darkBlue,
 
-             CustomButton(text: 'Add traveller', textColor: AppColors.backgroundgrayColor, widthPercent: 1.1, heightPercent: 15)  
+                        text: 'Add traveller',
+                        textColor: AppColors.backgroundgrayColor,
+                        widthPercent: 1.1,
+                        heightPercent: 15)
                   ],
-                  
                 ),
               ),
-                  
-                
             ],
-              ),
           ),
-        ],
-      )));
+        ),
+      ],
+    )));
   }
 }

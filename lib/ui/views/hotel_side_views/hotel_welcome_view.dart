@@ -20,8 +20,7 @@ class HotelWelcomeView extends StatelessWidget {
       backgroundColor: AppColors.darkBlue,
       body: Stack(children: [
         // Image.asset('assets/image/png/flight_background.jpg'),
-        
-          
+
         Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -46,6 +45,7 @@ class HotelWelcomeView extends StatelessWidget {
                     },
                     child: Center(
                       child: CustomButton(
+                        backgroundColor: AppColors.darkBlue,
                         text: 'Sign up',
                         textColor: AppColors.backgroundgrayColor,
                         heightPercent: 15,

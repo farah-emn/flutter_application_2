@@ -6,7 +6,7 @@ import 'package:traveling/ui/shared/custom_widgets/custom_button.dart';
 import 'package:traveling/ui/shared/custom_widgets/custom_textfiled.dart';
 import 'package:traveling/ui/shared/utils.dart';
 
-import 'hotel_room_view.dart';
+import 'room_view.dart';
 
 class EditProfileView extends StatelessWidget {
   const EditProfileView({super.key});
@@ -179,9 +179,11 @@ class EditProfileView extends StatelessWidget {
                   padding: EdgeInsetsDirectional.only(top: screenHeight(1.2)),
                   child: InkWell(
                       onTap: () {
-                        Get.to(HotelRoomView());
+                        Get.to(RoomView());
                       },
                       child: CustomButton(
+                          backgroundColor: AppColors.darkBlue,
+
                           text: 'save',
                           textColor: AppColors.backgroundgrayColor,
                           widthPercent: 1.1,

@@ -1,13 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:traveling/cards/flight_details_card.dart';
-import '../../../classes/flight_details_class.dart';
+import 'package:traveling/cards/hotel_card2.dart';
+import 'package:traveling/classes/hotel_room_details_class.dart';
 import '../../shared/colors.dart';
-import '../../shared/custom_widgets/custom_button.dart';
+
 import '../../shared/custom_widgets/custom_textfield2.dart';
 import '../../shared/custom_widgets/custom_search_textfield.dart';
 
@@ -431,20 +426,28 @@ class _HotelSearchViewState extends State<HotelSearchView> {
 
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: AppColors.StatusBarColor,
+        backgroundColor: AppColors.lightPurple,
+        // appBar: AppBar(
+        //   title: Row(
+        //     mainAxisAlignment: MainAxisAlignment.center,
+        //     children: [
+        //       Text('Search'),
+        //     ],
+        //   ),
+        // ),
         body: SafeArea(
           child: Stack(children: [
             const Padding(
-              padding: EdgeInsets.only(left: 15, right: 15, top: 22),
+              padding: EdgeInsets.only(left: 15, right: 15, top: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Flights',
+                    'Search',
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w700,
-                        color: AppColors.backgroundgrayColor),
+                        color: AppColors.purple),
                   ),
                   SizedBox(),
                 ],
@@ -452,7 +455,7 @@ class _HotelSearchViewState extends State<HotelSearchView> {
             ),
             Padding(
               padding: const EdgeInsets.only(
-                top: 60,
+                top: 50,
               ),
               child: Container(
                 decoration: const BoxDecoration(
@@ -461,7 +464,7 @@ class _HotelSearchViewState extends State<HotelSearchView> {
                       fit: BoxFit.fill),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(15),
+                  padding: const EdgeInsets.only(top: 15, right: 15, left: 15),
                   child: Column(
                     children: [
                       const SizedBox(
@@ -473,7 +476,7 @@ class _HotelSearchViewState extends State<HotelSearchView> {
                         child: TextField(
                           textAlignVertical: TextAlignVertical.bottom,
                           decoration: searchTextFielDecoratiom.copyWith(
-                            hintText: "Search for flight",
+                            hintText: "Search",
                             suffixIcon: InkWell(
                               onTap: _showBottomShest,
                               child: const Icon(
@@ -495,10 +498,11 @@ class _HotelSearchViewState extends State<HotelSearchView> {
                         child: ListView.builder(
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true,
-                          itemCount: flightsDetails.length,
-                          itemBuilder: (context, index) => FlightDetailsCard(
+                          itemCount: room.length,
+                          itemBuilder: (context, index) => HotelCard2(
+                            size: size,
                             itemIndex: index,
-                            flightModel: flightsDetails[index],
+                            room: room[index],
                           ),
                         ),
                       ),

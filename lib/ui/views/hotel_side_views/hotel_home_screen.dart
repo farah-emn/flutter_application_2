@@ -19,9 +19,9 @@ class _HoteltHomeState extends State<HoteltHome> {
   int index = 0;
   final Screens = [
     const HotelHomeView(),
-    const FlightSearchView(),
-    const FlightAddView(),
-    const FlightAboutUsView(),
+    const HotelSearchView(),
+    const HotelAddView(),
+    const HotelAboutUsView(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -29,10 +29,7 @@ class _HoteltHomeState extends State<HoteltHome> {
       body: Screens[index],
       bottomNavigationBar: NavigationBarTheme(
         data: const NavigationBarThemeData(
-            indicatorColor: AppColors.Blue,
-            // indicatorShape: CircleBorder(),
-            backgroundColor: Colors.white
-            ),
+            indicatorColor: AppColors.gray, backgroundColor: Colors.white),
         child: NavigationBar(
             elevation: 1,
             height: 60,
@@ -45,45 +42,53 @@ class _HoteltHomeState extends State<HoteltHome> {
             destinations: const [
               NavigationDestination(
                 icon: Icon(
-                  Icons.home_outlined,
-                  color: AppColors.BlueText,
+                  size: 25,
+                  Icons.home_rounded,
+                  color: AppColors.grayText,
                 ),
                 selectedIcon: Icon(
-                  Icons.home_filled,
-                  color: AppColors.backgroundgrayColor,
+                  size: 25,
+                  Icons.home_rounded,
+                  color: AppColors.purple,
                 ),
                 label: 'Home',
               ),
               NavigationDestination(
                 icon: Icon(
+                  size: 25,
                   Icons.search_outlined,
-                  color: AppColors.BlueText,
+                  color: AppColors.grayText,
                 ),
                 selectedIcon: Icon(
+                  size: 25,
                   Icons.search_outlined,
-                  color: AppColors.backgroundgrayColor,
+                  color: AppColors.purple,
                 ),
                 label: 'Search',
               ),
               NavigationDestination(
                 icon: Icon(
+                  size: 25,
                   Icons.add_outlined,
-                  color: AppColors.BlueText,
+                  color: AppColors.grayText,
                 ),
                 selectedIcon: Icon(
+                  size: 25,
                   Icons.add,
-                  color: AppColors.backgroundgrayColor,
+                  color: AppColors.purple,
                 ),
                 label: 'add',
               ),
               NavigationDestination(
                 icon: Icon(
-                  Icons.business_outlined,
-                  color: AppColors.BlueText,
+                  size: 25,
+                  Icons.people_rounded,
+                  color: AppColors.grayText,
                 ),
                 selectedIcon: Icon(
-                  Icons.business,
-                  color: AppColors.backgroundgrayColor,
+                  size: 25,
+                  Icons.people_rounded,
+                  color: AppColors.purple,
                 ),
                 label: 'About Us',
               ),

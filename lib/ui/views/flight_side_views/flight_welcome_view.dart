@@ -44,6 +44,9 @@ class FlightWelcomeView extends StatelessWidget {
                     },
                     child: Center(
                       child: CustomButton(
+                          backgroundColor: AppColors.darkBlue,
+
+
                         text: 'Sign up',
                         textColor: AppColors.backgroundgrayColor,
                         heightPercent: 15,

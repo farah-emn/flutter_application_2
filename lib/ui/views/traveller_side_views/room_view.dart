@@ -9,8 +9,8 @@ import 'package:traveling/ui/shared/utils.dart';
 import 'booking_summary_view.dart';
 import 'guest_details_view.dart';
 
-class HotelRoomView extends StatelessWidget {
-  const HotelRoomView({super.key});
+class RoomView extends StatelessWidget {
+  const RoomView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -418,6 +418,7 @@ class HotelRoomView extends StatelessWidget {
                   },
                   child: CustomButton(
                       text: 'save',
+                      backgroundColor: AppColors.darkBlue,
                       textColor: AppColors.backgroundgrayColor,
                       widthPercent: 1.1,
                       heightPercent: 18)),

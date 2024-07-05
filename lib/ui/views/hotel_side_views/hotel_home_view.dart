@@ -7,6 +7,7 @@ import 'package:traveling/cards/hotel_info_home_view_card.dart';
 import 'package:traveling/ui/shared/colors.dart';
 import 'package:traveling/ui/shared/custom_widgets/custom_image.dart';
 import 'package:traveling/ui/shared/custom_widgets/custom_servicetext.dart';
+import 'package:traveling/ui/shared/text_size.dart';
 
 import 'package:traveling/ui/shared/utils.dart';
 import 'package:traveling/ui/views/flight_side_views/flight_search_view.dart';
@@ -41,7 +42,7 @@ class _HotelHomeViewState extends State<HotelHomeView> {
         child: Column(
           children: [
             const UserAccountsDrawerHeader(
-                decoration: BoxDecoration(color: AppColors.Blue),
+                decoration: BoxDecoration(color: AppColors.lightPurple),
                 currentAccountPicture: CircleAvatar(
                   backgroundImage: AssetImage('assets/image/png/girlUser1.png'),
                 ),
@@ -49,13 +50,14 @@ class _HotelHomeViewState extends State<HotelHomeView> {
                 accountEmail: Text('data@gmail.com')),
             ListTile(
               leading: const Icon(
-                Icons.date_range_rounded,
-                color: AppColors.Blue,
+                Icons.add,
+                color: AppColors.purple,
               ),
               title: const Text(
-                'Add airplane',
+                'Add Room',
                 style: TextStyle(
-                  color: AppColors.BlueText,
+                  fontSize: TextSize.header2,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
               onTap: () {
@@ -64,13 +66,30 @@ class _HotelHomeViewState extends State<HotelHomeView> {
             ),
             ListTile(
               leading: const Icon(
-                Icons.people,
-                color: AppColors.Blue,
+                Icons.login,
+                color: AppColors.purple,
               ),
               title: const Text(
-                'Clients',
+                'Check in',
                 style: TextStyle(
-                  color: AppColors.BlueText,
+                  fontSize: TextSize.header2,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.logout_rounded,
+                color: AppColors.purple,
+              ),
+              title: const Text(
+                'Check out',
+                style: TextStyle(
+                  fontSize: TextSize.header2,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
               onTap: () {
@@ -80,12 +99,13 @@ class _HotelHomeViewState extends State<HotelHomeView> {
             ListTile(
               leading: const Icon(
                 Icons.settings,
-                color: AppColors.Blue,
+                color: AppColors.purple,
               ),
               title: const Text(
                 'Settings',
                 style: TextStyle(
-                  color: AppColors.BlueText,
+                  fontSize: TextSize.header2,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
               onTap: () {
@@ -97,46 +117,17 @@ class _HotelHomeViewState extends State<HotelHomeView> {
               height: 0.2,
               color: AppColors.TextgrayColor,
             ),
-            // ListTile(
-            //   leading: const Icon(
-            //     Icons.headphones,
-            //     color: AppColors.Blue,
-            //   ),
-            //   title: const Text(
-            //     'Clients',
-            //     style: TextStyle(
-            //       color: AppColors.BlueText,
-            //     ),
-            //   ),
-            //   onTap: () {
-            //     Navigator.pop(context);
-            //   },
-            // ),
-            // ListTile(
-            //   leading: const Icon(
-            //     Icons.help,
-            //     color: AppColors.Blue,
-            //   ),
-            //   title: const Text(
-            //     'Help',
-            //     style: TextStyle(
-            //       color: AppColors.BlueText,
-            //     ),
-            //   ),
-            //   onTap: () {
-            //     Navigator.pop(context);
-            //   },
-            // ),
             Spacer(),
             ListTile(
               leading: const Icon(
                 Icons.logout,
-                color: AppColors.Blue,
+                color: AppColors.purple,
               ),
               title: const Text(
                 'Logout',
                 style: TextStyle(
-                  color: AppColors.BlueText,
+                  fontSize: TextSize.header2,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
               onTap: () {
@@ -149,13 +140,13 @@ class _HotelHomeViewState extends State<HotelHomeView> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            backgroundColor: AppColors.IconBlueColor,
+            backgroundColor: AppColors.lightPurple,
             elevation: 0,
             pinned: true,
             expandedHeight: 335,
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
-                  color: AppColors.StatusBarColor,
+                  color: AppColors.lightPurple,
                   child: const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 15),
                     child: Column(
@@ -189,9 +180,9 @@ class _HotelHomeViewState extends State<HotelHomeView> {
                                     Text(
                                       "Let's Explore",
                                       style: TextStyle(
-                                          color: AppColors.backgroundgrayColor,
+                                          color: AppColors.purple,
                                           fontSize: 30,
-                                          fontWeight: FontWeight.w500),
+                                          fontWeight: FontWeight.w600),
                                     ),
                                     Spacer(),
                                     Icon(
@@ -212,9 +203,9 @@ class _HotelHomeViewState extends State<HotelHomeView> {
                                     Text(
                                       "The World!",
                                       style: TextStyle(
-                                          color: AppColors.backgroundgrayColor,
+                                          color: AppColors.purple,
                                           fontSize: 30,
-                                          fontWeight: FontWeight.w500),
+                                          fontWeight: FontWeight.w600),
                                     ),
                                   ],
                                 ),
@@ -231,89 +222,12 @@ class _HotelHomeViewState extends State<HotelHomeView> {
               child: Container(
                 padding: const EdgeInsets.only(top: 15, bottom: 15),
                 decoration: const BoxDecoration(
-                  color: AppColors.backgroundgrayColor,
+                  color: Colors.white,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(32),
                     topRight: Radius.circular(32),
                   ),
                 ),
-                // child: ,
-                // child: Row(
-                //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                //   children: [
-                //     InkWell(
-                //       onTap: () {
-                //         Get.to(FlightsView());
-                //       },
-                //       child: Column(
-                //         children: [
-                //           Container(
-                //             padding: EdgeInsets.all(10),
-                //             decoration: BoxDecoration(
-                //                 borderRadius: BorderRadius.circular(15),
-                //                 color: AppColors.LightBlueColor),
-                //             child: const Icon(
-                //               Icons.flight,
-                //               color: AppColors.BlueText,
-                //               size: 30,
-                //             ),
-                //           ),
-                //           const SizedBox(
-                //             height: 10,
-                //           ),
-                //           const Text(
-                //             'Flight',
-                //             style: TextStyle(color: AppColors.BlueText),
-                //           ),
-                //         ],
-                //       ),
-                //     ),
-                //     Column(
-                //       children: [
-                //         Container(
-                //           padding: EdgeInsets.all(10),
-                //           decoration: BoxDecoration(
-                //               borderRadius: BorderRadius.circular(15),
-                //               color: AppColors.LightBlueColor),
-                //           child: const Icon(
-                //             Icons.hotel,
-                //             color: AppColors.BlueText,
-                //             size: 30,
-                //           ),
-                //         ),
-                //         SizedBox(
-                //           height: screenWidth(30),
-                //         ),
-                //         const Text(
-                //           'Hotel',
-                //           style: TextStyle(color: AppColors.BlueText),
-                //         ),
-                //       ],
-                //     ),
-                //     Column(
-                //       children: [
-                //         Container(
-                //           padding: EdgeInsets.all(10),
-                //           decoration: BoxDecoration(
-                //               borderRadius: BorderRadius.circular(15),
-                //               color: AppColors.LightBlueColor),
-                //           child: const Icon(
-                //             Icons.local_taxi,
-                //             color: AppColors.BlueText,
-                //             size: 30,
-                //           ),
-                //         ),
-                //         SizedBox(
-                //           height: screenWidth(30),
-                //         ),
-                //         const Text(
-                //           'Car',
-                //           style: TextStyle(color: AppColors.BlueText),
-                //         ),
-                //       ],
-                //     ),
-                //   ],
-                // ),
               ),
             ),
             leadingWidth: MediaQuery.of(context).size.width,
@@ -349,14 +263,13 @@ class _HotelHomeViewState extends State<HotelHomeView> {
                               Text(
                                 'User Name',
                                 style: TextStyle(
-                                    color: AppColors.backgroundgrayColor,
+                                    color: AppColors.purple,
                                     fontSize: 17,
                                     fontWeight: FontWeight.w500),
                               ),
                               Text(
                                 'Username@gmail.com',
-                                style:
-                                    TextStyle(color: AppColors.LightGrayColor),
+                                style: TextStyle(color: AppColors.gray),
                               ),
                             ],
                           ),
@@ -379,275 +292,106 @@ class _HotelHomeViewState extends State<HotelHomeView> {
             ),
           ),
           SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        width: size.width / 2 - 20,
-                        height: 100,
-                        decoration: const BoxDecoration(
-                          color: AppColors.darkBlue,
-                          borderRadius: BorderRadius.horizontal(
-                            left: Radius.circular(30),
-                            right: Radius.circular(30),
+            child: Container(
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          width: size.width / 2 - 20,
+                          height: 100,
+                          decoration: const BoxDecoration(
+                            color: AppColors.gold,
+                            borderRadius: BorderRadius.horizontal(
+                              left: Radius.circular(30),
+                              right: Radius.circular(30),
+                            ),
                           ),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.only(left: 10),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    'Incoming',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 18),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    '\$526561',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 16),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: size.width / 2 - 20,
-                        height: 100,
-                        decoration: const BoxDecoration(
-                          color: AppColors.darkBlue,
-                          borderRadius: BorderRadius.horizontal(
-                            left: Radius.circular(30),
-                            right: Radius.circular(30),
-                          ),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.only(left: 10),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    'Completed flights',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 18),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    '251',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 16),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  const Row(
-                    children: [
-                      Text(
-                        'Your next flight',
-                        style: TextStyle(
-                            color: AppColors.TextBlackColor,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Get.to(
-                        () => const FlightSearchView(),
-                      );
-                    },
-                    child: Container(
-                      width: size.width,
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.horizontal(
-                          left: Radius.circular(30),
-                          right: Radius.circular(30),
-                        ),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.all(15.0),
+                          child: const Padding(
+                            padding: EdgeInsets.only(left: 10),
                             child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     Text(
-                                      'Des. 22, 2024',
+                                      'Incoming',
                                       style: TextStyle(
-                                          color: AppColors.TextgrayColor,
-                                          fontSize: 15),
-                                    )
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 18),
+                                    ),
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 30,
+                                  height: 5,
                                 ),
                                 Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
                                   children: [
-                                    Column(
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Text(
-                                              '01:12',
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                            Text(
-                                              'AM',
-                                              style: TextStyle(
-                                                  color:
-                                                      AppColors.TextgrayColor,
-                                                  fontSize: 15),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              'CAI',
-                                              style: TextStyle(
-                                                  color:
-                                                      AppColors.TextgrayColor,
-                                                  fontSize: 15),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                    Column(
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Text(
-                                              '04:45',
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                            Text(
-                                              'AM',
-                                              style: TextStyle(
-                                                  color:
-                                                      AppColors.TextgrayColor,
-                                                  fontSize: 15),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              'RUH',
-                                              style: TextStyle(
-                                                  color:
-                                                      AppColors.TextgrayColor,
-                                                  fontSize: 15),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
+                                    Text(
+                                      '\$526561',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 16),
                                     ),
                                   ],
                                 ),
                               ],
                             ),
                           ),
-                          Container(
-                            height: 40,
-                            decoration: const BoxDecoration(
-                              color: AppColors.Blue,
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(15),
-                                bottomRight: Radius.circular(15),
-                              ),
+                        ),
+                        Container(
+                          width: size.width / 2 - 20,
+                          height: 100,
+                          decoration: const BoxDecoration(
+                            color: AppColors.gold,
+                            borderRadius: BorderRadius.horizontal(
+                              left: Radius.circular(30),
+                              right: Radius.circular(30),
                             ),
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.only(left: 10),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Row(
                                   children: [
-                                    Icon(
-                                      Icons.airline_seat_recline_extra_rounded,
-                                      color: Colors.white,
-                                    ),
                                     Text(
-                                      '35',
+                                      'Reserved rooms',
                                       style: TextStyle(
-                                          color: Colors.white, fontSize: 15),
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 18),
                                     ),
                                   ],
+                                ),
+                                SizedBox(
+                                  height: 5,
                                 ),
                                 Row(
                                   children: [
-                                    Icon(
-                                      Icons.attach_money_sharp,
-                                      color: Colors.white,
-                                    ),
                                     Text(
-                                      '25514',
+                                      '251',
                                       style: TextStyle(
-                                          color: Colors.white, fontSize: 15),
+                                          color: Colors.white, fontSize: 16),
                                     ),
                                   ],
-                                ),
-                                Icon(
-                                  Icons.arrow_forward,
-                                  color: Colors.white,
                                 ),
                               ],
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
+                    const SizedBox(
+                      height: 30,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

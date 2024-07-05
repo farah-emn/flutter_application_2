@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:traveling/cards/hotel_card2.dart';
 import 'package:traveling/ui/shared/colors.dart';
 
 import '../../../classes/hotel_room_details_class.dart';
@@ -88,11 +89,11 @@ class HotelDetailsView extends StatelessWidget {
               Expanded(
                 child: ListView.builder(
                   shrinkWrap: true,
-                  itemCount: details.length,
-                  itemBuilder: (context, index) => HotelDetailsCard(
+                  itemCount: room.length,
+                  itemBuilder: (context, index) => HotelCard2(
                     size: size,
                     itemIndex: index,
-                    hotelDetails: details[index],
+                    room: room[index],
                   ),
                 ),
               ),

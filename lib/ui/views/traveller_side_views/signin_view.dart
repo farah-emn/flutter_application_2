@@ -235,6 +235,8 @@ class _SignInViewState extends State<SignInView> {
                         } catch (e) {}
                       },
                       child: CustomButton(
+                          backgroundColor: AppColors.darkBlue,
+
                         text: 'Sign in',
                         textColor: AppColors.backgroundgrayColor,
                         heightPercent: 15,

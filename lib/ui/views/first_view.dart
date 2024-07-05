@@ -42,6 +42,8 @@ class FirstView extends StatelessWidget {
                   },
                   child: Center(
                     child: CustomButton(
+                          backgroundColor: AppColors.darkBlue,
+
                       text: 'Start',
                       textColor: AppColors.backgroundgrayColor,
                       heightPercent: 15,

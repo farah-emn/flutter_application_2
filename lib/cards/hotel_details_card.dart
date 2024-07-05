@@ -1,27 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart';
-
-import '../ui/views/traveller_side_views/hotel_room_view.dart';
+import '../ui/views/traveller_side_views/room_view.dart';
 import '../classes/hotel_room_details_class.dart';
 
 class HotelDetailsCard extends StatelessWidget {
   const HotelDetailsCard({
     super.key,
     required this.size,
-    required this.hotelDetails,
+    required this.room,
     required this.itemIndex,
   });
 
   final Size size;
-  final HotelRoomDetailsClass hotelDetails;
+  final HotelRoomClass room;
   final int itemIndex;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(HotelRoomView(),);
+        Get.to(RoomView(),);
       },
       child: Container(
         margin: const EdgeInsets.only(left: 15, right: 15, bottom: 15),
@@ -54,7 +52,7 @@ class HotelDetailsCard extends StatelessWidget {
                           bottomLeft: Radius.circular(20),
                         ),
                         image: DecorationImage(
-                          image: AssetImage(hotelDetails.image),
+                          image: AssetImage(room.image),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -74,7 +72,7 @@ class HotelDetailsCard extends StatelessWidget {
                           SizedBox(
                             width: size.width / 2 + 10,
                             child: Text(
-                              hotelDetails.title,
+                              room.name,
                               style: const TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 15,
@@ -100,7 +98,7 @@ class HotelDetailsCard extends StatelessWidget {
                           SizedBox(
                             width: size.width / 2 - 45,
                             child: Text(
-                              hotelDetails.beds,
+                              room.beds,
                             ),
                           )
                         ],
@@ -119,7 +117,7 @@ class HotelDetailsCard extends StatelessWidget {
                           SizedBox(
                             width: size.width / 2 - 43,
                             child: Text(
-                              hotelDetails.view,
+                              room.view,
                             ),
                           )
                         ],
@@ -146,7 +144,7 @@ class HotelDetailsCard extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Text(
-                                hotelDetails.price,
+                                room.price,
                                 style: const TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w500,

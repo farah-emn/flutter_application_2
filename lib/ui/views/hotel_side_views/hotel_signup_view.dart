@@ -278,6 +278,7 @@ class _HoteltSignUpViewState extends State<HoteltSignUpView> {
                         //   } catch (e) {}
                         // },
                         child: CustomButton(
+                          backgroundColor: AppColors.darkBlue,
                           text: 'Sign up',
                           textColor: AppColors.backgroundgrayColor,
                           heightPercent: 20,

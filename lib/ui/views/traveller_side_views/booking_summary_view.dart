@@ -203,6 +203,8 @@ class _BookingSummaryViewState extends State<BookingSummaryView> {
                                               bottom: 15,
                                             ),
                                             child: CustomButton(
+                          backgroundColor: AppColors.darkBlue,
+
                                                 text: 'Confirm',
                                                 textColor: AppColors
                                                     .backgroundgrayColor,

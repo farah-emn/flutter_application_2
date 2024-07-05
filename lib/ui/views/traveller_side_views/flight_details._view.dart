@@ -206,6 +206,8 @@ class _FlightDetailsViewState extends State<FlightDetailsView> {
                                         bottom: 15,
                                       ),
                                       child: CustomButton(
+                          backgroundColor: AppColors.darkBlue,
+
                                           text: 'Confirm',
                                           textColor:
                                               AppColors.backgroundgrayColor,

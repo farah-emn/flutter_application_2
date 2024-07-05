@@ -270,6 +270,8 @@ class _SignUpViewState extends State<SignUpView> {
                           } catch (e) {}
                         },
                         child: CustomButton(
+                          backgroundColor: AppColors.darkBlue,
+
                           text: 'Sign up',
                           textColor: AppColors.backgroundgrayColor,
                           heightPercent: 20,

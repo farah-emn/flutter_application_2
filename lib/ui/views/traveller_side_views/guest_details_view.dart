@@ -221,6 +221,8 @@ class GuestDetailsView extends StatelessWidget {
                           },
                           child: Center(
                               child: CustomButton(
+                          backgroundColor: AppColors.darkBlue,
+
                                   text: 'Confirm',
                                   textColor: AppColors.backgroundgrayColor,
                                   widthPercent: 1.1,

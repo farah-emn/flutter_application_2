@@ -162,6 +162,8 @@ class TravellerDetailsView1 extends StatelessWidget {
                           Get.to(TravellerDetailsView2());
                         },
                         child: CustomButton(
+                          backgroundColor: AppColors.darkBlue,
+
                             text: 'Continue',
                             textColor: AppColors.backgroundgrayColor,
                             widthPercent: 1.1,

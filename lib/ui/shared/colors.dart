@@ -14,9 +14,9 @@ class AppColors {
   static const Color pinkColor2 = Color.fromARGB(255, 255, 181, 216);
   static const LightBlueColor = Color.fromARGB(255, 199, 223, 255);
   static const LightGrayColor = Color.fromARGB(255, 224, 224, 224);
-  static const TextgrayColor = Color.fromARGB(255, 170, 170, 170);
+  static const TextgrayColor = Color.fromARGB(255, 226, 226, 226);
   static const TextBlackColor = Color.fromARGB(255, 30, 30, 30);
-  static const backgroundgrayColor = Color.fromARGB(255, 249, 249, 249);
+  static const backgroundgrayColor = Color.fromARGB(255, 240, 240, 240);
   static const TextFieldcolor = Color.fromARGB(255, 255, 255, 255);
   static const IconPurpleColor = Color.fromARGB(255, 211, 227, 253);
   static const IconBlueColor = Color.fromARGB(255, 162, 210, 255);
@@ -28,5 +28,8 @@ class AppColors {
   static const grayText = Color.fromRGBO(130, 143, 163, 1);
   static const darkText = Color.fromRGBO(33, 53, 88, 1);
   static const BlueText = Color.fromRGBO(8, 66, 160, 1);
-  static const green= Color(0xCEE9BE);
+  static const purple = Color.fromRGBO(111, 50, 153, 1);
+  // static const purple = Color.fromRGBO(204, 153, 204, 1);
+  static const lightPurple = Color.fromRGBO(227, 207, 238, 1);
+  static const gold = Color.fromARGB(255, 241, 192, 76);
 }

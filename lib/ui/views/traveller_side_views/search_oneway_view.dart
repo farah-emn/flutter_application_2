@@ -104,6 +104,8 @@ class SearchViewOneWay extends StatelessWidget {
                                     )),
                               ),
                               CustomButton(
+                          backgroundColor: AppColors.darkBlue,
+
                                   text: 'One - Way',
                                   textColor: AppColors.backgroundgrayColor,
                                   widthPercent: 2.5,
@@ -207,6 +209,8 @@ class SearchViewOneWay extends StatelessWidget {
                   ),
                   InkWell(
                     child: CustomButton(
+                          backgroundColor: AppColors.darkBlue,
+
                         text: 'Search',
                         textColor: AppColors.backgroundgrayColor,
                         widthPercent: 1.1,

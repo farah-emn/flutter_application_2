@@ -1,15 +1,16 @@
+import 'package:flutter/material.dart';
+
 class AmenitiesClass {
-  String image;
+  IconData icon;
   String title;
 
-  AmenitiesClass({required this.image, required this.title});
+  AmenitiesClass({required this.icon, required this.title});
 }
 
 List<AmenitiesClass> Amenities = [
-  AmenitiesClass(image: 'assets/image/png/pool.png', title: 'Pool'),
-  AmenitiesClass(image: 'assets/image/png/services.png', title: 'Services'),
-  AmenitiesClass(image: 'assets/image/png/internet.png', title: 'Internet'),
-  AmenitiesClass(image: 'assets/image/png/parking.png', title: 'Parking'),
-  AmenitiesClass(image: 'assets/image/png/beauty.png', title: 'Beauty'),
-  AmenitiesClass(image: 'assets/image/png/internet.png', title: 'Internet'),
+  AmenitiesClass(icon: Icons.wifi_rounded, title: 'Wi_Fi'),
+  AmenitiesClass(icon: Icons.bed, title: 'Dobule bed'),
+  AmenitiesClass(icon: Icons.pool_rounded, title: 'Internet'),
+  AmenitiesClass(icon: Icons.coffee, title: 'BreakFast'),
+  AmenitiesClass(icon: Icons.ac_unit_rounded, title: 'Ac'),
 ];
