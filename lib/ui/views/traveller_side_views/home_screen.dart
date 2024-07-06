@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:traveling/ui/shared/colors.dart';
 import 'package:traveling/ui/views/traveller_side_views/home_view.dart';
 import 'package:traveling/ui/views/traveller_side_views/menu_view.dart';
-
-import 'search_oneway_view.dart';
+import 'package:traveling/ui/views/traveller_side_views/search_oneway_view/search_oneway_view.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -14,23 +13,16 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   int index = 0;
-  final Screens = [
-    const HomeView(),
-    const SearchViewOneWay(),
-    const MenuView()
-  ];
+  final Screens = [const HomeView(), SearchViewOneWay(), const MenuView()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Screens[index],
       bottomNavigationBar: NavigationBarTheme(
         data: const NavigationBarThemeData(
-            indicatorColor: AppColors.darkBlue,
-            backgroundColor: Colors.white),
+            indicatorColor: AppColors.darkBlue, backgroundColor: Colors.white),
         child: NavigationBar(
-          
             elevation: 1,
             height: 70,
             selectedIndex: index,

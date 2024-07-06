@@ -7,7 +7,6 @@ import 'package:traveling/ui/shared/custom_widgets/custom_search_comtainer.dart'
 import 'package:traveling/ui/shared/custom_widgets/custom_textfiled.dart';
 import 'package:traveling/ui/shared/custom_widgets/custom_textgray.dart';
 import 'package:traveling/ui/shared/utils.dart';
-import 'package:traveling/ui/views/traveller_side_views/search_oneway_view.dart';
 
 class TravellerDetailsView3 extends StatelessWidget {
   const TravellerDetailsView3({super.key});
@@ -83,8 +82,7 @@ class TravellerDetailsView3 extends StatelessWidget {
                       height: screenWidth(15),
                     ),
                     CustomButton(
-                          backgroundColor: AppColors.darkBlue,
-
+                        backgroundColor: AppColors.darkBlue,
                         text: 'Add traveller',
                         textColor: AppColors.backgroundgrayColor,
                         widthPercent: 1.1,

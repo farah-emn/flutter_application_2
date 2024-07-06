@@ -10,7 +10,7 @@ class CustomButton extends StatelessWidget {
     this.borderColor,
     required this.widthPercent,
     required this.heightPercent,
-    required this.backgroundColor,
+    required Color backgroundColor,
   });
 
   final String text;
@@ -18,7 +18,6 @@ class CustomButton extends StatelessWidget {
   final double heightPercent;
   final Color? borderColor;
   final Color textColor;
-  final Color backgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +25,7 @@ class CustomButton extends StatelessWidget {
       width: screenWidth(widthPercent),
       height: 50,
       decoration: BoxDecoration(
-        color: backgroundColor,
+        color: AppColors.mainColorBlue,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Center(

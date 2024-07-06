@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:traveling/ui/shared/colors.dart';
 import 'package:traveling/ui/shared/utils.dart';
+import 'package:traveling/ui/views/traveller_side_views/currency_display.dart';
 import 'package:traveling/ui/views/traveller_side_views/profile_view.dart';
 import 'package:traveling/ui/views/traveller_side_views/welcome_view.dart';
 
@@ -127,7 +128,10 @@ class _MenuViewState extends State<MenuView> {
                                 SizedBox(
                                   height: screenHeight(25),
                                 ),
-                                const Icon(Icons.date_range_rounded, color: AppColors.Blue,),
+                                const Icon(
+                                  Icons.date_range_rounded,
+                                  color: AppColors.Blue,
+                                ),
                                 const SizedBox(
                                   width: 20,
                                 ),
@@ -158,7 +162,10 @@ class _MenuViewState extends State<MenuView> {
                                 SizedBox(
                                   height: screenHeight(30),
                                 ),
-                                const Icon(Icons.favorite, color: AppColors.Blue,),
+                                const Icon(
+                                  Icons.favorite,
+                                  color: AppColors.Blue,
+                                ),
                                 const SizedBox(width: 20),
                                 Text(
                                   'Favourites',
@@ -253,34 +260,34 @@ class _MenuViewState extends State<MenuView> {
                               indent: 10,
                               endIndent: 10,
                             ),
-                            Row(
-                              children: [
-                                SizedBox(
-                                  height: screenHeight(30),
-                                ),
-                                const Icon(
-                                  Icons.settings,
-                                  color: AppColors.Blue,
-                                ),
-                                const SizedBox(
-                                  width: 20,
-                                ),
-                                Text(
-                                  'Settings',
-                                  style: TextStyle(
-                                    fontSize: screenWidth(24),
-                                    color: AppColors.TextgrayColor,
+                            InkWell(
+                              onTap: () {
+                                Get.to(() => const CurrencyDisplay());
+                              },
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    height: screenHeight(30),
                                   ),
-                                ),
-                                const Spacer(),
-                                const Image(
-                                  image: AssetImage(
-                                      'assets/image/png/arrow icon.png'),
-                                ),
-                                SizedBox(
-                                  height: screenHeight(25),
-                                ),
-                              ],
+                                  const Icon(
+                                    Icons.person,
+                                    color: AppColors.Blue,
+                                  ),
+                                  const SizedBox(width: 20),
+                                  Text(
+                                    'Settings',
+                                    style: TextStyle(
+                                      fontSize: screenWidth(24),
+                                      color: AppColors.TextgrayColor,
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  const Image(
+                                    image: AssetImage(
+                                        'assets/image/png/arrow icon.png'),
+                                  )
+                                ],
+                              ),
                             ),
                           ],
                         )),
@@ -304,7 +311,10 @@ class _MenuViewState extends State<MenuView> {
                               SizedBox(
                                 height: screenHeight(25),
                               ),
-                             const Icon(Icons.headphones, color: AppColors.Blue,),
+                              const Icon(
+                                Icons.headphones,
+                                color: AppColors.Blue,
+                              ),
                               const SizedBox(
                                 width: 20,
                               ),
@@ -335,7 +345,10 @@ class _MenuViewState extends State<MenuView> {
                               SizedBox(
                                 height: screenHeight(30),
                               ),
-                              const Icon(Icons.help, color: AppColors.Blue,),
+                              const Icon(
+                                Icons.help,
+                                color: AppColors.Blue,
+                              ),
                               const SizedBox(
                                 width: 20,
                               ),
@@ -384,7 +397,10 @@ class _MenuViewState extends State<MenuView> {
                                 SizedBox(
                                   height: screenHeight(25),
                                 ),
-                               const Icon(Icons.logout, color: AppColors.Blue,),
+                                const Icon(
+                                  Icons.logout,
+                                  color: AppColors.Blue,
+                                ),
                                 const SizedBox(
                                   width: 20,
                                 ),

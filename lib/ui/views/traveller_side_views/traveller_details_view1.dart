@@ -7,7 +7,6 @@ import 'package:traveling/ui/shared/custom_widgets/custom_search_comtainer.dart'
 import 'package:traveling/ui/shared/custom_widgets/custom_textfiled.dart';
 import 'package:traveling/ui/shared/custom_widgets/custom_textgray.dart';
 import 'package:traveling/ui/shared/utils.dart';
-import 'package:traveling/ui/views/traveller_side_views/search_oneway_view.dart';
 import 'package:traveling/ui/views/traveller_side_views/traveller_details_view2.dart';
 
 class TravellerDetailsView1 extends StatelessWidget {
