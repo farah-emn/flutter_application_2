@@ -21,7 +21,7 @@ class AmenitiesCard extends StatelessWidget {
         children: [
           Icon(
             amenitiesModel.icon,
-            color: AppColors.purple,
+            color: AppColors.gold,
           ),
           const SizedBox(
             height: 10,

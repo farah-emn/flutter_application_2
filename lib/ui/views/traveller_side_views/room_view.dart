@@ -1,78 +1,111 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:traveling/cards/amenities_card.dart';
+import 'package:traveling/classes/amenities_class.dart';
 import 'package:traveling/ui/shared/colors.dart';
 import 'package:traveling/ui/shared/custom_widgets/custom_button.dart';
+import 'package:traveling/ui/shared/text_size.dart';
 import 'package:traveling/ui/shared/utils.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:traveling/ui/views/traveller_side_views/booking_summary_view.dart';
 
-import 'booking_summary_view.dart';
-import 'guest_details_view.dart';
-
-class RoomView extends StatelessWidget {
+class RoomView extends StatefulWidget {
   const RoomView({super.key});
 
+  @override
+  State<RoomView> createState() => _RoomViewState();
+}
+
+class _RoomViewState extends State<RoomView> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-        body: SafeArea(
-      child: Stack(
-        children: [
-          Image(
-            image: AssetImage('assets/image/png/hotelRoom.png'),
-            fit: BoxFit.fill,
-            width: screenWidth(1),
-          ),
-          Padding(
-              padding: EdgeInsets.only(top: 20, left: 15, right: 15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+      backgroundColor: AppColors.lightPurple,
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            backgroundColor: AppColors.lightPurple,
+            elevation: 0,
+            pinned: true,
+            expandedHeight: 350,
+            toolbarHeight: 120,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Stack(
                 children: [
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Icon(Icons.arrow_back_ios,
-                          color: Color.fromARGB(255, 255, 255, 255)),
-                      ImageIcon(
-                        AssetImage('assets/image/png/favorite.png'),
-                        color: Colors.white,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 260,
-                  ),
-                  Text(
-                    'Deluxe Room - 2 Twin Beds ',
-                    style: TextStyle(
-                      fontSize: screenWidth(21),
-                      color: Colors.white,
+                  Container(
+                    height: 350,
+                    child: Image(
+                      image: AssetImage('assets/image/png/room2.png'),
+                      fit: BoxFit.fill,
                     ),
                   ),
                 ],
-              )),
-
-          Padding(
-            padding: EdgeInsetsDirectional.only(top: screenWidth(1.2)),
-            child: Image.asset(
-              'assets/image/png/background1.png',
-              width: screenWidth(1),
-              fit: BoxFit.fill,
+              ),
+            ),
+            bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(0.0),
+              child: Container(
+                padding: const EdgeInsets.only(top: 15, bottom: 15),
+                decoration: const BoxDecoration(
+                  color: AppColors.backgroundgrayColor,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(32),
+                    topRight: Radius.circular(32),
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Text(
+                      'Deluxe Room - 2 Twin Beds ',
+                      style: TextStyle(
+                        fontSize: TextSize.header1,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            leadingWidth: size.width,
+            leading: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                    size: 25,
+                  ),
+                  Icon(
+                    Icons.favorite_rounded,
+                    color: Colors.white,
+                    size: 25,
+                  ),
+                ],
+              ),
             ),
           ),
-          // SizedBox(
-          //   height: 500,
-          // ),
-          Padding(
-            padding: const EdgeInsets.only(top: 370),
-            child: ListView(children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15),
-                    child: Stack(
+          SliverToBoxAdapter(
+            child: Container(
+              color: AppColors.backgroundgrayColor,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 15),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: 30,
+                    ),
+                    Stack(
                       children: [
                         Container(
                           width: size.width / 2.2,
@@ -188,244 +221,210 @@ class RoomView extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        'About',
-                        style: TextStyle(
-                            fontSize: screenWidth(23),
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                      padding: EdgeInsetsDirectional.only(
-                          top: 15, start: screenWidth(100)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Column(
-                            children: [
-                              Image(
-                                  image: AssetImage(
-                                      'assets/image/png/seaview_icon.png')),
-                              SizedBox(height: screenHeight(80)),
-                              Text(
-                                "Partial Sea view",
-                              )
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Image(
-                                  image: AssetImage(
-                                      'assets/image/png/icon_50m.png')),
-                              SizedBox(height: screenHeight(80)),
-                              Text(
-                                "50m",
-                              )
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Image(
-                                  image: AssetImage(
-                                      'assets/image/png/bed_icon.png')),
-                              SizedBox(height: screenHeight(80)),
-                              Text(
-                                " 2 Twin Beds",
-                              )
-                            ],
-                          ),
-                        ],
-                      )),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        'Amenities',
-                        style: TextStyle(
-                            fontSize: screenWidth(23),
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: 10,
-                      left: 15,
+                    SizedBox(
+                      height: 30,
                     ),
-                    child: Row(
+                    Row(
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  '- ',
-                                  style: TextStyle(fontWeight: FontWeight.w500),
-                                ),
-                                Text(
-                                  'Barbeque',
-                                  style: TextStyle(fontSize: screenWidth(26)),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  '- ',
-                                  style: TextStyle(fontWeight: FontWeight.w500),
-                                ),
-                                Text(
-                                  'Air Conditioning',
-                                  style: TextStyle(fontSize: screenWidth(26)),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  '- ',
-                                  style: TextStyle(fontWeight: FontWeight.w500),
-                                ),
-                                Text(
-                                  'Dryer',
-                                  style: TextStyle(fontSize: screenWidth(26)),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
                         SizedBox(
-                          width: screenWidth(4),
+                          width: 15,
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  '- ',
-                                  style: TextStyle(fontWeight: FontWeight.w500),
-                                ),
-                                Text(
-                                  'Laundry',
-                                  style: TextStyle(fontSize: screenWidth(26)),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  '- ',
-                                  style: TextStyle(fontWeight: FontWeight.w500),
-                                ),
-                                Text(
-                                  'Window Coverings',
-                                  style: TextStyle(fontSize: screenWidth(26)),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  '- ',
-                                  style: TextStyle(fontWeight: FontWeight.w500),
-                                ),
-                                Text(
-                                  'Refrigerator',
-                                  style: TextStyle(fontSize: screenWidth(26)),
-                                ),
-                              ],
-                            ),
-                          ],
+                        Text(
+                          'About',
+                          style: TextStyle(
+                              fontSize: TextSize.header1,
+                              fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
-                  ),
-                  //     Expanded(
-                  //   child: Align(
-                  //     alignment: Alignment.bottomCenter,
-                  //     child: ElevatedButton(
-                  //       onPressed: () {},
-                  //       style: ElevatedButton.styleFrom(
-                  //         minimumSize: const Size(double.maxFinite, 50),
-                  //         backgroundColor: AppColors.mainColorBlue,
-                  //         foregroundColor: Colors.white,
-                  //         elevation: 0,
-                  //         shape: RoundedRectangleBorder(
-                  //           borderRadius: BorderRadius.circular(15),
-                  //         ),
-                  //       ),
-                  //       child: const Text('Select Room'),
-                  //     ),
-                  //   ),
-                  // ),
-                  SizedBox(
-                    height: 100,
-                  ),
-                ],
+                    Padding(
+                      padding: EdgeInsets.only(top: 15, left: 15),
+                      child: Container(
+                        height: 60,
+                        width: size.width,
+                        child: Expanded(
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            shrinkWrap: true,
+                            itemCount: Amenities.length,
+                            itemBuilder: (context, index) => AmenitiesCard(
+                              itemIndex: index,
+                              amenitiesModel: Amenities[index],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Text(
+                          'Rating and review',
+                          style: TextStyle(
+                              fontSize: TextSize.header1,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 15, left: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                '4.5',
+                                style: TextStyle(fontSize: 50),
+                              ),
+                              RatingBarIndicator(
+                                itemSize: 25,
+                                rating: 4.5,
+                                itemBuilder: (_, __) => Icon(
+                                  Icons.star_rounded,
+                                  color: AppColors.gold,
+                                  size: 20,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Spacer(),
+                          Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Text('5'),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  SizedBox(
+                                      width: size.width / 2,
+                                      child: LinearProgressIndicator(
+                                        minHeight: 15,
+                                        value: 0.8,
+                                        color: AppColors.purple,
+                                        backgroundColor: AppColors.lightPurple,
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10)),
+                                      )),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text('4'),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  SizedBox(
+                                      width: size.width / 2,
+                                      child: LinearProgressIndicator(
+                                        minHeight: 15,
+                                        value: 0.7,
+                                        color: AppColors.purple,
+                                        backgroundColor: AppColors.lightPurple,
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10)),
+                                      )),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text('3'),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  SizedBox(
+                                      width: size.width / 2,
+                                      child: LinearProgressIndicator(
+                                        minHeight: 15,
+                                        value: 0.8,
+                                        color: AppColors.purple,
+                                        backgroundColor: AppColors.lightPurple,
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10)),
+                                      )),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text('2'),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  SizedBox(
+                                      width: size.width / 2,
+                                      child: LinearProgressIndicator(
+                                        minHeight: 15,
+                                        value: 0.5,
+                                        color: AppColors.purple,
+                                        backgroundColor: AppColors.lightPurple,
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10)),
+                                      )),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text('1'),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  SizedBox(
+                                    width: size.width / 2,
+                                    child: LinearProgressIndicator(
+                                      minHeight: 15,
+                                      value: 0.2,
+                                      color: AppColors.purple,
+                                      backgroundColor: AppColors.lightPurple,
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(10)),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Get.to(
+                          BookingSummaryView(),
+                        );
+                      },
+                      child: Container(
+                        margin: EdgeInsets.symmetric(horizontal: 15),
+                        child: CustomButton(
+                            text: 'Booking Now',
+                            textColor: Colors.white,
+                            widthPercent: 0,
+                            heightPercent: 50,
+                            backgroundColor: AppColors.purple),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                  ],
+                ),
               ),
-            ]),
-          ),
-          // Padding(
-          //     padding: EdgeInsetsDirectional.only(
-          //         top: screenHeight(2.4), start: screenWidth(15)),
-          //     child: Container(
-          //       child: Image.asset('assets/image/png/image hotel1.png'),
-          //     )),
-          // Padding(
-          //   padding: EdgeInsetsDirectional.only(
-          //       top: screenHeight(2.4), start: screenWidth(1.9)),
-          //   child: Image.asset('assets/image/png/small image hotel.png'),
-          // ),
-          // Padding(
-          //   padding: EdgeInsetsDirectional.only(
-          //       top: screenHeight(2.4), start: screenWidth(1.35)),
-          //   child: Image.asset('assets/image/png/small image hotel.png'),
-          // ),
-          // Padding(
-          //   padding: EdgeInsetsDirectional.only(
-          //       top: screenHeight(1.9), start: screenWidth(1.9)),
-          //   child: Image.asset('assets/image/png/small image hotel.png'),
-          // ),
-          // Padding(
-          //   padding: EdgeInsetsDirectional.only(
-          //       top: screenHeight(1.9), start: screenWidth(1.35)),
-          //   child: Image.asset('assets/image/png/small image hotel.png'),
-          // ),
-
-          Center(
-            child: Padding(
-              padding: EdgeInsetsDirectional.only(top: screenHeight(1.16)),
-              child: InkWell(
-                  onTap: () {
-                    Get.to(BookingSummaryView());
-                  },
-                  child: CustomButton(
-                      text: 'save',
-                      backgroundColor: AppColors.darkBlue,
-                      textColor: AppColors.backgroundgrayColor,
-                      widthPercent: 1.1,
-                      heightPercent: 18)),
             ),
-          )
+          ),
         ],
       ),
-    ));
+    );
   }
 }

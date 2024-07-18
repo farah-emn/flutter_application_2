@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart';
 import 'package:traveling/classes/hotel.dart';
 import 'package:traveling/ui/shared/colors.dart';
 import 'package:traveling/ui/shared/text_size.dart';
+import 'package:traveling/ui/views/traveller_side_views/hotel_details_view.dart';
 
-import '../ui/views/traveller_side_views/room_view.dart';
-import '../classes/hotel_room_details_class.dart';
 
 class HotelCard extends StatefulWidget {
   const HotelCard({
@@ -30,25 +28,25 @@ class _HotelCardState extends State<HotelCard> {
     return InkWell(
       onTap: () {
         Get.to(
-          RoomView(),
+          HotelDetailsView(),
         );
       },
       child: Container(
-        margin: const EdgeInsets.only(bottom: 20),
+        margin: const EdgeInsets.only(bottom: 20, right: 15),
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: List.filled(
             10,
-            BoxShadow(
+            const BoxShadow(
                 color: AppColors.gray,
                 blurRadius: BorderSide.strokeAlignOutside,
                 blurStyle: BlurStyle.outer),
           ),
-          borderRadius: BorderRadius.all(
+          borderRadius: const BorderRadius.all(
             Radius.circular(20),
           ),
         ),
-        width: widget.size.width,
+        width: widget.size.width - 30,
         child: Column(
           children: [
             Column(

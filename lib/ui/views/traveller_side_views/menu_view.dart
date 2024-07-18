@@ -46,6 +46,7 @@ class _MenuViewState extends State<MenuView> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColors.StatusBarColor,
+        
         body: SafeArea(
           child: Stack(children: [
             Padding(

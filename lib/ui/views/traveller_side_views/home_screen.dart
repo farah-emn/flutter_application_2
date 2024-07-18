@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:traveling/ui/shared/colors.dart';
 import 'package:traveling/ui/views/traveller_side_views/home_view.dart';
 import 'package:traveling/ui/views/traveller_side_views/menu_view.dart';
-import 'package:traveling/ui/views/traveller_side_views/search_oneway_view/search_oneway_view.dart';
+import 'package:traveling/ui/views/traveller_side_views/profile_view.dart';
+import 'package:traveling/ui/views/traveller_side_views/search_flight/search_flight_view.dart';
+import 'package:traveling/ui/views/traveller_side_views/search_view.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -14,49 +16,68 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int index = 0;
-  final Screens = [const HomeView(), SearchViewOneWay(), const MenuView()];
+  final Screens = [
+    const HomeView(),
+    const SearchView(),
+    const ProfileView(),
+    const ProfileView(),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Screens[index],
       bottomNavigationBar: NavigationBarTheme(
         data: const NavigationBarThemeData(
-            indicatorColor: AppColors.darkBlue, backgroundColor: Colors.white),
+          indicatorColor: AppColors.darkBlue,
+          backgroundColor: Colors.white,
+          shadowColor: AppColors.Blue,
+        ),
         child: NavigationBar(
-            elevation: 1,
-            height: 70,
-            selectedIndex: index,
-            labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-            animationDuration: const Duration(seconds: 2),
-            onDestinationSelected: (index) => setState(() {
-                  this.index = index;
-                }),
-            destinations: const [
-              NavigationDestination(
-                icon: Icon(Icons.home_outlined),
-                selectedIcon: Icon(
-                  Icons.home_filled,
-                  color: AppColors.backgroundgrayColor,
-                ),
-                label: 'Home',
+          elevation: 1,
+          height: 60,
+          selectedIndex: index,
+          labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+          animationDuration: const Duration(seconds: 2),
+          onDestinationSelected: (index) => setState(
+            () {
+              this.index = index;
+            },
+          ),
+          destinations: const [
+            NavigationDestination(
+              icon: Icon(Icons.home_outlined),
+              selectedIcon: Icon(
+                Icons.home_filled,
+                color: AppColors.backgroundgrayColor,
               ),
-              NavigationDestination(
-                icon: Icon(Icons.search_outlined),
-                selectedIcon: Icon(
-                  Icons.search_outlined,
-                  color: AppColors.backgroundgrayColor,
-                ),
-                label: 'Search',
+              label: 'Home',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.search_outlined),
+              selectedIcon: Icon(
+                Icons.search_outlined,
+                color: AppColors.backgroundgrayColor,
               ),
-              NavigationDestination(
-                icon: Icon(Icons.menu),
-                selectedIcon: Icon(
-                  Icons.menu,
-                  color: AppColors.backgroundgrayColor,
-                ),
-                label: 'Menu',
+              label: 'Search',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.notifications),
+              selectedIcon: Icon(
+                Icons.notifications,
+                color: AppColors.backgroundgrayColor,
               ),
-            ]),
+              label: 'Menu',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.person_2_rounded),
+              selectedIcon: Icon(
+                Icons.person_2_rounded,
+                color: AppColors.backgroundgrayColor,
+              ),
+              label: 'Menu',
+            ),
+          ],
+        ),
       ),
     );
   }

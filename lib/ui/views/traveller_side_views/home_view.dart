@@ -3,10 +3,15 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:traveling/cards/hotel_card.dart';
+import 'package:traveling/cards/hotel_card2.dart';
 import 'package:traveling/cards/hotel_info_home_view_card.dart';
+import 'package:traveling/classes/hotel.dart';
+import 'package:traveling/classes/hotel_room_details_class.dart';
 import 'package:traveling/ui/shared/colors.dart';
 import 'package:traveling/ui/shared/custom_widgets/custom_image.dart';
 import 'package:traveling/ui/shared/custom_widgets/custom_servicetext.dart';
+import 'package:traveling/ui/shared/text_size.dart';
 
 import 'package:traveling/ui/shared/utils.dart';
 import 'package:traveling/ui/views/first_view.dart';
@@ -14,7 +19,6 @@ import 'package:traveling/ui/views/traveller_side_views/menu_view.dart';
 import 'package:traveling/ui/views/traveller_side_views/welcome_view.dart';
 
 import 'flights_view.dart';
-import 'hotel_payments_view.dart';
 import '../../../classes/hotel_info_class.dart';
 
 late User loggedinUser;
@@ -27,6 +31,8 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   final _auth = FirebaseAuth.instance;
   @override
   void initState() {
@@ -52,7 +58,121 @@ class _HomeViewState extends State<HomeView> {
   @override
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    
     return Scaffold(
+      key: _scaffoldKey,
+
+      drawer: Drawer(
+        backgroundColor: AppColors.backgroundgrayColor,
+        child: Column(
+          children: [
+            const UserAccountsDrawerHeader(
+                decoration: BoxDecoration(color: AppColors.Blue),
+                currentAccountPicture: CircleAvatar(
+                  backgroundImage: AssetImage('assets/image/png/girlUser1.png'),
+                ),
+                accountName: Text('data'),
+                accountEmail: Text('data@gmail.com')),
+            ListTile(
+              leading: const Icon(
+                Icons.date_range_rounded,
+                color: AppColors.Blue,
+              ),
+              title: const Text(
+                'Bookings',
+                style: TextStyle(
+                  color: AppColors.BlueText,
+                ),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.people,
+                color: AppColors.Blue,
+              ),
+              title: const Text(
+                'Travellers',
+                style: TextStyle(
+                  color: AppColors.BlueText,
+                ),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.settings,
+                color: AppColors.Blue,
+              ),
+              title: const Text(
+                'Settings',
+                style: TextStyle(
+                  color: AppColors.BlueText,
+                ),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 15),
+              height: 0.2,
+              color: AppColors.TextgrayColor,
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.headphones,
+                color: AppColors.Blue,
+              ),
+              title: const Text(
+                'Contact us',
+                style: TextStyle(
+                  color: AppColors.BlueText,
+                ),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.help,
+                color: AppColors.Blue,
+              ),
+              title: const Text(
+                'Help',
+                style: TextStyle(
+                  color: AppColors.BlueText,
+                ),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            Spacer(),
+            ListTile(
+              leading: const Icon(
+                Icons.logout,
+                color: AppColors.Blue,
+              ),
+              title: const Text(
+                'Logout',
+                style: TextStyle(
+                  color: AppColors.BlueText,
+                ),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -150,7 +270,7 @@ class _HomeViewState extends State<HomeView> {
                   children: [
                     InkWell(
                       onTap: () {
-                        Get.to(FlightsView());
+                        // Get.to(d);
                       },
                       child: Column(
                         children: [
@@ -224,9 +344,9 @@ class _HomeViewState extends State<HomeView> {
               ),
             ),
             leadingWidth: MediaQuery.of(context).size.width,
-            toolbarHeight: 180,
-            leading: const Padding(
-              padding: EdgeInsets.only(
+            toolbarHeight: 200,
+            leading: Padding(
+              padding: const EdgeInsets.only(
                 left: 15,
                 right: 15,
                 top: 15,
@@ -236,7 +356,7 @@ class _HomeViewState extends State<HomeView> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
+                      const Row(
                         children: [
                           SizedBox(
                             width: 50,
@@ -269,10 +389,15 @@ class _HomeViewState extends State<HomeView> {
                           ),
                         ],
                       ),
-                      Icon(
-                        Icons.notifications,
-                        color: AppColors.backgroundgrayColor,
-                        size: 30,
+                      IconButton(
+                        onPressed: () {
+                          _scaffoldKey.currentState?.openDrawer();
+                        },
+                        icon: Icon(
+                          Icons.menu,
+                          color: AppColors.backgroundgrayColor,
+                          size: 30,
+                        ),
                       ),
                     ],
                   ),
@@ -282,6 +407,7 @@ class _HomeViewState extends State<HomeView> {
           ),
           SliverToBoxAdapter(
             child: Container(
+              color: AppColors.backgroundgrayColor,
               height: MediaQuery.sizeOf(context).height - 130,
               child: Column(
                 children: [
@@ -296,68 +422,60 @@ class _HomeViewState extends State<HomeView> {
 
                         ),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 15),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('Top international hotels ',
                             style: TextStyle(
-                                fontSize: screenWidth(20),
-                                fontWeight: FontWeight.w700)),
+                                fontSize: TextSize.header1,
+                                fontWeight: FontWeight.w500)),
                         // CustomTextGray(mainText: 'See All',)
-                        const Text(
+                        Text(
                           'See All',
                           style: TextStyle(
-                              fontSize: 14, color: AppColors.TextgrayColor),
+                              fontSize: 14, color: AppColors.grayText),
                         ),
                       ],
                     ),
                   ),
-                  InkWell(
-                    onTap: () {
-                      Get.to(
-                        const MenuView(),
-                      );
-                    },
-                    child: Container(
-                      height: 250,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        shrinkWrap: true,
-                        itemCount: hotelInfo.length,
-                        itemBuilder: (context, index) => HotelInfoHomeViewCard(
-                          itemIndex: index,
-                          hotelInfo: hotelInfo[index],
-                        ),
+                  Container(
+                    margin: const EdgeInsets.only(left: 15),
+                    height: 320,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      itemCount: hotelInfo.length,
+                      itemBuilder: (context, index) => HotelCard(
+                        size: size,
+                        itemIndex: index,
+                        hotelDetails: hotel[index],
                       ),
                     ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text('Offers',
+                      const Text('Offers',
                           style: TextStyle(
-                              fontSize: screenWidth(20),
-                              fontWeight: FontWeight.w700)),
+                              fontSize: TextSize.header1,
+                              fontWeight: FontWeight.w500)),
                       SizedBox(
                         width: screenWidth(2),
                       ),
-                      Text(
+                      const Text(
                         'See All',
-                        style: TextStyle(
-                            fontSize: 14, color: AppColors.TextgrayColor),
+                        style:
+                            TextStyle(fontSize: 14, color: AppColors.grayText),
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: screenWidth(20),
-                  ),
                   Container(
-                    width: screenWidth(1.1),
-                    height: screenWidth(2.7),
+                    width: size.width - 30,
+                    height: 200,
                     decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 207, 205, 205),
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(20)),
                   )
                 ],
@@ -368,283 +486,4 @@ class _HomeViewState extends State<HomeView> {
       ),
     );
   }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //       backgroundColor: AppColors.StatusBarColor,
-  //       body: SafeArea(
-  //         child: Stack(
-  //           children: [
-  //             Padding(
-  //               padding: const EdgeInsets.only(
-  //                 top: 250,
-  //               ),
-  //               child: Container(
-  //                 decoration: const BoxDecoration(
-  //                   image: DecorationImage(
-  //                       image: AssetImage('assets/image/png/background1.png'),
-  //                       fit: BoxFit.fill),
-  //                 ),
-  //               ),
-  //             ),
-  //             const Padding(
-  //               padding: EdgeInsets.only(right: 20, top: 100),
-  //               child: Row(
-  //                 mainAxisAlignment: MainAxisAlignment.end,
-  //                 children: [
-  //                   Icon(
-  //                     Icons.cloud,
-  //                     color: Color.fromARGB(92, 249, 249, 249),
-  //                     size: 60,
-  //                   ),
-  //                 ],
-  //               ),
-  //             ),
-  //             const Padding(
-  //               padding: EdgeInsets.only(right: 80, top: 140),
-  //               child: Row(
-  //                 mainAxisAlignment: MainAxisAlignment.end,
-  //                 children: [
-  //                   Icon(
-  //                     Icons.cloud,
-  //                     color: Color.fromARGB(92, 249, 249, 249),
-  //                     size: 50,
-  //                   ),
-  //                 ],
-  //               ),
-  //             ),
-  //             ListView(
-  //               children: [
-  //                 Column(
-  //                     crossAxisAlignment: CrossAxisAlignment.center,
-  //                     children: [
-  //                       const Padding(
-  //                         padding: EdgeInsets.only(
-  //                           left: 15,
-  //                           right: 15,
-  //                           top: 20,
-  //                         ),
-  //                         child: Row(
-  //                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //                           children: [
-  //                             Row(
-  //                               children: [
-  //                                 SizedBox(
-  //                                   width: 50,
-  //                                   height: 50,
-  //                                   child: CircleAvatar(
-  //                                     radius: 20,
-  //                                     backgroundImage: AssetImage(
-  //                                         'assets/image/png/girlUser1.png'),
-  //                                   ),
-  //                                 ),
-  //                                 SizedBox(
-  //                                   width: 10,
-  //                                 ),
-  //                                 Column(
-  //                                   crossAxisAlignment:
-  //                                       CrossAxisAlignment.start,
-  //                                   children: [
-  //                                     Text(
-  //                                       'User Name',
-  //                                       style: TextStyle(
-  //                                           color:
-  //                                               AppColors.backgroundgrayColor,
-  //                                           fontSize: 17,
-  //                                           fontWeight: FontWeight.w500),
-  //                                     ),
-  //                                     Text(
-  //                                       'Username@gmail.com',
-  //                                       style: TextStyle(
-  //                                           color: AppColors.LightGrayColor),
-  //                                     ),
-  //                                   ],
-  //                                 ),
-  //                               ],
-  //                             ),
-  //                             Icon(
-  //                               Icons.notifications,
-  //                               color: AppColors.backgroundgrayColor,
-  //                               size: 30,
-  //                             ),
-  //                           ],
-  //                         ),
-  //                       ),
-  //                       const Padding(
-  //                         padding: EdgeInsets.only(left: 15, top: 70),
-  //                         child: Row(
-  //                           children: [
-  //                             Text(
-  //                               "Let's Explore",
-  //                               style: TextStyle(
-  //                                   color: AppColors.backgroundgrayColor,
-  //                                   fontSize: 30,
-  //                                   fontWeight: FontWeight.w500),
-  //                             ),
-  //                           ],
-  //                         ),
-  //                       ),
-  //                       const Padding(
-  //                         padding: EdgeInsets.only(
-  //                           left: 15,
-  //                         ),
-  //                         child: Row(
-  //                           children: [
-  //                             Text(
-  //                               "The World!",
-  //                               style: TextStyle(
-  //                                   color: AppColors.backgroundgrayColor,
-  //                                   fontSize: 30,
-  //                                   fontWeight: FontWeight.w500),
-  //                             ),
-  //                           ],
-  //                         ),
-  //                       ),
-  //                       Padding(
-  //                         padding: const EdgeInsets.only(
-  //                           top: 100,
-  //                           bottom: 40,
-  //                           left: 15,
-  //                           right: 15,
-  //                         ),
-  //                         child: Container(
-  //                           // decoration: BoxDecoration(boxShadow: List),
-  //                           child: Row(
-  //                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  //                             children: [
-  //                               InkWell(
-  //                                 onTap: () {
-  //                                   Get.to(FlightsView());
-  //                                 },
-  //                                 child: Column(
-  //                                   children: [
-  //                                     const Icon(
-  //                                       Icons.flight,
-  //                                       color: AppColors.BlueText,
-  //                                       size: 30,
-  //                                     ),
-  //                                     SizedBox(
-  //                                       height: screenWidth(30),
-  //                                     ),
-  //                                     const Text(
-  //                                       'Flight',
-  //                                       style:
-  //                                           TextStyle(color: AppColors.BlueText),
-  //                                     ),
-  //                                   ],
-  //                                 ),
-  //                               ),
-  //                               Column(
-  //                                 children: [
-  //                                   const Icon(
-  //                                     Icons.hotel,
-  //                                     color: AppColors.BlueText,
-  //                                     size: 30,
-  //                                   ),
-  //                                   SizedBox(
-  //                                     height: screenWidth(30),
-  //                                   ),
-  //                                   const Text(
-  //                                     'Hotel',
-  //                                     style: TextStyle(color: AppColors.BlueText),
-  //                                   ),
-  //                                 ],
-  //                               ),
-  //                               Column(
-  //                                 children: [
-  //                                   const Icon(
-  //                                     Icons.local_taxi,
-  //                                     color: AppColors.BlueText,
-  //                                     size: 30,
-  //                                   ),
-  //                                   SizedBox(
-  //                                     height: screenWidth(30),
-  //                                   ),
-  //                                   const Text(
-  //                                     'Car',
-  //                                     style: TextStyle(color: AppColors.BlueText),
-  //                                   ),
-  //                                 ],
-  //                               ),
-  //                             ],
-  //                           ),
-  //                         ),
-  //                       ),
-  //                       Padding(
-  //                         padding: EdgeInsets.symmetric(horizontal: 15),
-  //                         child: Row(
-  //                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //                           children: [
-  //                             Text('Top international hotels ',
-  //                                 style: TextStyle(
-  //                                     fontSize: screenWidth(20),
-  //                                     fontWeight: FontWeight.w700)),
-  //                             // CustomTextGray(mainText: 'See All',)
-  //                             const Text(
-  //                               'See All',
-  //                               style: TextStyle(
-  //                                   fontSize: 14,
-  //                                   color: AppColors.TextgrayColor),
-  //                             ),
-  //                           ],
-  //                         ),
-  //                       ),
-  //                       InkWell(
-  //                         onTap: () {
-  //                           Get.to(
-  //                             MenuView(userName),
-  //                           );
-  //                         },
-  //                         child: Container(
-  //                           height: 250,
-  //                           child: ListView.builder(
-  //                             scrollDirection: Axis.horizontal,
-  //                             shrinkWrap: true,
-  //                             itemCount: hotelInfo.length,
-  //                             itemBuilder: (context, index) =>
-  //                                 HotelInfoHomeViewCard(
-  //                               itemIndex: index,
-  //                               hotelInfo: hotelInfo[index],
-  //                             ),
-  //                           ),
-  //                         ),
-  //                       ),
-  //                       const SizedBox(
-  //                         height: 20,
-  //                       ),
-  //                       Row(
-  //                         mainAxisAlignment: MainAxisAlignment.spaceAround,
-  //                         children: [
-  //                           Text('Offers',
-  //                               style: TextStyle(
-  //                                   fontSize: screenWidth(20),
-  //                                   fontWeight: FontWeight.w700)),
-  //                           SizedBox(
-  //                             width: screenWidth(2),
-  //                           ),
-  //                           Text(
-  //                             'See All',
-  //                             style: TextStyle(
-  //                                 fontSize: 14, color: AppColors.TextgrayColor),
-  //                           ),
-  //                         ],
-  //                       ),
-  //                       SizedBox(
-  //                         height: screenWidth(20),
-  //                       ),
-  //                       Container(
-  //                         width: screenWidth(1.1),
-  //                         height: screenWidth(2.7),
-  //                         decoration: BoxDecoration(
-  //                             color: Color.fromARGB(255, 207, 205, 205),
-  //                             borderRadius: BorderRadius.circular(20)),
-  //                       )
-  //                     ])
-  //               ],
-  //             ),
-  //           ],
-  //         ),
-  // ));
-  // }
 }

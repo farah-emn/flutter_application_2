@@ -31,25 +31,27 @@ class _HotelCard2State extends State<HotelCard2> {
     return InkWell(
       onTap: () {
         Get.to(
-          HotelRoomView(),
+          const RoomView(),
         );
       },
       child: Container(
-        margin: const EdgeInsets.only(bottom: 20),
+        margin: const EdgeInsets.only(
+          bottom: 20,
+        ),
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: List.filled(
             10,
-            BoxShadow(
+            const BoxShadow(
                 color: AppColors.gray,
                 blurRadius: BorderSide.strokeAlignOutside,
                 blurStyle: BlurStyle.outer),
           ),
-          borderRadius: BorderRadius.all(
+          borderRadius: const BorderRadius.all(
             Radius.circular(20),
           ),
         ),
-        width: widget.size.width,
+        width: widget.size.width - 30,
         child: Column(
           children: [
             Column(

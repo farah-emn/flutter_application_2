@@ -16,7 +16,7 @@ class AppColors {
   static const LightGrayColor = Color.fromARGB(255, 224, 224, 224);
   static const TextgrayColor = Color.fromARGB(255, 226, 226, 226);
   static const TextBlackColor = Color.fromARGB(255, 30, 30, 30);
-  static const backgroundgrayColor = Color.fromARGB(255, 240, 240, 240);
+  static const backgroundgrayColor = Color.fromARGB(249, 249, 249, 249);
   static const TextFieldcolor = Color.fromARGB(255, 255, 255, 255);
   static const IconPurpleColor = Color.fromARGB(255, 211, 227, 253);
   static const IconBlueColor = Color.fromARGB(255, 162, 210, 255);

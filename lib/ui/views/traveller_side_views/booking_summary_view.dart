@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:traveling/ui/shared/colors.dart';
+import 'package:traveling/ui/shared/custom_widgets/custom_textfield2.dart';
+import 'package:traveling/ui/shared/custom_widgets/white_container.dart';
+import 'package:traveling/ui/shared/text_size.dart';
 import 'package:traveling/ui/shared/utils.dart';
 import 'package:traveling/ui/views/traveller_side_views/home_screen.dart';
 
@@ -12,7 +16,6 @@ import 'package:traveling/ui/shared/custom_widgets/custom_textgray.dart';
 import '../../shared/custom_widgets/custom_textfiled.dart';
 import 'flights_view.dart';
 import 'home_view.dart';
-import 'hotel_payments_view.dart';
 
 bool is3 = false;
 
@@ -24,7 +27,7 @@ class BookingSummaryView extends StatefulWidget {
 }
 
 class _BookingSummaryViewState extends State<BookingSummaryView> {
-  int _activeStepIndex = 0;
+  int activeStepIndex = 0;
   int _nextStep = 1;
 
   @override
@@ -34,52 +37,68 @@ class _BookingSummaryViewState extends State<BookingSummaryView> {
     List<Step> StepsList() {
       return <Step>[
         Step(
-          title: Text('Booking\nSummery'),
+          title: const Text(
+            'Booking\nSummery',
+            style: TextStyle(fontSize: TextSize.header2),
+          ),
           content: step1(context),
-          state: _activeStepIndex > 0 ? StepState.complete : StepState.disabled,
-          isActive: _activeStepIndex >= 0,
+          state: activeStepIndex > 0 ? StepState.complete : StepState.disabled,
+          isActive: activeStepIndex >= 0,
         ),
         Step(
-          title: Text('Guest\nDetails'),
+          title: const Text(
+            'Guest\nDetails',
+            style: TextStyle(fontSize: TextSize.header2),
+          ),
           content: step2(context),
-          state: _activeStepIndex > 1 ? StepState.complete : StepState.disabled,
-          isActive: _activeStepIndex >= 1,
+          state: activeStepIndex > 1 ? StepState.complete : StepState.disabled,
+          isActive: activeStepIndex >= 1,
         ),
         Step(
-            title: Text('Payment'),
+            title: const Text(
+              'Payment',
+              style: TextStyle(fontSize: TextSize.header2),
+            ),
             content: step3(context),
             state: StepState.disabled,
-            isActive: _activeStepIndex >= 2),
+            isActive: activeStepIndex >= 2),
       ];
     }
 
     return Scaffold(
+      backgroundColor: AppColors.lightPurple,
       body: SafeArea(
         child: Stack(children: [
           Container(
-            color: AppColors.LightBlueColor,
+            color: AppColors.lightPurple,
             child: Stack(
               children: [
-                Container(
-                  margin: EdgeInsets.only(
-                    top: 20,
-                    left: 15,
-                  ),
-                  alignment: Alignment.centerRight,
-                  width: 35,
-                  height: 35,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    color: AppColors.backgroundgrayColor,
-                  ),
-                  child: const Icon(
-                    Icons.arrow_back_ios,
-                    color: AppColors.mainColorBlue,
+                const Padding(
+                  padding: EdgeInsets.only(left: 15, right: 15, top: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Icon(
+                        Icons.arrow_back,
+                        color: AppColors.purple,
+                      ),
+                      Text(
+                        'Add Room',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.purple),
+                      ),
+                      Icon(
+                        Icons.arrow_back,
+                        color: AppColors.lightPurple,
+                      ),
+                    ],
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
-                    top: 60,
+                    top: 50,
                   ),
                   child: Container(
                     decoration: const BoxDecoration(
@@ -89,101 +108,81 @@ class _BookingSummaryViewState extends State<BookingSummaryView> {
                     ),
                   ),
                 ),
-                Column(
-                  children: [
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: 15,
-                        ),
-                        Text(
-                          'Booking Summary',
-                          style: TextStyle(
-                              fontSize: screenWidth(20),
-                              fontWeight: FontWeight.w700,
-                              color: AppColors.backgroundgrayColor),
-                        ),
-                        const SizedBox(
-                          height: 40,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
                 Container(
-                  margin: EdgeInsets.only(
+                  color: AppColors.backgroundgrayColor,
+                  margin: const EdgeInsets.only(
                     top: 100,
                   ),
                   child: Theme(
                     data: ThemeData(
-                        colorScheme: ColorScheme.light(
-                      primary: AppColors.mainColorBlue,
+                        colorScheme: const ColorScheme.light(
+                      primary: AppColors.purple,
+                      background: AppColors.backgroundgrayColor,
                     )),
                     child: Stepper(
                       elevation: 0,
                       steps: StepsList(),
                       type: StepperType.horizontal,
-                      currentStep: _activeStepIndex,
+                      currentStep: activeStepIndex,
                       onStepContinue: () {
-                        if (_nextStep <= 4) {
-                          _activeStepIndex += 1;
-                          _nextStep += 1;
-                        }
-                        if (_nextStep == 4) {
+                        final isLastStep =
+                            activeStepIndex == StepsList().length - 1;
+                        if (isLastStep) {
+                          print(isLastStep);
                           showDialog(
                               context: context,
                               builder: (BuildContext context) {
                                 return Dialog(
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(
-                                        20.0), // Set your desired border radius
+                                    borderRadius: BorderRadius.circular(20.0),
                                   ),
                                   backgroundColor: Colors.white,
                                   child: Container(
-                                    width: screenWidth(1),
-                                    height: screenHeight(2.4),
+                                    padding: const EdgeInsets.all(10),
+                                    width: size.width,
+                                    height: 450,
                                     child: Column(
                                       children: [
-                                        Padding(
-                                          padding: EdgeInsetsDirectional.only(
-                                              start: screenWidth(1.5),
-                                              top: screenHeight(70)),
-                                          child: Image.asset(
-                                            'assets/image/png/cancel_icon.png',
-                                          ),
+                                        const Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            Icon(
+                                              Icons.cancel,
+                                              color: AppColors.purple,
+                                              size: 30,
+                                            ),
+                                          ],
                                         ),
-                                        SizedBox(
-                                          height: screenHeight(60),
-                                        ),
-                                        Image.asset(
-                                            'assets/image/png/success_icon.png',
-                                            alignment: Alignment.bottomLeft,
-                                            width: screenWidth(4)),
-                                        SizedBox(
-                                          height: screenHeight(80),
-                                        ),
-                                        Text(
-                                          'SUCCESS!',
-                                          style: TextStyle(
-                                              color: AppColors.mainColorBlue,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: screenWidth(16)),
-                                        ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 20,
                                         ),
-                                        Row(
+                                        const Icon(
+                                          Icons.check_circle_outlined,
+                                          color: AppColors.purple,
+                                          size: 100,
+                                        ),
+                                        const SizedBox(
+                                          height: 20,
+                                        ),
+                                        const Text(
+                                          'SUCCESS!',
+                                          style: TextStyle(
+                                              color: AppColors.purple,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 25),
+                                        ),
+                                        const SizedBox(
+                                          height: 20,
+                                        ),
+                                        const Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
                                             Text(
                                               'Your flight has been\n\ booked successfully.',
                                               style: TextStyle(
-                                                  fontSize: screenWidth(24),
+                                                  fontSize: TextSize.header2,
                                                   color: Color.fromARGB(
                                                       255, 112, 110, 110)),
                                             ),
@@ -194,7 +193,7 @@ class _BookingSummaryViewState extends State<BookingSummaryView> {
                                         ),
                                         InkWell(
                                           onTap: () {
-                                            Get.to(Home());
+                                            Get.to(const Home());
                                           },
                                           child: Padding(
                                             padding: const EdgeInsets.only(
@@ -203,8 +202,8 @@ class _BookingSummaryViewState extends State<BookingSummaryView> {
                                               bottom: 15,
                                             ),
                                             child: CustomButton(
-                          backgroundColor: AppColors.darkBlue,
-
+                                                backgroundColor:
+                                                    AppColors.purple,
                                                 text: 'Confirm',
                                                 textColor: AppColors
                                                     .backgroundgrayColor,
@@ -217,16 +216,109 @@ class _BookingSummaryViewState extends State<BookingSummaryView> {
                                   ),
                                 );
                               });
+                        } else {
+                          setState(() {
+                            activeStepIndex += 1;
+                          });
                         }
+
+                        // if (_nextStep <= 4) {
+                        //   _activeStepIndex += 1;
+                        //   _nextStep += 1;
+                        // }
+                        // if (_nextStep == 4) {
+                        // showDialog(
+                        //     context: context,
+                        //     builder: (BuildContext context) {
+                        //       return Dialog(
+                        //         shape: RoundedRectangleBorder(
+                        //           borderRadius: BorderRadius.circular(
+                        //               20.0), // Set your desired border radius
+                        //         ),
+                        //         backgroundColor: Colors.white,
+                        //         child: Container(
+                        //           width: screenWidth(1),
+                        //           height: screenHeight(2.4),
+                        //           child: Column(
+                        //             children: [
+                        //               Padding(
+                        //                 padding: EdgeInsetsDirectional.only(
+                        //                     start: screenWidth(1.5),
+                        //                     top: screenHeight(70)),
+                        //                 child: Image.asset(
+                        //                   'assets/image/png/cancel_icon.png',
+                        //                 ),
+                        //               ),
+                        //               SizedBox(
+                        //                 height: screenHeight(60),
+                        //               ),
+                        //               Image.asset(
+                        //                   'assets/image/png/success_icon.png',
+                        //                   alignment: Alignment.bottomLeft,
+                        //                   width: screenWidth(4)),
+                        //               SizedBox(
+                        //                 height: screenHeight(80),
+                        //               ),
+                        //               Text(
+                        //                 'SUCCESS!',
+                        //                 style: TextStyle(
+                        //                     color: AppColors.mainColorBlue,
+                        //                     fontWeight: FontWeight.bold,
+                        //                     fontSize: screenWidth(16)),
+                        //               ),
+                        //               const SizedBox(
+                        //                 height: 20,
+                        //               ),
+                        //               Row(
+                        //                 mainAxisAlignment:
+                        //                     MainAxisAlignment.center,
+                        //                 children: [
+                        //                   Text(
+                        //                     'Your flight has been\n\ booked successfully.',
+                        //                     style: TextStyle(
+                        //                         fontSize: screenWidth(24),
+                        //                         color: const Color.fromARGB(
+                        //                             255, 112, 110, 110)),
+                        //                   ),
+                        //                 ],
+                        //               ),
+                        //               const SizedBox(
+                        //                 height: 50,
+                        //               ),
+                        //               InkWell(
+                        //                 onTap: () {
+                        //                   Get.to(const Home());
+                        //                 },
+                        //                 child: Padding(
+                        //                   padding: const EdgeInsets.only(
+                        //                     left: 15,
+                        //                     right: 15,
+                        //                     bottom: 15,
+                        //                   ),
+                        //                   child: CustomButton(
+                        //                       backgroundColor:
+                        //                           AppColors.purple,
+                        //                       text: 'Confirm',
+                        //                       textColor: AppColors
+                        //                           .backgroundgrayColor,
+                        //                       widthPercent: 1.35,
+                        //                       heightPercent: 20),
+                        //                 ),
+                        //               ),
+                        //             ],
+                        //           ),
+                        //         ),
+                        //       );
+                        //     });
+                        // }
                         // setState() {}
                       },
                       onStepCancel: () {
-                        if (_activeStepIndex == 0) {
-                          return;
-                        }
-                        _activeStepIndex -= 1;
-                        _nextStep -= 1;
-                        // setState(){}
+                        activeStepIndex == 0
+                            ? null
+                            : setState(() {
+                                activeStepIndex -= 1;
+                              });
                       },
                     ),
                   ),
@@ -292,18 +384,16 @@ Widget step1(BuildContext context) {
                       ),
                       Row(
                         children: [
-                          Image(
-                            width: 18,
-                            height: 18,
-                            image: AssetImage(
-                                'assets/image/png/location_icon.png'),
+                          Icon(
+                            Icons.location_on_rounded,
+                            color: AppColors.gold,
                           ),
                           SizedBox(
                             width: 5,
                           ),
                           Text(
                             'King Fahd Rd',
-                            style: TextStyle(color: AppColors.TextgrayColor),
+                            style: TextStyle(color: AppColors.grayText),
                           )
                         ],
                       ),
@@ -312,18 +402,16 @@ Widget step1(BuildContext context) {
                       ),
                       Row(
                         children: [
-                          Image(
-                            width: 18,
-                            height: 18,
-                            image: AssetImage(
-                                'assets/image/png/location_icon.png'),
+                          Icon(
+                            Icons.star_rounded,
+                            color: AppColors.gold,
                           ),
                           SizedBox(
                             width: 5,
                           ),
                           Text(
                             '4 Stars',
-                            style: TextStyle(color: AppColors.TextgrayColor),
+                            style: TextStyle(color: AppColors.grayText),
                           )
                         ],
                       ),
@@ -332,18 +420,16 @@ Widget step1(BuildContext context) {
                       ),
                       Row(
                         children: [
-                          Image(
-                            width: 17,
-                            height: 18,
-                            image: AssetImage(
-                                'assets/image/png/user pink image.png'),
+                          Icon(
+                            Icons.person_2_rounded,
+                            color: AppColors.gold,
                           ),
                           SizedBox(
                             width: 5,
                           ),
                           Text(
                             '4 Stars',
-                            style: TextStyle(color: AppColors.TextgrayColor),
+                            style: TextStyle(color: AppColors.grayText),
                           )
                         ],
                       ),
@@ -363,16 +449,13 @@ Widget step1(BuildContext context) {
             child: Stack(
               children: [
                 Container(
+                  padding: const EdgeInsets.all(10),
                   width: size.width,
-                  height: 100,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: Colors.white,
                   ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.all(15),
-                  child: Column(
+                  child: const Column(
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -387,7 +470,7 @@ Widget step1(BuildContext context) {
                           Text(
                             '1 night',
                             style: TextStyle(
-                              color: AppColors.mainColorBlue,
+                              color: AppColors.purple,
                             ),
                           ),
                         ],
@@ -408,7 +491,7 @@ Widget step1(BuildContext context) {
                           Text(
                             '07 Jan, 2024',
                             style: TextStyle(
-                              color: AppColors.mainColorBlue,
+                              color: AppColors.purple,
                             ),
                           ),
                         ],
@@ -427,7 +510,7 @@ Widget step1(BuildContext context) {
                           Text(
                             '08 Jan, 2024',
                             style: TextStyle(
-                              color: AppColors.mainColorBlue,
+                              color: AppColors.purple,
                             ),
                           ),
                         ],
@@ -444,33 +527,26 @@ Widget step1(BuildContext context) {
               // left: 15,
               // right: 15,
             ),
-            child: Stack(
-              children: [
-                Container(
-                  width: size.width,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.white,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              width: size.width,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.white,
+              ),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Cancellation policy',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15,
+                    ),
                   ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.all(15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Cancellation policy',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 15,
-                        ),
-                      ),
-                      Icon(Icons.arrow_forward_ios),
-                    ],
-                  ),
-                ),
-              ],
+                  Icon(Icons.arrow_forward_ios),
+                ],
+              ),
             ),
           ),
           Padding(
@@ -479,33 +555,26 @@ Widget step1(BuildContext context) {
               // left: 15,
               // right: 15,
             ),
-            child: Stack(
-              children: [
-                Container(
-                  width: size.width,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.white,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              width: size.width,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.white,
+              ),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Service fee & tax',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15,
+                    ),
                   ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.all(15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Service fee & tax',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 15,
-                        ),
-                      ),
-                      Icon(Icons.arrow_forward_ios),
-                    ],
-                  ),
-                ),
-              ],
+                  Icon(Icons.arrow_forward_ios),
+                ],
+              ),
             ),
           ),
         ],
@@ -515,221 +584,404 @@ Widget step1(BuildContext context) {
 }
 
 Widget step2(BuildContext context) {
-  return (Container(
-    child: Column(
-      children: [
-        Container(
-            width: screenWidth(1.1),
-            height: screenWidth(3),
-            decoration: BoxDecoration(
-                color: AppColors.babyblueColor,
-                borderRadius: BorderRadiusDirectional.circular(25)),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              // crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  'Use your passport or GCC National ID to \nquickly and securely auto-fill traveller\n details',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      color: Color.fromRGBO(96, 96, 96, 1),
-                      fontSize: screenWidth(25)),
-                  textAlign: TextAlign.center,
-                ),
-                Container(
-                  width: screenWidth(1.3),
-                  height: screenWidth(10),
-                  decoration: BoxDecoration(
-                      color: AppColors.backgroundgrayColor,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.all(10),
-                    child: Center(
-                      child: Text(
-                        'Scan ID to add traveller',
-                        style: TextStyle(
-                            color: AppColors.mainColorBlue,
-                            fontSize: screenWidth(25)),
-                      ),
-                    ),
+  Size size = MediaQuery.of(context).size;
+  return (Column(
+    children: [
+      Container(
+        padding: EdgeInsets.all(10),
+        width: size.width,
+        decoration: BoxDecoration(
+            color: AppColors.lightPurple,
+            borderRadius: BorderRadiusDirectional.circular(25)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          // crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              'Use your passport or GCC National ID to \nquickly and securely auto-fill traveller\n details',
+              style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  color: Color.fromRGBO(96, 96, 96, 1),
+                  fontSize: screenWidth(25)),
+              textAlign: TextAlign.center,
+            ),
+            Container(
+              width: size.width - 20,
+              height: 40,
+              decoration: BoxDecoration(
+                  color: AppColors.purple,
+                  borderRadius: BorderRadius.circular(20)),
+              child: Padding(
+                padding: EdgeInsetsDirectional.all(10),
+                child: Center(
+                  child: Text(
+                    'Scan ID to add traveller',
+                    style: TextStyle(
+                        color: Colors.white, fontSize: screenWidth(25)),
                   ),
                 ),
-              ],
-            )),
-        Padding(
-          padding: EdgeInsetsDirectional.only(
-              top: screenWidth(20), end: screenWidth(2)),
-          child: Text(
+              ),
+            ),
+          ],
+        ),
+      ),
+      const SizedBox(
+        height: 20,
+      ),
+      const Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Text(
             ' Traveller details ',
             style: TextStyle(
               fontWeight: FontWeight.w700,
-              fontSize: screenWidth(22),
+              fontSize: TextSize.header1,
             ),
           ),
-        ),
-        SizedBox(
-          height: screenWidth(30),
-        ),
-        CustomTextField(
-          prefIcon: Icons.person_2,
-          colorIcon: const Color.fromARGB(255, 255, 181, 215),
-          hintText: 'First name',
-        ),
-        SizedBox(
-          height: screenWidth(30),
-        ),
-        CustomTextField(
-          prefIcon: Icons.person_2,
-          colorIcon: const Color.fromARGB(255, 255, 181, 215),
-          hintText: 'Last name',
-        ),
-        SizedBox(
-          height: screenWidth(30),
-        ),
-        CustomTextField(
-          prefIcon: Icons.email,
-          colorIcon: const Color.fromARGB(255, 175, 153, 255),
-          hintText: 'Email',
-        ),
-        SizedBox(
-          height: screenWidth(30),
-        ),
-        CustomTextField(
-          prefIcon: Icons.phone,
-          colorIcon: Color.fromARGB(255, 198, 237, 195),
-          hintText: 'Mobile Number',
-        ),
-        SizedBox(height: screenHeight(12)),
-        Container(
-          alignment: Alignment.bottomLeft,
-          color: Colors.white,
-          child: Padding(
-            padding: EdgeInsetsDirectional.only(
-                start: screenWidth(30), top: screenHeight(86)),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+        ],
+      ),
+      Container(
+        padding: const EdgeInsets.all(10),
+        decoration: decoration.copyWith(),
+        child: Column(
+          children: [
+            const Row(
               children: [
-                Row(
-                  children: [
-                    SizedBox(
-                      height: screenHeight(40),
-                    ),
-                    Text(
-                      'Total to be paid:',
-                      style: TextStyle(
-                        fontSize: screenWidth(25),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(
-                      '2231',
-                      style: TextStyle(
-                          fontSize: screenWidth(18),
-                          color: AppColors.mainColorBlue),
-                    ),
-                    Text(
-                      'SAR',
-                      style: TextStyle(
-                        fontSize: screenWidth(26),
-                      ),
-                    )
-                  ],
-                ),
                 SizedBox(
-                  height: screenHeight(80),
-                )
+                  width: 10,
+                ),
+                Text(
+                  'First Name',
+                  style: TextStyle(
+                      fontSize: 13,
+                      color: AppColors.grayText,
+                      fontWeight: FontWeight.w500),
+                ),
               ],
             ),
+            SizedBox(
+              height: 45,
+              child: TextField(
+                onChanged: (value) {},
+                decoration: textFielDecoratiom.copyWith(
+                  focusedBorder: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(18)),
+                    borderSide: BorderSide(color: AppColors.purple, width: 1.5),
+                  ),
+                  fillColor: Colors.white,
+                  prefixIcon: const Icon(
+                    Icons.person_2_rounded,
+                    color: AppColors.gold,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Row(
+              children: [
+                SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  'Last Name',
+                  style: TextStyle(
+                      fontSize: 13,
+                      color: AppColors.grayText,
+                      fontWeight: FontWeight.w500),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 45,
+              child: TextField(
+                onChanged: (value) {},
+                decoration: textFielDecoratiom.copyWith(
+                  focusedBorder: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(18)),
+                    borderSide: BorderSide(color: AppColors.purple, width: 1.5),
+                  ),
+                  fillColor: Colors.white,
+                  prefixIcon: const Icon(
+                    Icons.person_2_rounded,
+                    color: AppColors.gold,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Row(
+              children: [
+                SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  'Email',
+                  style: TextStyle(
+                      fontSize: 13,
+                      color: AppColors.grayText,
+                      fontWeight: FontWeight.w500),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 45,
+              child: TextField(
+                onChanged: (value) {},
+                decoration: textFielDecoratiom.copyWith(
+                  focusedBorder: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(18)),
+                    borderSide: BorderSide(color: AppColors.purple, width: 1.5),
+                  ),
+                  fillColor: Colors.white,
+                  prefixIcon: const Icon(
+                    Icons.email_rounded,
+                    color: AppColors.gold,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Row(
+              children: [
+                SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  'Mobile Number',
+                  style: TextStyle(
+                      fontSize: 13,
+                      color: AppColors.grayText,
+                      fontWeight: FontWeight.w500),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 45,
+              child: TextField(
+                onChanged: (value) {},
+                decoration: textFielDecoratiom.copyWith(
+                  focusedBorder: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(18)),
+                    borderSide: BorderSide(color: AppColors.purple, width: 1.5),
+                  ),
+                  fillColor: Colors.white,
+                  prefixIcon: const Icon(
+                    Icons.phone,
+                    color: AppColors.gold,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      const SizedBox(height: 20),
+      Container(
+        alignment: Alignment.bottomLeft,
+        decoration: decoration.copyWith(),
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  SizedBox(
+                    height: screenHeight(40),
+                  ),
+                  const Text(
+                    'Total to be paid:',
+                    style: TextStyle(
+                      fontSize: TextSize.header1,
+                    ),
+                  ),
+                ],
+              ),
+              const Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    '2231',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.purple),
+                  ),
+                  Text(
+                    'SAR',
+                    style: TextStyle(
+                        fontSize: TextSize.header2, color: AppColors.grayText),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
-      ],
-    ),
+      ),
+    ],
   ));
 }
 
 Widget step3(BuildContext contex) {
   is3 = true;
-  return (Container(
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        SizedBox(
-          height: 20,
+  return Column(
+    children: [
+      (Container(
+        padding: const EdgeInsets.all(10),
+        decoration: decoration.copyWith(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const Row(
+              children: [
+                SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  'First Name',
+                  style: TextStyle(
+                      fontSize: 13,
+                      color: AppColors.grayText,
+                      fontWeight: FontWeight.w500),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 45,
+              child: TextField(
+                onChanged: (value) {},
+                decoration: textFielDecoratiom.copyWith(
+                  focusedBorder: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(18)),
+                    borderSide: BorderSide(color: AppColors.purple, width: 1.5),
+                  ),
+                  fillColor: Colors.white,
+                  prefixIcon: const Icon(
+                    Icons.credit_card_rounded,
+                    color: AppColors.gold,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Row(
+              children: [
+                SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  'Card Expiration Date',
+                  style: TextStyle(
+                      fontSize: 13,
+                      color: AppColors.grayText,
+                      fontWeight: FontWeight.w500),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 45,
+              child: TextField(
+                onChanged: (value) {},
+                decoration: textFielDecoratiom.copyWith(
+                  focusedBorder: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(18)),
+                    borderSide: BorderSide(color: AppColors.purple, width: 1.5),
+                  ),
+                  fillColor: Colors.white,
+                  prefixIcon: const Icon(
+                    Icons.date_range,
+                    color: AppColors.gold,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Row(
+              children: [
+                SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  'Name of card holder',
+                  style: TextStyle(
+                      fontSize: 13,
+                      color: AppColors.grayText,
+                      fontWeight: FontWeight.w500),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 45,
+              child: TextField(
+                onChanged: (value) {},
+                decoration: textFielDecoratiom.copyWith(
+                  focusedBorder: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(18)),
+                    borderSide: BorderSide(color: AppColors.purple, width: 1.5),
+                  ),
+                  fillColor: Colors.white,
+                  prefixIcon: const Icon(
+                    Icons.person_2_rounded,
+                    color: AppColors.gold,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
-        const CustomTextField(
-          prefIcon: Icons.credit_card_rounded,
-          colorIcon: AppColors.IconPurpleColor,
-          hintText: 'First name',
-        ),
-        SizedBox(
-          height: 20,
-        ),
-        const CustomTextField(
-          prefIcon: Icons.date_range,
-          colorIcon: Color.fromARGB(255, 198, 237, 195),
-          hintText: 'Card expiration date',
-        ),
-        SizedBox(
-          height: 20,
-        ),
-        const CustomTextField(
-          prefIcon: Icons.person,
-          colorIcon: AppColors.IconBlueColor,
-          hintText: 'Name of card holder',
-          suffIcon: Icons.keyboard_arrow_down,
-        ),
-        Container(
-            alignment: Alignment.bottomLeft,
-            color: Colors.white,
-            child: Padding(
-              padding: EdgeInsetsDirectional.only(
-                  start: screenWidth(30), top: screenHeight(86)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+      )),
+      const SizedBox(
+        height: 20,
+      ),
+      Container(
+        alignment: Alignment.bottomLeft,
+        decoration: decoration.copyWith(),
+        child: const Padding(
+          padding: EdgeInsets.all(10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Row(
                 children: [
-                  const Row(
-                    children: [
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        'Total to be paid:',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w500),
-                      ),
-                    ],
+                  Text(
+                    'Total to be paid:',
+                    style: TextStyle(
+                      fontSize: TextSize.header1,
+                    ),
                   ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        '2231',
-                        style: TextStyle(
-                          fontSize: screenWidth(18),
-                          color: AppColors.mainColorBlue,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Text(
-                        'SAR',
-                        style: TextStyle(
-                          fontSize: screenWidth(26),
-                        ),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: screenHeight(80),
-                  )
                 ],
               ),
-            )),
-      ],
-    ),
-  ));
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    '2231',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.purple),
+                  ),
+                  Text(
+                    'SAR',
+                    style: TextStyle(
+                        fontSize: TextSize.header2, color: AppColors.grayText),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    ],
+  );
 }

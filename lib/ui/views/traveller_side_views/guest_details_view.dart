@@ -8,7 +8,6 @@ import 'package:traveling/ui/shared/custom_widgets/custom_textfiled.dart';
 import 'package:traveling/ui/shared/custom_widgets/custom_textgray.dart';
 import 'package:traveling/ui/shared/utils.dart';
 
-import 'hotel_payments_view.dart';
 
 class GuestDetailsView extends StatelessWidget {
   const GuestDetailsView({super.key});
@@ -217,7 +216,7 @@ class GuestDetailsView extends StatelessWidget {
                       color: Colors.white,
                       child: InkWell(
                           onTap: () {
-                            Get.to(HotelPaymentsView());
+                            // Get.to(HotelPaymentsView());
                           },
                           child: Center(
                               child: CustomButton(

@@ -23,7 +23,6 @@ import '../controllers/my_app_controller.dart';
 import '../ui/views/splash_view.dart';
 import '../ui/views/traveller_side_views/booking_summary_view.dart';
 import '../ui/views/traveller_side_views/traveller_details_view1.dart';
-import '../ui/views/traveller_side_views/edit_profile_view.dart';
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});

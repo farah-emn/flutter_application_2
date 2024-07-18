@@ -50,7 +50,7 @@ class FlightSummeryView extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Column(
+                    const Column(
                       children: [
                         Row(
                           children: [
@@ -117,20 +117,20 @@ class FlightSummeryView extends StatelessWidget {
                       children: [
                         Container(
                           width: size.width / 2 + 30,
-                          child: Text(
+                          child: const Text(
                             'Cairo International Airport',
                             style: TextStyle(
                                 fontWeight: FontWeight.w400, fontSize: 15),
                           ),
                         ),
-                        Text(
+                        const Text(
                           'Cairo, Eygpt',
                           style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 13,
                               color: AppColors.TextgrayColor),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         Container(
