@@ -1,10 +1,8 @@
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:traveling/ui/shared/colors.dart';
+import 'package:traveling/ui/views/traveller_side_views/bookings_view.dart';
 import 'package:traveling/ui/views/traveller_side_views/home_view.dart';
-import 'package:traveling/ui/views/traveller_side_views/menu_view.dart';
 import 'package:traveling/ui/views/traveller_side_views/profile_view.dart';
-import 'package:traveling/ui/views/traveller_side_views/search_flight/search_flight_view.dart';
 import 'package:traveling/ui/views/traveller_side_views/search_view.dart';
 
 class Home extends StatefulWidget {
@@ -19,7 +17,7 @@ class _HomeState extends State<Home> {
   final Screens = [
     const HomeView(),
     const SearchView(),
-    const ProfileView(),
+    const BookingsView(),
     const ProfileView(),
   ];
   @override
@@ -66,7 +64,7 @@ class _HomeState extends State<Home> {
                 Icons.notifications,
                 color: AppColors.backgroundgrayColor,
               ),
-              label: 'Menu',
+              label: 'Bookings',
             ),
             NavigationDestination(
               icon: Icon(Icons.person_2_rounded),

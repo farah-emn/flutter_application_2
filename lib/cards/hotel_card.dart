@@ -5,7 +5,6 @@ import 'package:traveling/ui/shared/colors.dart';
 import 'package:traveling/ui/shared/text_size.dart';
 import 'package:traveling/ui/views/traveller_side_views/hotel_details_view.dart';
 
-
 class HotelCard extends StatefulWidget {
   const HotelCard({
     super.key,
@@ -55,8 +54,9 @@ class _HotelCardState extends State<HotelCard> {
                   height: 200,
                   width: widget.size.width,
                   decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(20),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
                     ),
                     image: DecorationImage(
                       image: AssetImage(widget.hotelDetails.image),

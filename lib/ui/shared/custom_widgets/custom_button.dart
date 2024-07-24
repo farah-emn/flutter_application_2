@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:traveling/ui/shared/colors.dart';
+import 'package:traveling/ui/shared/text_size.dart';
 import 'package:traveling/ui/shared/utils.dart';
 
 class CustomButton extends StatelessWidget {
@@ -23,7 +24,7 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: screenWidth(widthPercent),
+      width: widthPercent,
       height: 50,
       decoration: BoxDecoration(
         color: backgroundColor,
@@ -34,8 +35,8 @@ class CustomButton extends StatelessWidget {
           text,
           style: TextStyle(
               color: textColor,
-              fontWeight: FontWeight.bold,
-              fontSize: screenWidth(25)),
+              fontWeight: FontWeight.w500,
+              fontSize: TextSize.header2),
         ),
       ),
     );
