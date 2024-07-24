@@ -32,13 +32,14 @@ class _RoomViewState extends State<RoomView> {
             backgroundColor: AppColors.lightPurple,
             elevation: 0,
             pinned: true,
-            expandedHeight: 350,
-            toolbarHeight: 120,
+            expandedHeight: 300,
+            toolbarHeight: 100,
+            collapsedHeight: 100,
             flexibleSpace: FlexibleSpaceBar(
               background: Stack(
                 children: [
                   Container(
-                    height: 350,
+                    height: 300,
                     child: Image(
                       image: AssetImage('assets/image/png/room2.png'),
                       fit: BoxFit.fill,
@@ -222,7 +223,7 @@ class _RoomViewState extends State<RoomView> {
                       ],
                     ),
                     SizedBox(
-                      height: 30,
+                      height: 15,
                     ),
                     Row(
                       children: [
@@ -230,10 +231,129 @@ class _RoomViewState extends State<RoomView> {
                           width: 15,
                         ),
                         Text(
-                          'About',
+                          'About Room',
                           style: TextStyle(
                               fontSize: TextSize.header1,
-                              fontWeight: FontWeight.bold),
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                      child: Row(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.window,
+                                    color: AppColors.purple,
+                                    size: 20,
+                                  ),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(
+                                    'Partial Sea View',
+                                    style: const TextStyle(
+                                        color: AppColors.grayText,
+                                        fontSize: TextSize.header2),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.space_bar,
+                                    color: AppColors.purple,
+                                    size: 20,
+                                  ),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(
+                                    '200 m',
+                                    style: const TextStyle(
+                                        color: AppColors.grayText,
+                                        fontSize: TextSize.header2),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            width: 50,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.bed,
+                                    color: AppColors.purple,
+                                    size: 20,
+                                  ),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(
+                                    '2 Beds',
+                                    style: const TextStyle(
+                                        color: AppColors.grayText,
+                                        fontSize: TextSize.header2),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.attach_money,
+                                    color: AppColors.purple,
+                                    size: 20,
+                                  ),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(
+                                    '200 /per night',
+                                    style: const TextStyle(
+                                        color: AppColors.grayText,
+                                        fontSize: TextSize.header2),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.symmetric(vertical: 20),
+                          width: size.width - 50,
+                          height: 1,
+                          color: AppColors.LightGrayColor,
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Text(
+                          'Amenities',
+                          style: TextStyle(
+                              fontSize: TextSize.header1,
+                              fontWeight: FontWeight.w500),
                         ),
                       ],
                     ),
@@ -255,8 +375,16 @@ class _RoomViewState extends State<RoomView> {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 30,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.symmetric(vertical: 20),
+                          width: size.width - 50,
+                          height: 1,
+                          color: AppColors.LightGrayColor,
+                        ),
+                      ],
                     ),
                     Row(
                       children: [
@@ -267,7 +395,7 @@ class _RoomViewState extends State<RoomView> {
                           'Rating and review',
                           style: TextStyle(
                               fontSize: TextSize.header1,
-                              fontWeight: FontWeight.bold),
+                              fontWeight: FontWeight.w500),
                         ),
                       ],
                     ),
@@ -416,7 +544,7 @@ class _RoomViewState extends State<RoomView> {
                       ),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 30,
                     ),
                   ],
                 ),
