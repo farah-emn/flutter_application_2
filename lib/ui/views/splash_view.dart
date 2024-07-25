@@ -60,7 +60,7 @@ class _SplashViewState extends State<SplashView> {
             // ),
           ],
         ),
-        nextScreen: HotelSplashView(),
+        nextScreen: Home(),
       ),
     );
   }
