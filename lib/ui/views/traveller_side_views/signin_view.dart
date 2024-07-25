@@ -83,10 +83,9 @@ class _SignInViewState extends State<SignInView> {
                 ),
                 child: Container(
                   decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15),
-                    ),
+                    image: DecorationImage(
+                        image: AssetImage('assets/image/png/background1.png'),
+                        fit: BoxFit.fill),
                   ),
                 ),
               ),
@@ -96,7 +95,7 @@ class _SignInViewState extends State<SignInView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(
-                      height: 280,
+                      height: 350,
                     ),
                     Text(
                       'Sign in ',
@@ -238,22 +237,22 @@ class _SignInViewState extends State<SignInView> {
                     SizedBox(
                       height: screenHeight(20),
                     ),
-                    const Center(
-                      child: CustomTextGray(
-                        mainText: 'or sign in with ',
-                      ),
-                    ),
-                    SizedBox(
-                      height: screenHeight(20),
-                    ),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        CustomImage(imagename: 'facebook_icon'),
-                        CustomImage(imagename: 'google_icon'),
-                        CustomImage(imagename: 'twitter_icon'),
-                      ],
-                    ),
+                    // const Center(
+                    //   child: CustomTextGray(
+                    //     mainText: 'or sign in with ',
+                    //   ),
+                    // ),
+                    // SizedBox(
+                    //   height: screenHeight(20),
+                    // ),
+                    // const Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //   children: [
+                    //     CustomImage(imagename: 'facebook_icon'),
+                    //     CustomImage(imagename: 'google_icon'),
+                    //     CustomImage(imagename: 'twitter_icon'),
+                    //   ],
+                    // ),
                     SizedBox(
                       height: screenHeight(20),
                     ),
