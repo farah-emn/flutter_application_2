@@ -207,7 +207,7 @@ class _BookingSummaryViewState extends State<BookingSummaryView> {
                                                 text: 'Confirm',
                                                 textColor: AppColors
                                                     .backgroundgrayColor,
-                                                widthPercent: 1.35,
+                                                widthPercent: size.width,
                                                 heightPercent: 20),
                                           ),
                                         ),

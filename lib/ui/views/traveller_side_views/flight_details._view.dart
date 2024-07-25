@@ -26,6 +26,7 @@ class _FlightDetailsViewState extends State<FlightDetailsView> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     List<Step> StepsList() {
       return <Step>[
         Step(
@@ -211,7 +212,7 @@ class _FlightDetailsViewState extends State<FlightDetailsView> {
                                           text: 'Confirm',
                                           textColor:
                                               AppColors.backgroundgrayColor,
-                                          widthPercent: 1.35,
+                                          widthPercent: size.width,
                                           heightPercent: 20),
                                     ),
                                   ),

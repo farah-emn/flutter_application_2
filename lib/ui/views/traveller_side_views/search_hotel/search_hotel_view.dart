@@ -476,7 +476,7 @@ class SearchHotelViewState extends State<SearchHotelView> {
                           text: 'Search',
                           textColor: AppColors.backgroundgrayColor,
                           backgroundColor: AppColors.purple,
-                          widthPercent: 1.1,
+                          widthPercent: size.width,
                           heightPercent: 15),
                     ),
                   ],

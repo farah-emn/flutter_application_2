@@ -240,7 +240,7 @@ class _SignInViewState extends State<SignInView> {
                         text: 'Sign in',
                         textColor: AppColors.backgroundgrayColor,
                         heightPercent: 15,
-                        widthPercent: 1,
+                        widthPercent: size.width,
                       ),
                     ),
                     SizedBox(

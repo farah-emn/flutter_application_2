@@ -14,6 +14,7 @@ class GuestDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
             body: ListView(
@@ -224,7 +225,7 @@ class GuestDetailsView extends StatelessWidget {
 
                                   text: 'Confirm',
                                   textColor: AppColors.backgroundgrayColor,
-                                  widthPercent: 1.1,
+                                  widthPercent: size.width,
                                   heightPercent: 19))),
                     )
                   ],

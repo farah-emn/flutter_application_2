@@ -11,6 +11,8 @@ class WelcomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: AppColors.lightBlue,
       body: Column(children: [
@@ -21,14 +23,14 @@ class WelcomeView extends StatelessWidget {
           onTap: () {
             Get.to(() => const SignUpView());
           },
-          child: Center(
+          child: Padding(
+            padding: EdgeInsets.only(left: 15, right: 15),
             child: CustomButton(
-                          backgroundColor: AppColors.darkBlue,
-
+              backgroundColor: AppColors.darkBlue,
               text: 'Sign up',
               textColor: AppColors.backgroundgrayColor,
               heightPercent: 15,
-              widthPercent: 1.1,
+              widthPercent: size.width,
             ),
           ),
         ),

@@ -40,14 +40,15 @@ class FirstView extends StatelessWidget {
                   onTap: () {
                     Get.to(() => const TravellerWelcomeView());
                   },
-                  child: Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 15, right: 15),
                     child: CustomButton(
                           backgroundColor: AppColors.darkBlue,
 
                       text: 'Start',
                       textColor: AppColors.backgroundgrayColor,
                       heightPercent: 15,
-                      widthPercent: 1.1,
+                      widthPercent: size.width,
                     ),
                   ),
                 ),

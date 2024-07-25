@@ -11,6 +11,8 @@ class TravellerWelcomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: AppColors.lightBlue,
       body: Column(children: [
@@ -28,7 +30,7 @@ class TravellerWelcomeView extends StatelessWidget {
               text: 'Sign up',
               textColor: AppColors.backgroundgrayColor,
               heightPercent: 15,
-              widthPercent: 1.1,
+              widthPercent: size.width,
             ),
           ),
         ),

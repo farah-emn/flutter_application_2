@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:traveling/ui/shared/colors.dart';
+import 'package:traveling/ui/views/hotel_splash_view.dart';
 import 'package:traveling/ui/views/traveller_side_views/home_screen.dart';
 import 'package:traveling/ui/views/traveller_side_views/menu_view.dart';
 import 'package:traveling/ui/views/traveller_side_views/traveller_welcome_view.dart';
@@ -59,7 +60,7 @@ class _SplashViewState extends State<SplashView> {
             // ),
           ],
         ),
-        nextScreen: Home(),
+        nextScreen: HotelSplashView(),
       ),
     );
   }
