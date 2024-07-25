@@ -83,9 +83,10 @@ class _SignInViewState extends State<SignInView> {
                 ),
                 child: Container(
                   decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('assets/image/png/back.png'),
-                        fit: BoxFit.fill),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(15),
+                      topRight: Radius.circular(15),
+                    ),
                   ),
                 ),
               ),
@@ -108,9 +109,6 @@ class _SignInViewState extends State<SignInView> {
                     ),
                     const Row(
                       children: [
-                        SizedBox(
-                          width: 10,
-                        ),
                         Text(
                           'Email',
                           style: TextStyle(
@@ -121,7 +119,7 @@ class _SignInViewState extends State<SignInView> {
                       ],
                     ),
                     SizedBox(
-                      height: 30,
+                      height: 45,
                       child: TextFormField(
                         controller: _emailController,
                         keyboardType: TextInputType.emailAddress,
@@ -149,9 +147,6 @@ class _SignInViewState extends State<SignInView> {
                     ),
                     const Row(
                       children: [
-                        SizedBox(
-                          width: 10,
-                        ),
                         Text(
                           'Password',
                           style: TextStyle(
@@ -162,7 +157,7 @@ class _SignInViewState extends State<SignInView> {
                       ],
                     ),
                     SizedBox(
-                      height: 30,
+                      height: 45,
                       child: TextFormField(
                         controller: _passwordController,
                         keyboardType: TextInputType.visiblePassword,
@@ -211,21 +206,19 @@ class _SignInViewState extends State<SignInView> {
                               if (e is FirebaseAuthException) {
                                 if (e.code == 'user-not-found') {
                                   setState(() {
-                                    errorText= 'No user found for that email.';
+                                    errorText = 'No user found for that email.';
                                   });
-                                  
                                 } else if (e.code == 'wrong-password') {
                                   setState(() {
-                                    errorText=
-                                      'Wrong password provided for that user.';
+                                    errorText =
+                                        'Wrong password provided for that user.';
                                   });
-                                  
                                 } else {
                                   setState(() {
-                                    errorText='Failed with error code: ${e.code}';
-                                  errorText= e.message!;
+                                    errorText =
+                                        'Failed with error code: ${e.code}';
+                                    errorText = e.message!;
                                   });
-                                  
                                 }
                               }
                               print(e);
@@ -235,8 +228,7 @@ class _SignInViewState extends State<SignInView> {
                         } catch (e) {}
                       },
                       child: CustomButton(
-                          backgroundColor: AppColors.darkBlue,
-
+                        backgroundColor: AppColors.darkBlue,
                         text: 'Sign in',
                         textColor: AppColors.backgroundgrayColor,
                         heightPercent: 15,

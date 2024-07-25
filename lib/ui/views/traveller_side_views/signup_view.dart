@@ -114,9 +114,6 @@ class _SignUpViewState extends State<SignUpView> {
                     ),
                     const Row(
                       children: [
-                        SizedBox(
-                          width: 10,
-                        ),
                         Text(
                           'Email',
                           style: TextStyle(
@@ -127,7 +124,7 @@ class _SignUpViewState extends State<SignUpView> {
                       ],
                     ),
                     SizedBox(
-                      height: 30,
+                      height: 45,
                       child: TextFormField(
                         keyboardType: TextInputType.emailAddress,
                         controller: _emailController,
@@ -142,9 +139,6 @@ class _SignUpViewState extends State<SignUpView> {
                     ),
                     const Row(
                       children: [
-                        SizedBox(
-                          width: 10,
-                        ),
                         Text(
                           'Password',
                           style: TextStyle(
@@ -155,7 +149,7 @@ class _SignUpViewState extends State<SignUpView> {
                       ],
                     ),
                     SizedBox(
-                      height: 30,
+                      height: 45,
                       child: TextFormField(
                         keyboardType: TextInputType.visiblePassword,
                         decoration: textFielDecoratiom.copyWith(),
@@ -170,9 +164,6 @@ class _SignUpViewState extends State<SignUpView> {
                     ),
                     const Row(
                       children: [
-                        SizedBox(
-                          width: 10,
-                        ),
                         Text(
                           'Conferm Password',
                           style: TextStyle(
@@ -183,7 +174,7 @@ class _SignUpViewState extends State<SignUpView> {
                       ],
                     ),
                     SizedBox(
-                      height: 30,
+                      height: 45,
                       child: TextFormField(
                         controller: _confirmPasswordController,
                         decoration: textFielDecoratiom.copyWith(),
@@ -271,11 +262,10 @@ class _SignUpViewState extends State<SignUpView> {
                         },
                         child: CustomButton(
                           backgroundColor: AppColors.darkBlue,
-
                           text: 'Sign up',
                           textColor: AppColors.backgroundgrayColor,
                           heightPercent: 20,
-                          widthPercent: 1,
+                          widthPercent: size.width,
                         )),
                     const SizedBox(
                       height: 20,
@@ -297,7 +287,7 @@ class _SignUpViewState extends State<SignUpView> {
                       ],
                     ),
                     SizedBox(
-                      height: screenHeight(20),
+                      height: 15,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
