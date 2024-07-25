@@ -538,7 +538,7 @@ class _RoomViewState extends State<RoomView> {
                         child: CustomButton(
                             text: 'Booking Now',
                             textColor: Colors.white,
-                            widthPercent: 0,
+                            widthPercent: size.width,
                             heightPercent: 50,
                             backgroundColor: AppColors.purple),
                       ),
