@@ -57,6 +57,12 @@ dependencies:
   animated_custom_dropdown:
   fluttertoast: ^8.2.5
   intl: ^0.17.0
+  camera_windows: 
+    git:
+      url: https://github.com/yushulx/flutter_camera_windows.git
+  date_format: ^2.0.7
+  firebase_storage: ^11.6.0
+  permission_handler: ^11.0.1
 
 
 
