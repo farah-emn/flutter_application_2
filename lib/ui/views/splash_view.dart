@@ -1,7 +1,6 @@
-// ignore_for_file: non_constant_identifier_names, empty_catches, prefer_const_constructors
-
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:traveling/ui/shared/colors.dart';
@@ -19,7 +18,7 @@ class SplashView extends StatefulWidget {
 
 class _SplashViewState extends State<SplashView> {
   final _auth = FirebaseAuth.instance;
-  late User loggedinUser;
+  User? loggedinUser;
   User? user;
   late DatabaseReference ref;
   var CompanyId = '';
@@ -33,25 +32,27 @@ class _SplashViewState extends State<SplashView> {
 
   Future<Widget> getData() async {
     try {
-      final user = _auth.currentUser;
+      final user = await _auth.currentUser;
       if (user != null) {
         loggedinUser = user;
       }
       if (_auth.currentUser == null) {
-        // Get.offAll(const FirstView());
+        return FirstView();
       }
-    } catch (e) {}
+    } catch (e) {
+      print(e);
+    }
     final Hotel = await FirebaseDatabase.instance
         .ref('Hotel')
-        .child(loggedinUser.uid.toString())
+        .child(loggedinUser!.uid.toString())
         .get();
     final Traveller = await FirebaseDatabase.instance
         .ref('user')
-        .child(loggedinUser.uid.toString())
+        .child(loggedinUser!.uid.toString())
         .get();
     final Flight = await FirebaseDatabase.instance
         .ref('Airline_company')
-        .child(loggedinUser.uid.toString())
+        .child(loggedinUser!.uid.toString())
         .get();
 
     final TravellerData = Traveller.value != null
@@ -109,6 +110,8 @@ class _SplashViewState extends State<SplashView> {
         ),
       ),
     );
+  }
+}
 
     //  Scaffold(
     //   backgroundColor: AppColors.darkBlue,
@@ -154,5 +157,4 @@ class _SplashViewState extends State<SplashView> {
     //     nextScreen: Home(),
     //   ),
     // );
-  }
-}
+  
