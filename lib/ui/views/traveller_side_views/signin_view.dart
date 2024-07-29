@@ -79,7 +79,7 @@ class _SignInViewState extends State<SignInView> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(
-                  top: 200,
+                  top: 300,
                 ),
                 child: Container(
                   decoration: const BoxDecoration(
@@ -101,7 +101,7 @@ class _SignInViewState extends State<SignInView> {
                       'Sign in ',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: size.width / 20),
+                          fontSize: Te),
                     ),
                     const SizedBox(
                       height: 35,
