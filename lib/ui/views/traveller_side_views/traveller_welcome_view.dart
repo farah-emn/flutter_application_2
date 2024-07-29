@@ -14,40 +14,54 @@ class TravellerWelcomeView extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: AppColors.lightBlue,
-      body: Column(children: [
-        const SizedBox(
-          height: 100,
-        ),
-        InkWell(
-          onTap: () {
-            Get.to(() => const SignUpView());
-          },
-          child: Center(
-            child: CustomButton(
-                          backgroundColor: AppColors.darkBlue,
-
-              text: 'Sign up',
-              textColor: AppColors.backgroundgrayColor,
-              heightPercent: 15,
-              widthPercent: size.width,
+      backgroundColor: AppColors.darkBlue,
+      body: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
+        Container(
+          width: size.width,
+          height: size.height / 3,
+          decoration: const BoxDecoration(
+            color: AppColors.backgroundgrayColor,
+            borderRadius: BorderRadius.horizontal(
+              left: Radius.circular(30),
+              right: Radius.circular(30),
             ),
           ),
-        ),
-        const SizedBox(
-          height: 30,
-        ),
-        InkWell(
-          onTap: () {
-            Get.to(() => const SignInView());
-          },
-          child: const Center(
-            child: Text(
-              'Sign in',
-              style: TextStyle(color: Colors.white, fontSize: 18),
-            ),
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 100,
+              ),
+              InkWell(
+                onTap: () {
+                  Get.to(() => const SignUpView());
+                },
+                child: Center(
+                  child: CustomButton(
+                    backgroundColor: AppColors.darkBlue,
+                    text: 'Sign up',
+                    textColor: AppColors.backgroundgrayColor,
+                    heightPercent: 15,
+                    widthPercent: size.width,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              InkWell(
+                onTap: () {
+                  Get.to(() => const SignInView());
+                },
+                child: const Center(
+                  child: Text(
+                    'Sign in',
+                    style: TextStyle(color: AppColors.grayText, fontSize: 18),
+                  ),
+                ),
+              )
+            ],
           ),
-        )
+        ),
       ]),
     );
   }

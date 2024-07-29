@@ -22,7 +22,7 @@ class _FlightFlightDetailsViewState extends State<FlightFlightDetailsView> {
         length: 2,
         child: Scaffold(
           resizeToAvoidBottomInset: false,
-          backgroundColor: AppColors.StatusBarColor,
+          backgroundColor: AppColors.darkBlue,
           body: SafeArea(
             child: Stack(
               children: [
@@ -36,7 +36,7 @@ class _FlightFlightDetailsViewState extends State<FlightFlightDetailsView> {
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w700,
-                            color: AppColors.backgroundgrayColor),
+                            color: AppColors.darkBlue),
                       ),
                       SizedBox(),
                     ],
@@ -61,22 +61,22 @@ class _FlightFlightDetailsViewState extends State<FlightFlightDetailsView> {
                     width: size.width - 30,
                     height: 50,
                     decoration: const BoxDecoration(
-                      color: AppColors.babyblueColor,
+                      color: AppColors.darkBlue,
                       borderRadius: BorderRadius.all(
                         Radius.circular(15),
                       ),
                     ),
                     child: const TabBar(
                       indicatorSize: TabBarIndicatorSize.tab,
-                      dividerColor: AppColors.babyblueColor,
+                      dividerColor: AppColors.darkBlue,
                       indicator: BoxDecoration(
-                        color: AppColors.Blue,
+                        color: AppColors.darkBlue,
                         borderRadius: BorderRadius.all(
                           Radius.circular(15),
                         ),
                       ),
                       labelColor: Colors.white,
-                      unselectedLabelColor: AppColors.Blue,
+                      unselectedLabelColor: AppColors.darkBlue,
                       tabs: [
                         TabItem(title: 'Details', count: 1),
                         TabItem(title: 'Bookings', count: 2),

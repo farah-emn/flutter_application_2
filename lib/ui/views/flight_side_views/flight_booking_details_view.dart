@@ -23,7 +23,7 @@ class _FlightBookingDetailsState extends State<FlightBookingDetails> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: AppColors.StatusBarColor,
+      backgroundColor: AppColors.blue1,
       body: SafeArea(
         child: Stack(
           children: [
@@ -37,7 +37,7 @@ class _FlightBookingDetailsState extends State<FlightBookingDetails> {
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w700,
-                        color: AppColors.backgroundgrayColor),
+                        color: AppColors.darkBlue),
                   ),
                   SizedBox(),
                 ],

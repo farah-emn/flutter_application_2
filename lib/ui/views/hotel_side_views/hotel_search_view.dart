@@ -201,7 +201,7 @@ class _HotelSearchViewState extends State<HotelSearchView> {
                                   Row(
                                     children: [
                                       Radio(
-                                        activeColor: AppColors.mainColorBlue,
+                                        activeColor: AppColors.darkBlue,
                                         value: 'Lowest price',
                                         groupValue: sorteBy,
                                         onChanged: (value) {
@@ -401,7 +401,7 @@ class _HotelSearchViewState extends State<HotelSearchView> {
                       height: 50,
                       width: size.width - 30,
                       decoration: BoxDecoration(
-                          color: AppColors.Blue,
+                          color: AppColors.darkBlue,
                           borderRadius: BorderRadius.circular(20)),
                       child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,

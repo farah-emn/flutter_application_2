@@ -76,7 +76,7 @@ class SearchFlightViewState extends State<SearchFlightView> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        backgroundColor: AppColors.StatusBarColor,
+        backgroundColor: AppColors.blue1,
         body: SafeArea(
           child: Stack(children: [
             Padding(
@@ -133,13 +133,13 @@ class SearchFlightViewState extends State<SearchFlightView> {
                         indicatorSize: TabBarIndicatorSize.tab,
                         dividerColor: AppColors.babyblueColor,
                         indicator: BoxDecoration(
-                          color: AppColors.Blue,
+                          color: AppColors.darkBlue,
                           borderRadius: BorderRadius.all(
                             Radius.circular(15),
                           ),
                         ),
                         labelColor: Colors.white,
-                        unselectedLabelColor: AppColors.Blue,
+                        unselectedLabelColor: AppColors.darkBlue,
                         tabs: [
                           TabItem(title: 'Details', count: 1),
                           TabItem(title: 'Bookings', count: 2),
@@ -583,7 +583,7 @@ class SearchFlightViewState extends State<SearchFlightView> {
               text: 'Search',
               textColor: AppColors.backgroundgrayColor,
               backgroundColor: AppColors.BlueText,
-              widthPercent: 1.1,
+              widthPercent: size.width,
               heightPercent: 15),
         ),
       ],
@@ -985,7 +985,7 @@ class SearchFlightViewState extends State<SearchFlightView> {
                   text: 'Search',
                   textColor: AppColors.backgroundgrayColor,
                   backgroundColor: AppColors.mainColorBlue,
-                  widthPercent: 1.1,
+                  widthPercent: size.width,
                   heightPercent: 15),
             ),
           ],

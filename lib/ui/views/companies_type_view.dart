@@ -25,7 +25,7 @@ class CompaniesTypeView extends StatelessWidget {
                 width: size.width,
                 height: 200,
                 decoration: const BoxDecoration(
-                  color: AppColors.Blue,
+                  color: AppColors.darkBlue,
                 ),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -51,7 +51,7 @@ class CompaniesTypeView extends StatelessWidget {
               child: Container(
                 height: 200,
                 decoration: const BoxDecoration(
-                  color: AppColors.Blue,
+                  color: AppColors.darkBlue,
                 ),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -73,7 +73,7 @@ class CompaniesTypeView extends StatelessWidget {
             Container(
               height: 200,
               decoration: const BoxDecoration(
-                color: AppColors.Blue,
+                color: AppColors.darkBlue,
               ),
               child: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,

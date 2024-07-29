@@ -15,7 +15,7 @@ class CurrencyDisplay extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: AppColors.StatusBarColor,
+        backgroundColor: AppColors.blue1,
         body: SafeArea(
             child: Stack(children: [
           Padding(
@@ -29,7 +29,7 @@ class CurrencyDisplay extends StatelessWidget {
                   },
                   child: const Icon(
                     Icons.arrow_back,
-                    color: AppColors.backgroundgrayColor,
+                    color: AppColors.darkBlue,
                   ),
                 ),
                 const Text(

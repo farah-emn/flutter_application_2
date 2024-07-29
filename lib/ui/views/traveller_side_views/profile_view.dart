@@ -246,11 +246,11 @@ class _ProfileViewState extends State<ProfileView> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: AppColors.StatusBarColor,
+        backgroundColor: AppColors.blue1,
         body: SafeArea(
           child: Stack(children: [
             Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15, top: 22),
+              padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -260,7 +260,7 @@ class _ProfileViewState extends State<ProfileView> {
                     },
                     child: const Icon(
                       Icons.arrow_back,
-                      color: AppColors.backgroundgrayColor,
+                      color: AppColors.darkBlue,
                     ),
                   ),
                   const Text(
@@ -268,7 +268,7 @@ class _ProfileViewState extends State<ProfileView> {
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w700,
-                        color: AppColors.backgroundgrayColor),
+                        color: AppColors.darkBlue),
                   ),
                   InkWell(
                     onTap: () {
@@ -291,7 +291,7 @@ class _ProfileViewState extends State<ProfileView> {
                     },
                     child: const Icon(
                       Icons.save_as,
-                      color: AppColors.backgroundgrayColor,
+                      color: AppColors.darkBlue,
                     ),
                   ),
                 ],
@@ -299,7 +299,7 @@ class _ProfileViewState extends State<ProfileView> {
             ),
             Padding(
               padding: const EdgeInsets.only(
-                top: 60,
+                top: 50,
               ),
               child: Container(
                 decoration: const BoxDecoration(

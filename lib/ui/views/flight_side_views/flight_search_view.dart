@@ -406,7 +406,7 @@ class _FlightSearchViewState extends State<FlightSearchView> {
                       height: 50,
                       width: size.width - 30,
                       decoration: BoxDecoration(
-                          color: AppColors.Blue,
+                          color: AppColors.darkBlue,
                           borderRadius: BorderRadius.circular(20)),
                       child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -431,7 +431,7 @@ class _FlightSearchViewState extends State<FlightSearchView> {
 
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: AppColors.StatusBarColor,
+        backgroundColor: AppColors.blue1,
         body: SafeArea(
           child: Stack(children: [
             const Padding(
@@ -444,7 +444,7 @@ class _FlightSearchViewState extends State<FlightSearchView> {
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w700,
-                        color: AppColors.backgroundgrayColor),
+                        color: AppColors.darkBlue),
                   ),
                   SizedBox(),
                 ],

@@ -16,6 +16,7 @@ import 'package:traveling/ui/shared/text_size.dart';
 import 'package:traveling/ui/shared/utils.dart';
 import 'package:traveling/ui/views/first_view.dart';
 import 'package:traveling/ui/views/traveller_side_views/menu_view.dart';
+import 'package:traveling/ui/views/traveller_side_views/traveller_details_view3.dart';
 import 'package:traveling/ui/views/traveller_side_views/welcome_view.dart';
 
 import 'flights_view.dart';
@@ -59,16 +60,15 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    
+
     return Scaffold(
       key: _scaffoldKey,
-
       drawer: Drawer(
         backgroundColor: AppColors.backgroundgrayColor,
         child: Column(
           children: [
             const UserAccountsDrawerHeader(
-                decoration: BoxDecoration(color: AppColors.Blue),
+                decoration: BoxDecoration(color: AppColors.darkBlue),
                 currentAccountPicture: CircleAvatar(
                   backgroundImage: AssetImage('assets/image/png/girlUser1.png'),
                 ),
@@ -77,7 +77,7 @@ class _HomeViewState extends State<HomeView> {
             ListTile(
               leading: const Icon(
                 Icons.date_range_rounded,
-                color: AppColors.Blue,
+                color: AppColors.darkBlue,
               ),
               title: const Text(
                 'Bookings',
@@ -92,12 +92,17 @@ class _HomeViewState extends State<HomeView> {
             ListTile(
               leading: const Icon(
                 Icons.people,
-                color: AppColors.Blue,
+                color: AppColors.darkBlue,
               ),
-              title: const Text(
-                'Travellers',
-                style: TextStyle(
-                  color: AppColors.BlueText,
+              title: InkWell(
+                onTap: () {
+                  () => const TravellerDetailsView3();
+                },
+                child: const Text(
+                  'Travellers',
+                  style: TextStyle(
+                    color: AppColors.BlueText,
+                  ),
                 ),
               ),
               onTap: () {
@@ -107,7 +112,7 @@ class _HomeViewState extends State<HomeView> {
             ListTile(
               leading: const Icon(
                 Icons.settings,
-                color: AppColors.Blue,
+                color: AppColors.darkBlue,
               ),
               title: const Text(
                 'Settings',
@@ -127,7 +132,7 @@ class _HomeViewState extends State<HomeView> {
             ListTile(
               leading: const Icon(
                 Icons.headphones,
-                color: AppColors.Blue,
+                color: AppColors.darkBlue,
               ),
               title: const Text(
                 'Contact us',
@@ -142,7 +147,7 @@ class _HomeViewState extends State<HomeView> {
             ListTile(
               leading: const Icon(
                 Icons.help,
-                color: AppColors.Blue,
+                color: AppColors.darkBlue,
               ),
               title: const Text(
                 'Help',
@@ -158,12 +163,12 @@ class _HomeViewState extends State<HomeView> {
             ListTile(
               leading: const Icon(
                 Icons.logout,
-                color: AppColors.Blue,
+                color: AppColors.darkBlue,
               ),
               title: const Text(
                 'Logout',
                 style: TextStyle(
-                  color: AppColors.BlueText,
+                  color: AppColors.darkBlue,
                 ),
               ),
               onTap: () {
@@ -176,13 +181,13 @@ class _HomeViewState extends State<HomeView> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            backgroundColor: AppColors.IconBlueColor,
+            backgroundColor: AppColors.darkBlue,
             elevation: 0,
             pinned: true,
             expandedHeight: 335,
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
-                  color: AppColors.StatusBarColor,
+                  color: AppColors.darkBlue,
                   child: const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 15),
                     child: Column(
@@ -216,7 +221,7 @@ class _HomeViewState extends State<HomeView> {
                                     Text(
                                       "Let's Explore",
                                       style: TextStyle(
-                                          color: AppColors.backgroundgrayColor,
+                                          color: AppColors.blue1,
                                           fontSize: 30,
                                           fontWeight: FontWeight.w500),
                                     ),
@@ -239,7 +244,7 @@ class _HomeViewState extends State<HomeView> {
                                     Text(
                                       "The World!",
                                       style: TextStyle(
-                                          color: AppColors.backgroundgrayColor,
+                                          color: AppColors.blue1,
                                           fontSize: 30,
                                           fontWeight: FontWeight.w500),
                                     ),
@@ -376,7 +381,7 @@ class _HomeViewState extends State<HomeView> {
                               Text(
                                 'User Name',
                                 style: TextStyle(
-                                    color: AppColors.backgroundgrayColor,
+                                    color: AppColors.blue1,
                                     fontSize: 17,
                                     fontWeight: FontWeight.w500),
                               ),
@@ -395,7 +400,7 @@ class _HomeViewState extends State<HomeView> {
                         },
                         icon: Icon(
                           Icons.menu,
-                          color: AppColors.backgroundgrayColor,
+                          color: AppColors.blue1,
                           size: 30,
                         ),
                       ),

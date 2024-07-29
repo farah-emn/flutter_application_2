@@ -45,7 +45,7 @@ class _MenuViewState extends State<MenuView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.StatusBarColor,
+        backgroundColor: AppColors.blue1,
         
         body: SafeArea(
           child: Stack(children: [
@@ -131,7 +131,7 @@ class _MenuViewState extends State<MenuView> {
                                 ),
                                 const Icon(
                                   Icons.date_range_rounded,
-                                  color: AppColors.Blue,
+                                  color: AppColors.darkBlue,
                                 ),
                                 const SizedBox(
                                   width: 20,
@@ -165,7 +165,7 @@ class _MenuViewState extends State<MenuView> {
                                 ),
                                 const Icon(
                                   Icons.favorite,
-                                  color: AppColors.Blue,
+                                  color: AppColors.darkBlue,
                                 ),
                                 const SizedBox(width: 20),
                                 Text(
@@ -201,7 +201,7 @@ class _MenuViewState extends State<MenuView> {
                                   ),
                                   const Icon(
                                     Icons.person,
-                                    color: AppColors.Blue,
+                                    color: AppColors.darkBlue,
                                   ),
                                   const SizedBox(width: 20),
                                   Text(
@@ -234,7 +234,7 @@ class _MenuViewState extends State<MenuView> {
                                 ),
                                 const Icon(
                                   Icons.people,
-                                  color: AppColors.Blue,
+                                  color: AppColors.darkBlue,
                                 ),
                                 const SizedBox(
                                   width: 17,
@@ -272,7 +272,7 @@ class _MenuViewState extends State<MenuView> {
                                   ),
                                   const Icon(
                                     Icons.person,
-                                    color: AppColors.Blue,
+                                    color: AppColors.darkBlue,
                                   ),
                                   const SizedBox(width: 20),
                                   Text(
@@ -314,7 +314,7 @@ class _MenuViewState extends State<MenuView> {
                               ),
                               const Icon(
                                 Icons.headphones,
-                                color: AppColors.Blue,
+                                color: AppColors.darkBlue,
                               ),
                               const SizedBox(
                                 width: 20,
@@ -348,7 +348,7 @@ class _MenuViewState extends State<MenuView> {
                               ),
                               const Icon(
                                 Icons.help,
-                                color: AppColors.Blue,
+                                color: AppColors.darkBlue,
                               ),
                               const SizedBox(
                                 width: 20,
@@ -400,7 +400,7 @@ class _MenuViewState extends State<MenuView> {
                                 ),
                                 const Icon(
                                   Icons.logout,
-                                  color: AppColors.Blue,
+                                  color: AppColors.darkBlue,
                                 ),
                                 const SizedBox(
                                   width: 20,

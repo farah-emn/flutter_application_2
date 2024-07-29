@@ -19,14 +19,14 @@ import 'home_view.dart';
 
 bool is3 = false;
 
-class BookingSummaryView extends StatefulWidget {
-  BookingSummaryView({super.key});
+class HotelSummartView extends StatefulWidget {
+  HotelSummartView({super.key});
 
   @override
-  State<BookingSummaryView> createState() => _BookingSummaryViewState();
+  State<HotelSummartView> createState() => _HotelSummartViewState();
 }
 
-class _BookingSummaryViewState extends State<BookingSummaryView> {
+class _HotelSummartViewState extends State<HotelSummartView> {
   int activeStepIndex = 0;
   int _nextStep = 1;
 
@@ -68,265 +68,177 @@ class _BookingSummaryViewState extends State<BookingSummaryView> {
     return Scaffold(
       backgroundColor: AppColors.lightPurple,
       body: SafeArea(
-        child: Stack(children: [
-          Container(
-            color: AppColors.lightPurple,
-            child: Stack(
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(left: 15, right: 15, top: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Icon(
-                        Icons.arrow_back,
-                        color: AppColors.purple,
-                      ),
-                      Text(
-                        'Add Room',
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700,
-                            color: AppColors.purple),
-                      ),
-                      Icon(
-                        Icons.arrow_back,
-                        color: AppColors.lightPurple,
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: 50,
-                  ),
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('assets/image/png/background1.png'),
-                          fit: BoxFit.fill),
+        child: Stack(
+          children: [
+            Container(
+              color: AppColors.lightPurple,
+              child: Stack(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(left: 15, right: 15, top: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Icon(
+                          Icons.arrow_back,
+                          color: AppColors.purple,
+                        ),
+                        Text(
+                          'Booking',
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                              color: AppColors.purple),
+                        ),
+                        Icon(
+                          Icons.arrow_back,
+                          color: AppColors.lightPurple,
+                        ),
+                      ],
                     ),
                   ),
-                ),
-                Container(
-                  color: AppColors.backgroundgrayColor,
-                  margin: const EdgeInsets.only(
-                    top: 100,
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 50,
+                    ),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image:
+                                AssetImage('assets/image/png/background1.png'),
+                            fit: BoxFit.fill),
+                      ),
+                    ),
                   ),
-                  child: Theme(
-                    data: ThemeData(
-                        colorScheme: const ColorScheme.light(
-                      primary: AppColors.purple,
-                      background: AppColors.backgroundgrayColor,
-                    )),
-                    child: Stepper(
-                      elevation: 0,
-                      steps: StepsList(),
-                      type: StepperType.horizontal,
-                      currentStep: activeStepIndex,
-                      onStepContinue: () {
-                        final isLastStep =
-                            activeStepIndex == StepsList().length - 1;
-                        if (isLastStep) {
-                          print(isLastStep);
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return Dialog(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  ),
-                                  backgroundColor: Colors.white,
-                                  child: Container(
-                                    padding: const EdgeInsets.all(10),
-                                    width: size.width,
-                                    height: 450,
-                                    child: Column(
-                                      children: [
-                                        const Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            Icon(
-                                              Icons.cancel,
-                                              color: AppColors.purple,
-                                              size: 30,
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        const Icon(
-                                          Icons.check_circle_outlined,
-                                          color: AppColors.purple,
-                                          size: 100,
-                                        ),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        const Text(
-                                          'SUCCESS!',
-                                          style: TextStyle(
-                                              color: AppColors.purple,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 25),
-                                        ),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        const Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              'Your flight has been\n\ booked successfully.',
-                                              style: TextStyle(
-                                                  fontSize: TextSize.header2,
-                                                  color: Color.fromARGB(
-                                                      255, 112, 110, 110)),
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 50,
-                                        ),
-                                        InkWell(
-                                          onTap: () {
-                                            Get.to(const Home());
-                                          },
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                              left: 15,
-                                              right: 15,
-                                              bottom: 15,
-                                            ),
-                                            child: CustomButton(
-                                                backgroundColor:
-                                                    AppColors.purple,
-                                                text: 'Confirm',
-                                                textColor: AppColors
-                                                    .backgroundgrayColor,
-                                                widthPercent: size.width,
-                                                heightPercent: 20),
-                                          ),
-                                        ),
-                                      ],
+                  Container(
+                    color: AppColors.backgroundgrayColor,
+                    margin: const EdgeInsets.only(
+                      top: 100,
+                    ),
+                    child: Theme(
+                      data: ThemeData(
+                          colorScheme: const ColorScheme.light(
+                        primary: AppColors.purple,
+                        background: AppColors.backgroundgrayColor,
+                      )),
+                      child: Stepper(
+                        elevation: 0,
+                        steps: StepsList(),
+                        type: StepperType.horizontal,
+                        currentStep: activeStepIndex,
+                        onStepContinue: () {
+                          final isLastStep =
+                              activeStepIndex == StepsList().length - 1;
+                          if (isLastStep) {
+                            print(isLastStep);
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return Dialog(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20.0),
                                     ),
-                                  ),
-                                );
-                              });
-                        } else {
-                          setState(() {
-                            activeStepIndex += 1;
-                          });
-                        }
-
-                        // if (_nextStep <= 4) {
-                        //   _activeStepIndex += 1;
-                        //   _nextStep += 1;
-                        // }
-                        // if (_nextStep == 4) {
-                        // showDialog(
-                        //     context: context,
-                        //     builder: (BuildContext context) {
-                        //       return Dialog(
-                        //         shape: RoundedRectangleBorder(
-                        //           borderRadius: BorderRadius.circular(
-                        //               20.0), // Set your desired border radius
-                        //         ),
-                        //         backgroundColor: Colors.white,
-                        //         child: Container(
-                        //           width: screenWidth(1),
-                        //           height: screenHeight(2.4),
-                        //           child: Column(
-                        //             children: [
-                        //               Padding(
-                        //                 padding: EdgeInsetsDirectional.only(
-                        //                     start: screenWidth(1.5),
-                        //                     top: screenHeight(70)),
-                        //                 child: Image.asset(
-                        //                   'assets/image/png/cancel_icon.png',
-                        //                 ),
-                        //               ),
-                        //               SizedBox(
-                        //                 height: screenHeight(60),
-                        //               ),
-                        //               Image.asset(
-                        //                   'assets/image/png/success_icon.png',
-                        //                   alignment: Alignment.bottomLeft,
-                        //                   width: screenWidth(4)),
-                        //               SizedBox(
-                        //                 height: screenHeight(80),
-                        //               ),
-                        //               Text(
-                        //                 'SUCCESS!',
-                        //                 style: TextStyle(
-                        //                     color: AppColors.mainColorBlue,
-                        //                     fontWeight: FontWeight.bold,
-                        //                     fontSize: screenWidth(16)),
-                        //               ),
-                        //               const SizedBox(
-                        //                 height: 20,
-                        //               ),
-                        //               Row(
-                        //                 mainAxisAlignment:
-                        //                     MainAxisAlignment.center,
-                        //                 children: [
-                        //                   Text(
-                        //                     'Your flight has been\n\ booked successfully.',
-                        //                     style: TextStyle(
-                        //                         fontSize: screenWidth(24),
-                        //                         color: const Color.fromARGB(
-                        //                             255, 112, 110, 110)),
-                        //                   ),
-                        //                 ],
-                        //               ),
-                        //               const SizedBox(
-                        //                 height: 50,
-                        //               ),
-                        //               InkWell(
-                        //                 onTap: () {
-                        //                   Get.to(const Home());
-                        //                 },
-                        //                 child: Padding(
-                        //                   padding: const EdgeInsets.only(
-                        //                     left: 15,
-                        //                     right: 15,
-                        //                     bottom: 15,
-                        //                   ),
-                        //                   child: CustomButton(
-                        //                       backgroundColor:
-                        //                           AppColors.purple,
-                        //                       text: 'Confirm',
-                        //                       textColor: AppColors
-                        //                           .backgroundgrayColor,
-                        //                       widthPercent: 1.35,
-                        //                       heightPercent: 20),
-                        //                 ),
-                        //               ),
-                        //             ],
-                        //           ),
-                        //         ),
-                        //       );
-                        //     });
-                        // }
-                        // setState() {}
-                      },
-                      onStepCancel: () {
-                        activeStepIndex == 0
-                            ? null
-                            : setState(() {
-                                activeStepIndex -= 1;
-                              });
-                      },
+                                    backgroundColor: Colors.white,
+                                    child: Container(
+                                      padding: const EdgeInsets.all(10),
+                                      width: size.width,
+                                      height: 450,
+                                      child: Column(
+                                        children: [
+                                          const Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              Icon(
+                                                Icons.cancel,
+                                                color: AppColors.purple,
+                                                size: 30,
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          const Icon(
+                                            Icons.check_circle_outlined,
+                                            color: AppColors.purple,
+                                            size: 100,
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          const Text(
+                                            'SUCCESS!',
+                                            style: TextStyle(
+                                                color: AppColors.purple,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 25),
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          const Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                'Your flight has been\n\ booked successfully.',
+                                                style: TextStyle(
+                                                    fontSize: TextSize.header2,
+                                                    color: Color.fromARGB(
+                                                        255, 112, 110, 110)),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 50,
+                                          ),
+                                          InkWell(
+                                            onTap: () {
+                                              Get.to(const Home());
+                                            },
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                left: 15,
+                                                right: 15,
+                                                bottom: 15,
+                                              ),
+                                              child: CustomButton(
+                                                  backgroundColor:
+                                                      AppColors.purple,
+                                                  text: 'Confirm',
+                                                  textColor: AppColors
+                                                      .backgroundgrayColor,
+                                                  widthPercent: size.width,
+                                                  heightPercent: 20),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                });
+                          } else {
+                            setState(() {
+                              activeStepIndex += 1;
+                            });
+                          }
+                        },
+                        onStepCancel: () {
+                          activeStepIndex == 0
+                              ? null
+                              : setState(() {
+                                  activeStepIndex -= 1;
+                                });
+                        },
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ]),
+          ],
+        ),
       ),
     );
   }

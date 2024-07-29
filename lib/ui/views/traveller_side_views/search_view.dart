@@ -22,7 +22,7 @@ class _SearchViewState extends State<SearchView> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: AppColors.StatusBarColor,
+      backgroundColor: AppColors.blue1,
       body: SafeArea(
           child: Stack(
         children: [

@@ -48,7 +48,7 @@ class _HoteltSignUpViewState extends State<HoteltSignUpView> {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: AppColors.StatusBarColor,
+      backgroundColor: AppColors.blue1,
       body: Stack(
         children: [
           const Column(

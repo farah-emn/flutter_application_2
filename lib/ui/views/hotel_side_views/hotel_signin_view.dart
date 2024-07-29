@@ -39,7 +39,7 @@ class _HotelSignInViewState extends State<HotelSignInView> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: AppColors.StatusBarColor,
+      backgroundColor: AppColors.blue1,
       body: Stack(
         children: [
           const Column(

@@ -23,7 +23,7 @@ class _HotelBookingDetailsState extends State<HotelBookingDetails> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: AppColors.StatusBarColor,
+      backgroundColor: AppColors.blue1,
       body: SafeArea(
         child: Stack(
           children: [

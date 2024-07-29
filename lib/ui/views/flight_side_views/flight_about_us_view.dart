@@ -20,7 +20,7 @@ class _FlightAboutUsViewState extends State<FlightAboutUsView> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: AppColors.StatusBarColor,
+      backgroundColor: AppColors.darkBlue,
       body: SafeArea(
         child: Stack(
           children: [
@@ -34,7 +34,7 @@ class _FlightAboutUsViewState extends State<FlightAboutUsView> {
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w700,
-                        color: AppColors.backgroundgrayColor),
+                        color: AppColors.darkBlue),
                   ),
                   SizedBox(),
                 ],

@@ -40,7 +40,7 @@ class _FlightHomeViewState extends State<FlightHomeView> {
         child: Column(
           children: [
             const UserAccountsDrawerHeader(
-                decoration: BoxDecoration(color: AppColors.Blue),
+                decoration: BoxDecoration(color: AppColors.darkBlue),
                 currentAccountPicture: CircleAvatar(
                   backgroundImage: AssetImage('assets/image/png/girlUser1.png'),
                 ),
@@ -49,12 +49,12 @@ class _FlightHomeViewState extends State<FlightHomeView> {
             ListTile(
               leading: const Icon(
                 Icons.date_range_rounded,
-                color: AppColors.Blue,
+                color: AppColors.darkBlue,
               ),
               title: const Text(
                 'Add airplane',
                 style: TextStyle(
-                  color: AppColors.BlueText,
+                  color: AppColors.darkBlue,
                 ),
               ),
               onTap: () {
@@ -64,12 +64,12 @@ class _FlightHomeViewState extends State<FlightHomeView> {
             ListTile(
               leading: const Icon(
                 Icons.people,
-                color: AppColors.Blue,
+                color: AppColors.darkBlue,
               ),
               title: const Text(
                 'Clients',
                 style: TextStyle(
-                  color: AppColors.BlueText,
+                  color: AppColors.darkBlue,
                 ),
               ),
               onTap: () {
@@ -79,7 +79,7 @@ class _FlightHomeViewState extends State<FlightHomeView> {
             ListTile(
               leading: const Icon(
                 Icons.settings,
-                color: AppColors.Blue,
+                color: AppColors.darkBlue,
               ),
               title: const Text(
                 'Settings',
@@ -130,7 +130,7 @@ class _FlightHomeViewState extends State<FlightHomeView> {
             ListTile(
               leading: const Icon(
                 Icons.logout,
-                color: AppColors.Blue,
+                color: AppColors.darkBlue,
               ),
               title: const Text(
                 'Logout',
@@ -148,13 +148,13 @@ class _FlightHomeViewState extends State<FlightHomeView> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            backgroundColor: AppColors.IconBlueColor,
+            backgroundColor: AppColors.blue1,
             elevation: 0,
             pinned: true,
             expandedHeight: 335,
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
-                  color: AppColors.StatusBarColor,
+                  color: AppColors.blue1,
                   child: const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 15),
                     child: Column(
@@ -188,7 +188,7 @@ class _FlightHomeViewState extends State<FlightHomeView> {
                                     Text(
                                       "Let's Explore",
                                       style: TextStyle(
-                                          color: AppColors.backgroundgrayColor,
+                                          color: AppColors.darkBlue,
                                           fontSize: 30,
                                           fontWeight: FontWeight.w500),
                                     ),
@@ -211,7 +211,7 @@ class _FlightHomeViewState extends State<FlightHomeView> {
                                     Text(
                                       "The World!",
                                       style: TextStyle(
-                                          color: AppColors.backgroundgrayColor,
+                                          color: AppColors.darkBlue,
                                           fontSize: 30,
                                           fontWeight: FontWeight.w500),
                                     ),
@@ -250,10 +250,10 @@ class _FlightHomeViewState extends State<FlightHomeView> {
                 //             padding: EdgeInsets.all(10),
                 //             decoration: BoxDecoration(
                 //                 borderRadius: BorderRadius.circular(15),
-                //                 color: AppColors.LightBlueColor),
+                //                 color: AppColors.LightdarkBlueColor),
                 //             child: const Icon(
                 //               Icons.flight,
-                //               color: AppColors.BlueText,
+                //               color: AppColors.darkBlueText,
                 //               size: 30,
                 //             ),
                 //           ),
@@ -262,7 +262,7 @@ class _FlightHomeViewState extends State<FlightHomeView> {
                 //           ),
                 //           const Text(
                 //             'Flight',
-                //             style: TextStyle(color: AppColors.BlueText),
+                //             style: TextStyle(color: AppColors.darkBlueText),
                 //           ),
                 //         ],
                 //       ),
@@ -273,10 +273,10 @@ class _FlightHomeViewState extends State<FlightHomeView> {
                 //           padding: EdgeInsets.all(10),
                 //           decoration: BoxDecoration(
                 //               borderRadius: BorderRadius.circular(15),
-                //               color: AppColors.LightBlueColor),
+                //               color: AppColors.LightdarkBlueColor),
                 //           child: const Icon(
                 //             Icons.hotel,
-                //             color: AppColors.BlueText,
+                //             color: AppColors.darkBlueText,
                 //             size: 30,
                 //           ),
                 //         ),
@@ -285,7 +285,7 @@ class _FlightHomeViewState extends State<FlightHomeView> {
                 //         ),
                 //         const Text(
                 //           'Hotel',
-                //           style: TextStyle(color: AppColors.BlueText),
+                //           style: TextStyle(color: AppColors.darkBlueText),
                 //         ),
                 //       ],
                 //     ),
@@ -295,10 +295,10 @@ class _FlightHomeViewState extends State<FlightHomeView> {
                 //           padding: EdgeInsets.all(10),
                 //           decoration: BoxDecoration(
                 //               borderRadius: BorderRadius.circular(15),
-                //               color: AppColors.LightBlueColor),
+                //               color: AppColors.LightdarkBlueColor),
                 //           child: const Icon(
                 //             Icons.local_taxi,
-                //             color: AppColors.BlueText,
+                //             color: AppColors.darkBlueText,
                 //             size: 30,
                 //           ),
                 //         ),
@@ -307,7 +307,7 @@ class _FlightHomeViewState extends State<FlightHomeView> {
                 //         ),
                 //         const Text(
                 //           'Car',
-                //           style: TextStyle(color: AppColors.BlueText),
+                //           style: TextStyle(color: AppColors.darkBlueText),
                 //         ),
                 //       ],
                 //     ),
@@ -600,7 +600,7 @@ class _FlightHomeViewState extends State<FlightHomeView> {
                           Container(
                             height: 40,
                             decoration: const BoxDecoration(
-                              color: AppColors.Blue,
+                              color: AppColors.darkBlue,
                               borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(15),
                                 bottomRight: Radius.circular(15),

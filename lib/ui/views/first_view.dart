@@ -38,7 +38,7 @@ class FirstView extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(() => const TravellerWelcomeView());
+                    Get.to(() => const SignInView());
                   },
                   child: Padding(
                     padding: EdgeInsets.only(left: 15, right: 15),
@@ -62,7 +62,7 @@ class FirstView extends StatelessWidget {
                   child: const Center(
                     child: Text(
                       'Contenue as a company',
-                      style: TextStyle(color: AppColors.Blue, fontSize: 18),
+                      style: TextStyle(color: AppColors.darkBlue, fontSize: 18),
                     ),
                   ),
                 )

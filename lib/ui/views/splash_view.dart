@@ -26,38 +26,33 @@ class _SplashViewState extends State<SplashView> {
         splash: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              // child: const Image(
-              //   image: AssetImage('assets/image/png/Logo.png'),
-              // ),
-              child: Text('Travelling'),
+            Column(
+              children: [
+                Container(
+                  height: 80,
+                  width: 100,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/image/png/Logo.png'),
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     Text(
+                //       "Travelling",
+                //       style: TextStyle(
+                //           fontSize: 20,
+                //           fontWeight: FontWeight.w700,
+                //           color: AppColors.backgroundgrayColor),
+                //     ),
+                //   ],
+                // ),
+              ],
             ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-            //     T ext(
-            //       "T",
-            //       style: TextStyle(
-            //           fontSize: 60,
-            //           fontWeight: FontWeight.w700,
-            //           color: AppColors.mainColorBlue),
-            //     ),
-            //     Text(
-            //       "ravell",
-            //       style: TextStyle(
-            //           fontSize: 60,
-            //           fontWeight: FontWeight.w700,
-            //           color: Color.fromARGB(255, 255, 170, 42)),
-            //     ),
-            //     Text(
-            //       "ing",
-            //       style: TextStyle(
-            //           fontSize: 60,
-            //           fontWeight: FontWeight.w700,
-            //           color: Colors.white),
-            //     ),
-            //   ],
-            // ),
+           
           ],
         ),
         nextScreen: Home(),
