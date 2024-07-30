@@ -172,7 +172,8 @@ class _HomeViewState extends State<HomeView> {
                 ),
               ),
               onTap: () {
-                Navigator.pop(context);
+                _auth.signOut();
+                Get.offAll(() => const FirstView());
               },
             ),
           ],
