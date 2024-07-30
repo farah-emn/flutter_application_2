@@ -1,5 +1,3 @@
-// ignore_for_file: non_constant_identifier_names, unused_local_variable, no_leading_underscores_for_local_identifiers, prefer_typing_uninitialized_variables, avoid_function_literals_in_foreach_calls, deprecated_member_use
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -341,113 +339,6 @@ class _HotelSearchViewState extends State<HotelSearchView> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Radio(
-                                        activeColor: AppColors.darkBlue,
-                                        value: 'Lowest price',
-                                        groupValue: sorteBy,
-                                        onChanged: (value) {
-                                          setState(
-                                            () {
-                                              sorteBy = value.toString();
-                                            },
-                                          );
-                                        },
-                                      ),
-                                      const Text(
-                                        'Lowest price',
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Radio(
-                                        activeColor: AppColors.mainColorBlue,
-                                        value: 'Shortest duration',
-                                        groupValue: sorteBy,
-                                        onChanged: (value) {
-                                          setState(
-                                            () {
-                                              sorteBy = value.toString();
-                                            },
-                                          );
-                                        },
-                                      ),
-                                      const Text(
-                                        'Shortest duration',
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Radio(
-                                        activeColor: AppColors.mainColorBlue,
-                                        value: 'Earliest depature',
-                                        groupValue: sorteBy,
-                                        onChanged: (value) {
-                                          setState(
-                                            () {
-                                              sorteBy = value.toString();
-                                            },
-                                          );
-                                        },
-                                      ),
-                                      const Text(
-                                        'Earliest depature',
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Radio(
-                                        activeColor: AppColors.mainColorBlue,
-                                        value: 'Latest duration',
-                                        groupValue: sorteBy,
-                                        onChanged: (value) {
-                                          setState(
-                                            () {
-                                              sorteBy = value.toString();
-                                            },
-                                          );
-                                        },
-                                      ),
-                                      const Text(
-                                        'Latest duration',
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          Container(
-                            margin: const EdgeInsets.symmetric(vertical: 15),
-                            height: 1,
-                            width: size.width - 30,
-                            color: AppColors.gray,
-                          ),
-                          const Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Store by',
-                                style: TextStyle(
-                                    fontSize: 13,
-                                    color: AppColors.grayText,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
                                       // Row(
                                       //   children: [
                                       //     Radio(
@@ -596,117 +487,6 @@ class _HotelSearchViewState extends State<HotelSearchView> {
                               ),
                               Row(
                                 children: [
-                                  Row(
-                                    children: [
-                                      Radio(
-                                        activeColor: AppColors.mainColorBlue,
-                                        value: 'Lowest price',
-                                        groupValue: sorteBy,
-                                        onChanged: (value) {
-                                          setState(
-                                            () {
-                                              sorteBy = value.toString();
-                                            },
-                                          );
-                                        },
-                                      ),
-                                      const Text(
-                                        'Lowest price',
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Radio(
-                                        activeColor: AppColors.mainColorBlue,
-                                        value: 'Shortest duration',
-                                        groupValue: sorteBy,
-                                        onChanged: (value) {
-                                          setState(
-                                            () {
-                                              sorteBy = value.toString();
-                                            },
-                                          );
-                                        },
-                                      ),
-                                      const Text(
-                                        'Shortest duration',
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Radio(
-                                        activeColor: AppColors.mainColorBlue,
-                                        value: 'Earliest depature',
-                                        groupValue: sorteBy,
-                                        onChanged: (value) {
-                                          setState(
-                                            () {
-                                              sorteBy = value.toString();
-                                            },
-                                          );
-                                        },
-                                      ),
-                                      const Text(
-                                        'Earliest depature',
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          Container(
-                            margin: const EdgeInsets.symmetric(vertical: 15),
-                            height: 1,
-                            width: size.width - 30,
-                            color: AppColors.gray,
-                          ),
-                          const Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Price range',
-                                style: TextStyle(
-                                    fontSize: 13,
-                                    color: AppColors.grayText,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(vertical: 15),
-                      height: 50,
-                      width: size.width - 30,
-                      decoration: BoxDecoration(
-                          color: AppColors.darkBlue,
-                          borderRadius: BorderRadius.circular(20)),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Show 259 of 312 flights',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
                                   Checkbox(
                                     value: isCheckedPrivateParking,
                                     onChanged: (bool? newValue) {
@@ -799,7 +579,7 @@ class _HotelSearchViewState extends State<HotelSearchView> {
                             height: 50,
                             width: size.width - 30,
                             decoration: BoxDecoration(
-                                color: AppColors.Blue,
+                                color: AppColors.blue1,
                                 borderRadius: BorderRadius.circular(20)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,

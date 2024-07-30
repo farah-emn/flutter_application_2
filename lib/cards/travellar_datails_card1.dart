@@ -209,7 +209,7 @@ class _TravellarDetailsCard1State extends State<TravellarDetailsCard1> {
             width: size.width,
             padding: EdgeInsets.only(right: 15),
             decoration: const BoxDecoration(
-              color: AppColors.Blue,
+              color: AppColors.blue1,
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(15),
                 bottomRight: Radius.circular(15),

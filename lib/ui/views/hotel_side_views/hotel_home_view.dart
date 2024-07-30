@@ -127,7 +127,7 @@ class _HotelHomeViewState extends State<HotelHomeView> {
         child: Column(
           children: [
             UserAccountsDrawerHeader(
-                decoration: const BoxDecoration(color: AppColors.Blue),
+                decoration: const BoxDecoration(color: AppColors.darkBlue),
                 currentAccountPicture: (Companyimage != null)
                     ? CircleAvatar(backgroundImage: NetworkImage(Companyimage))
                     : const CircleAvatar(

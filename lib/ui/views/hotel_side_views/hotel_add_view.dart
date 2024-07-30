@@ -3,7 +3,7 @@
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+// import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
@@ -142,9 +142,9 @@ class _HotelAddViewState extends State<HotelAddView> {
         IdOfRoomPhoto += 1;
         File file = File(image.path);
         var imagename = basename(image.path);
-        var Firebase_Storage = FirebaseStorage.instance.ref(imagename);
-        await Firebase_Storage.putFile(file);
-        String url = await Firebase_Storage.getDownloadURL();
+        // var Firebase_Storage = FirebaseStorage.instance.ref(imagename);
+        // await Firebase_Storage.putFile(file);
+        // String url = await Firebase_Storage.getDownloadURL();
         databaseReference
             .child('Room/$IdRoom:/RoomPhoto')
             .update({'$IdOfRoomPhoto': url});

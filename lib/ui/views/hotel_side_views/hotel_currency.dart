@@ -14,7 +14,7 @@ class CurrencyDisplay extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: AppColors.StatusBarColor,
+        backgroundColor: AppColors.purple,
         body: SafeArea(
             child: Stack(children: [
           Padding(
